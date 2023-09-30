@@ -37,7 +37,7 @@ func _ready():
 
 
 func spawn_plank(direction: Vector2):
-	var tree: RigidBody2D = treasure_scene.instantiate(1)
+	var tree: RigidBody2D = treasure_scene.instantiate()
 	get_parent().add_child(tree)
 	tree.global_position = global_position + direction * 10
 	tree.linear_velocity = direction * drop_speed
@@ -55,3 +55,4 @@ func interact():
 		for i in range(drop_count):
 			spawn_plank(Vector2.UP.rotated(i * PI / drop_count * 2))
 		queue_free()
+		return true
