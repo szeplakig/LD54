@@ -1,13 +1,17 @@
 extends CharacterBody2D
 
 @onready var utils: Node2D = get_node("/root/root/Utils")
+@onready var event_bus: Node2D = get_node("/root/root/EventBus")
 
 @onready var root: Node2D = get_node("/root/root")
 @onready var slot: Node2D = $Slot
 var currentItem: Node2D = null
 var overlapping_items: Array = []
 
-@export var SPEED: float = 150
+@export var player_max_hp: float = 10
+var player_hp: float = player_max_hp
+
+@export var SPEED: float = 100
 var motion = Vector2.ZERO
 
 func _input(event: InputEvent):
@@ -67,6 +71,8 @@ func drop(itemGlobalPosition=null):
 
 func damage(amount):
 	print("damaged: ", amount)
+	player_hp -= amount
+	event_bus.player_damaged(player_max_hp, player_hp, amount)
 
 func _on_area_2d_area_entered(area):
 	if not (area is Node2D):
