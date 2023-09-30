@@ -36,6 +36,9 @@ var current_water_lvl = 0
 var tilemap = []
 
 var ground_tiles = []
+var floodable_tiles = []
+var update_floodable_tiles = true
+
 var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
@@ -52,9 +55,15 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):	
 	time_passed += delta
+	
+	if (update_floodable_tiles && time_passed > 1):
+		calculate_floodable_tiles()
+		update_floodable_tiles = false
+	
 	if (time_passed >= WATER_RISE_TICK):
 		time_passed = 0
 		raise_water_lvl()
+		update_floodable_tiles = true
 	pass
 
 func raise_water_lvl():
@@ -66,7 +75,7 @@ func raise_water_lvl():
 	while flooded < TILES_PER_TICK && current_water_lvl < len(ISLAND_LVL_COORDS):
 		var i = 0
 		while i < len(ground_tiles[current_water_lvl]) && flooded < TILES_PER_TICK:
-			if (floodable(ground_tiles[current_water_lvl][i])):
+			if floodable_tiles.has(ground_tiles[current_water_lvl][i]):
 				set_cell(0,ground_tiles[current_water_lvl][i],0,WATER_TILE_COORDS[0])
 				flooded += 1
 				
@@ -138,34 +147,45 @@ func floodable(coord) -> bool:
 	return water_neighbors > WATER_NEIGHBOR_FLOOD_THRESHOLD
 	
 func recolor_water():
-	# Get all tiles that are water
+	# Get all tiles that are water, but not deep water
 	var water_tiles = []
-	for water_coord in WATER_TILE_COORDS:
-		water_tiles += get_used_cells_by_id(0,0,water_coord)
-	# Set them all to the darkest water
-	for water_tile in water_tiles:
-		set_cell(0,water_tile,0,WATER_TILE_COORDS[len(WATER_TILE_COORDS) - 1])
-	# Get all land tiles of current lvl +  1 higher
-	var land_tiles = []
-	for land_coord in ISLAND_LVL_COORDS:
-		land_tiles +=  get_used_cells_by_id(0,0,land_coord)
+	for i in range(1,len(WATER_TILE_COORDS)):
+		water_tiles += get_used_cells_by_id(0,0,WATER_TILE_COORDS[i])
 	
 	# Set their water neighbors to lightest
-	for land_tile in land_tiles:
+	var colored_tiles = []
+	var all_ground_tiles = []
+	for tiles in ground_tiles:
+		all_ground_tiles += tiles
+	
+	for land_tile in all_ground_tiles:
 		for offset in NEIGHBOR_OFFSETS:
 			if get_cell_atlas_coords(0,land_tile + offset) == WATER_TILE_COORDS[len(WATER_TILE_COORDS) - 1]:
 				set_cell(0,land_tile+offset,0,WATER_TILE_COORDS[0])
+				colored_tiles.push_back(land_tile+offset)
 	
 	for i in range(0,len(WATER_TILE_COORDS)-1):
-		# Get all lightest water tiles
-		water_tiles = get_used_cells_by_id(0,0,WATER_TILE_COORDS[i])
 		# Set their water neighbors to lighter
-		for water_tile in water_tiles:
+		var new_colored_tiles = []
+		for water_tile in colored_tiles:
 			for offset in NEIGHBOR_OFFSETS:
 				if get_cell_atlas_coords(0,water_tile+offset) == WATER_TILE_COORDS[len(WATER_TILE_COORDS) - 1]:
 					set_cell(0,water_tile+offset,0,WATER_TILE_COORDS[i+1])
-
+					new_colored_tiles.push_back(water_tile+offset)
+		colored_tiles = new_colored_tiles
 
 func is_deep_water(cell: Vector2i) -> bool:
 	var atlas_coord = get_cell_atlas_coords(0, cell)
 	return atlas_coord == WATER_TILE_COORDS[2]
+
+func calculate_floodable_tiles():
+	var all_ground_tiles = []
+	for tiles in ground_tiles:
+		all_ground_tiles += tiles
+	
+	var new_floodable_tiles = []
+	for tile in all_ground_tiles:
+		if (floodable(tile)):
+			new_floodable_tiles.push_back(tile)
+	
+	floodable_tiles = new_floodable_tiles
