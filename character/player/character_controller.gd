@@ -5,7 +5,7 @@ extends CharacterBody2D
 var currentItem: Node2D = null
 var overlapping_items: Array = []
 
-@export var SPEED: float = 100
+@export var SPEED: float = 150
 var motion = Vector2.ZERO
 
 func _input(event: InputEvent):

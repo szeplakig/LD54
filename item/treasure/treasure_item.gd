@@ -13,6 +13,7 @@ func repel_body(body: RigidBody2D):
 		apply_central_impulse(repulsion_direction * repulsion_strength)
 
 func _physics_process(_delta):
+	linear_velocity /= 1.1
 	# Apply repulsion to all overlapping bodies
 	for body in overlapping_bodies:
 		repel_body(body)

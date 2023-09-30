@@ -1,10 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdjevaidefaod"]
+[gd_scene load_steps=3 format=3 uid="uid://cdjevaidefaod"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pxmhi"]
+[ext_resource type="Texture2D" uid="uid://ddurx4874je4w" path="res://object/tree/assets/tree3.png" id="1_ftuhs"]
+[ext_resource type="Script" path="res://object/tree/tree.gd" id="1_lasem"]
 
-[node name="Tree" type="StaticBody2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_pxmhi")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Tree" type="TextureButton"]
+y_sort_enabled = true
+offset_left = -16.0
+offset_top = -44.0
+offset_right = -8.0
+offset_bottom = -28.0
+scale = Vector2(4, 4)
+texture_normal = ExtResource("1_ftuhs")
+script = ExtResource("1_lasem")

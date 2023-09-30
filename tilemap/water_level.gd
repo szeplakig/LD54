@@ -10,8 +10,8 @@ const ISLAND_LVL_COORDS = [
 	]
 const WATER_TILE_COORDS = Vector2i(0,1)
 
-@export var WATER_RISE_TICK = 5
-@export var TILES_PER_TICK = 20
+@export var WATER_RISE_TICK = 2
+@export var TILES_PER_TICK = 2
 
 var time_passed = 0
 
