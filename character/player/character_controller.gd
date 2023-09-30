@@ -27,6 +27,8 @@ func _input(event: InputEvent):
 	elif event.is_action_pressed("finish") and can_interact(ship) and ship.phase > ship.built_phase:
 		finish()
 
+func _ready():
+	$AnimatedSprite2D.play("stand")
 
 func finish():
 	event_bus.player_win(score)
@@ -44,7 +46,16 @@ func _physics_process(delta):
 		motion.y -= 1
 
 	motion = motion.normalized() * SPEED
-	move_and_collide(motion * delta)
+	if not motion == Vector2.ZERO: $AnimatedSprite2D.play("move")
+	else: $AnimatedSprite2D.play("stand")
+	var collision = move_and_collide(motion * delta)
+	velocity = motion
+	if collision: move_and_slide()
+	
+	if get_global_mouse_position().x > global_position.x:
+		$AnimatedSprite2D.scale.x = -4
+	else:
+		$AnimatedSprite2D.scale.x = 4
 
 func interact(item, harvestable=null):
 	if currentItem != null and currentItem.has_node("plank") and can_interact(ship):

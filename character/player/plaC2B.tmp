@@ -52,11 +52,11 @@ script = ExtResource("1_77alq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, -17)
+position = Vector2(1, -52)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_twlco")
 animation = &"move"
-offset = Vector2(0.25, -3.95)
+offset = Vector2(0, 4.8)
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
@@ -86,7 +86,7 @@ position = Vector2(0, -8)
 [node name="Area2D" type="Area2D" parent="."]
 y_sort_enabled = true
 position = Vector2(0, -15)
-scale = Vector2(0.759, 0.759)
+scale = Vector2(0.713817, 0.713817)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 y_sort_enabled = true
