@@ -2,9 +2,9 @@ name: "godot-ci export"
 on: push
 
 env:
-  GODOT_VERSION: 3.3.4
-  EXPORT_NAME: test-project
-  PROJECT_PATH: test-project
+  GODOT_VERSION: 4.1.1
+  EXPORT_NAME: High Tide Heist
+  PROJECT_PATH: LD54
   
 jobs:
   export-windows:
