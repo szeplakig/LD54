@@ -2,7 +2,8 @@ extends Node2D
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var player: Node2D = get_node("/root/root/Player")
-var phase = 1
+@onready var slot: Node2D = $Slot
+var phase = 7
 var built_phase = 7
 
 
@@ -11,15 +12,21 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 		if player.currentItem.has_node("plank"):
 			interact()
 		elif player.currentItem.has_node("treasure") and phase > built_phase:
-			player.spend_item()
-			player.add_score()
+			interact()
 
 func interact():
-	player.spend_item()
-	phase += 1
-	if phase < 8:
-		sprite.texture = ImageTexture.create_from_image(Image.load_from_file("res://object/ship/assets/frame"+str(phase)+".png"))
-	elif phase == 8:
-		sprite.texture = ImageTexture.create_from_image(Image.load_from_file("res://object/ship/assets/built.png"))
+	if player.currentItem != null and player.currentItem.has_node("treasure") and phase > built_phase:
+		player.add_score()
+		player.currentItem.reparent(slot)
+		player.currentItem.global_position = slot.global_position + Vector2(randf_range(-5, 5), randf_range(-.5, .5))
+		player.currentItem.get_node("Interactable").queue_free()
+		player.currentItem = null
+		
+
 	else:
-		pass
+		player.spend_item()
+		phase += 1
+		if phase < 8:
+			sprite.texture = ImageTexture.create_from_image(Image.load_from_file("res://object/ship/assets/frame"+str(phase)+".png"))
+		elif phase == 8:
+			sprite.texture = ImageTexture.create_from_image(Image.load_from_file("res://object/ship/assets/built.png"))

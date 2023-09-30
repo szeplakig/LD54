@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://UI.gd" id="8_r6sbs"]
 [ext_resource type="PackedScene" uid="uid://cdjevaidefaod" path="res://object/tree/tree.tscn" id="9_5u5sd"]
 [ext_resource type="Texture2D" uid="uid://b87rvbi0n4by7" path="res://ui/assets/heart_full.png" id="9_k53i8"]
-[ext_resource type="PackedScene" uid="uid://c7wx00546kgv0" path="res://win.tscn" id="10_jq5qf"]
+[ext_resource type="PackedScene" path="res://win.tscn" id="10_jq5qf"]
 [ext_resource type="PackedScene" uid="uid://bro7clagbiq2p" path="res://object/ship/ship_frame.tscn" id="11_3au0e"]
 [ext_resource type="Script" path="res://win.gd" id="11_u663k"]
 [ext_resource type="PackedScene" uid="uid://d2sre57itv6b1" path="res://object/chest/chest.tscn" id="13_cmla8"]
@@ -41,7 +41,7 @@ position = Vector2(7, 0)
 z_index = -1
 z_as_relative = false
 position = Vector2(1, 1)
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 layer_0/name = "tiles"
 layer_1/name = "planks"
 layer_1/enabled = true
@@ -84,10 +84,16 @@ offset_bottom = 102.0
 mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="GUI"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="GUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stretch_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GUI/AspectRatioContainer"]
 script = ExtResource("8_r6sbs")
 
-[node name="Control" type="Control" parent="GUI/CanvasLayer"]
+[node name="Control" type="Control" parent="GUI/AspectRatioContainer/CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,8 +101,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="Panel" type="Panel" parent="GUI/CanvasLayer/Control"]
+[node name="Panel" type="Panel" parent="GUI/AspectRatioContainer/CanvasLayer/Control"]
 layout_mode = 0
 offset_left = 13.0
 offset_top = 15.0
@@ -104,7 +111,7 @@ offset_right = 488.0
 offset_bottom = 116.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_n2pvb")
 
-[node name="Heart1" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
+[node name="Heart1" type="TextureRect" parent="GUI/AspectRatioContainer/CanvasLayer/Control/Panel"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 9.0
@@ -113,7 +120,7 @@ offset_right = 99.0
 offset_bottom = 96.0
 texture = ExtResource("9_k53i8")
 
-[node name="Heart2" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
+[node name="Heart2" type="TextureRect" parent="GUI/AspectRatioContainer/CanvasLayer/Control/Panel"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 101.0
@@ -122,7 +129,7 @@ offset_right = 191.0
 offset_bottom = 96.0
 texture = ExtResource("9_k53i8")
 
-[node name="Heart3" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
+[node name="Heart3" type="TextureRect" parent="GUI/AspectRatioContainer/CanvasLayer/Control/Panel"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 193.0
@@ -131,7 +138,7 @@ offset_right = 283.0
 offset_bottom = 96.0
 texture = ExtResource("9_k53i8")
 
-[node name="Heart4" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
+[node name="Heart4" type="TextureRect" parent="GUI/AspectRatioContainer/CanvasLayer/Control/Panel"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 285.0
@@ -140,7 +147,7 @@ offset_right = 375.0
 offset_bottom = 96.0
 texture = ExtResource("9_k53i8")
 
-[node name="Heart5" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
+[node name="Heart5" type="TextureRect" parent="GUI/AspectRatioContainer/CanvasLayer/Control/Panel"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 377.0
@@ -149,7 +156,32 @@ offset_right = 467.0
 offset_bottom = 96.0
 texture = ExtResource("9_k53i8")
 
-[node name="WinScreen" parent="GUI/CanvasLayer" instance=ExtResource("10_jq5qf")]
+[node name="Panel2" type="Panel" parent="GUI/AspectRatioContainer/CanvasLayer/Control"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -329.0
+offset_right = 271.0
+offset_bottom = 110.0
+grow_horizontal = 0
+scale = Vector2(0.543, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GUI/AspectRatioContainer/CanvasLayer/Control/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 80
+text = " Gems: 0"
+fit_content = true
+scroll_active = false
+
+[node name="WinScreen" parent="GUI/AspectRatioContainer/CanvasLayer" instance=ExtResource("10_jq5qf")]
 unique_name_in_owner = true
 visible = false
 offset_left = 74.0

@@ -106,6 +106,7 @@ func can_interact(other):
 
 func add_score():
 	score += 1
+	event_bus.player_score(score)
 
 func _on_area_2d_area_entered(area):
 	if not (area is Node2D):

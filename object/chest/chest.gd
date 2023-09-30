@@ -38,7 +38,6 @@ func spawn_treasure(direction: Vector2):
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("interact") and player.can_interact(self):
 		interact()
-		
 
 func interact():
 	if not in_motion:
