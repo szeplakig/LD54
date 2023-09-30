@@ -34,6 +34,8 @@ script = ExtResource("1_r0nvk")
 
 [node name="Player" parent="." instance=ExtResource("1_bg4ji")]
 position = Vector2(7, 0)
+player_max_hp = 10.0
+SPEED = 100.0
 
 [node name="Island" parent="." instance=ExtResource("1_xth2g")]
 z_index = -1
@@ -42,6 +44,12 @@ position = Vector2(1, 1)
 scale = Vector2(2, 2)
 layer_0/name = "tiles"
 layer_1/name = "planks"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()
 
 [node name="TreasureItem" parent="." instance=ExtResource("3_es02r")]
 z_index = 0

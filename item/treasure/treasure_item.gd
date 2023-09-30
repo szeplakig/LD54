@@ -3,7 +3,8 @@ extends RigidBody2D
 @onready var collision = $CollisionShape2D
 @onready var area = $Area2D
 @export var repulsion_strength: float = 50.0
-# Store the bodies that are currently overlapping with this one
+@onready var player: Node2D = get_node("/root/root/Player")
+
 var overlapping_bodies: Array = []
 
 func repel_body(body: RigidBody2D):
@@ -31,3 +32,8 @@ func _ready():
 		ImageTexture.create_from_image(Image.load_from_file("res://item/treasure/assets/gold.png"))
 		].pick_random()
 
+
+
+func _on_area_2d_input_event(viewport, event, shape_idx):
+	if event.is_action_pressed("interact") and player.can_interact(self):
+		player.interact(self)
