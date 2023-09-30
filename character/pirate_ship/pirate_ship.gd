@@ -11,6 +11,10 @@ enum ShootStrategy {
 	around
 }
 
+@onready var small_ship = preload("res://character/pirate_ship/assets/pirateship2.png")
+@onready var medium_ship = preload("res://character/pirate_ship/assets/pirateship3.png")
+@onready var large_ship = preload("res://character/pirate_ship/assets/pirateship1.png")
+
 @export var selected_targetting_strategy: TargettingStrategy = TargettingStrategy.direct_shot
 @export var selected_shoot_strategy: ShootStrategy = ShootStrategy.single
 @export var shooting_interval: float = randf_range(3, 6)
@@ -20,9 +24,37 @@ enum ShootStrategy {
 
 @onready var projectile_scene: PackedScene = preload("res://object/projectile/projectile.tscn")
 @onready var target: CharacterBody2D = get_node("/root/root/Player")
-
+@onready var sprite: Sprite2D = $Sprite2D
 
 var last_shoot_time: float = randf_range(0, shooting_interval - 2)
+
+func setup():
+	selected_shoot_strategy = [
+		ShootStrategy.single,
+		ShootStrategy.single,
+		ShootStrategy.single,
+		ShootStrategy.single,
+		ShootStrategy.single,
+		ShootStrategy.single,
+		ShootStrategy.single,
+		ShootStrategy.single,
+		ShootStrategy.spread,
+		ShootStrategy.spread,
+		ShootStrategy.spread,
+		ShootStrategy.spread,
+		ShootStrategy.spread,
+		ShootStrategy.around,
+		ShootStrategy.around,
+	].pick_random()
+
+func _ready():
+	match selected_shoot_strategy:
+		ShootStrategy.single:
+			sprite.texture = small_ship
+		ShootStrategy.spread:
+			sprite.texture = medium_ship
+		ShootStrategy.around:
+			sprite.texture = large_ship
 
 func _process(delta):
 	last_shoot_time += delta

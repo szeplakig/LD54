@@ -38,7 +38,6 @@ func spawn_treasure(direction: Vector2):
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("interact") and player.can_interact(self):
 		interact()
-		
 
 func interact():
 	if not in_motion:
@@ -47,5 +46,7 @@ func interact():
 			sprite.play("open")
 			status = OPENED
 		elif status == OPENED:
-			sprite.play("close")
-			status = CLOSED
+			# sprite.play("close")
+			# status = CLOSED
+			$Harvestable.queue_free()
+			

@@ -2,12 +2,13 @@ extends Node2D
 
 signal PlayerDamaged(max_health: float, current_health: float, damage_amount: float);
 signal PlayerWin(score: int);
+signal PlayerScore(score: int);
 
 func player_damaged(max_health: float, current_health: float, damage_amount: float):
 	PlayerDamaged.emit(max_health, current_health, damage_amount)
 	if current_health == 0:
-		player_win(42)
 		#game_over()
+		pass
 
 func game_over():
 	get_tree().change_scene_to_file("res://game_over.tscn")
@@ -15,3 +16,6 @@ func game_over():
 func player_win(score: int):
 	PlayerWin.emit(score)
 	%WinScreen.visible = true
+
+func player_score(score: int):
+	PlayerScore.emit(score)

@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://UI.gd" id="8_r6sbs"]
 [ext_resource type="PackedScene" uid="uid://cdjevaidefaod" path="res://object/tree/tree.tscn" id="9_5u5sd"]
 [ext_resource type="Texture2D" uid="uid://b87rvbi0n4by7" path="res://ui/assets/heart_full.png" id="9_k53i8"]
-[ext_resource type="PackedScene" uid="uid://c7wx00546kgv0" path="res://win.tscn" id="10_jq5qf"]
+[ext_resource type="PackedScene" path="res://win.tscn" id="10_jq5qf"]
 [ext_resource type="PackedScene" uid="uid://bro7clagbiq2p" path="res://object/ship/ship_frame.tscn" id="11_3au0e"]
 [ext_resource type="Script" path="res://win.gd" id="11_u663k"]
 [ext_resource type="PackedScene" uid="uid://d2sre57itv6b1" path="res://object/chest/chest.tscn" id="13_cmla8"]
@@ -41,7 +41,6 @@ position = Vector2(7, 0)
 z_index = -1
 z_as_relative = false
 position = Vector2(1, 1)
-scale = Vector2(2, 2)
 layer_0/name = "tiles"
 layer_1/name = "planks"
 layer_1/enabled = true
@@ -52,19 +51,15 @@ layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
 
 [node name="TreasureItem" parent="." instance=ExtResource("3_es02r")]
-z_index = 0
 position = Vector2(-64, -30)
 
 [node name="TreasureItem4" parent="." instance=ExtResource("3_es02r")]
-z_index = 0
 position = Vector2(-76, 26)
 
 [node name="TreasureItem2" parent="." instance=ExtResource("3_es02r")]
-z_index = 0
 position = Vector2(41, -79)
 
 [node name="TreasureItem3" parent="." instance=ExtResource("3_es02r")]
-z_index = 0
 position = Vector2(98, 38)
 
 [node name="Utils" type="Node2D" parent="."]
@@ -95,6 +90,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="GUI/CanvasLayer/Control"]
 layout_mode = 0
@@ -148,6 +144,31 @@ offset_top = 6.0
 offset_right = 467.0
 offset_bottom = 96.0
 texture = ExtResource("9_k53i8")
+
+[node name="Panel2" type="Panel" parent="GUI/CanvasLayer/Control"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -329.0
+offset_right = 271.0
+offset_bottom = 110.0
+grow_horizontal = 0
+scale = Vector2(0.543, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GUI/CanvasLayer/Control/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 80
+text = " Gems: 0"
+fit_content = true
+scroll_active = false
 
 [node name="WinScreen" parent="GUI/CanvasLayer" instance=ExtResource("10_jq5qf")]
 unique_name_in_owner = true

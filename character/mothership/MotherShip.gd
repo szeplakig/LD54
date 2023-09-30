@@ -5,8 +5,8 @@ extends Node2D
 @onready var player : Node2D = get_node("/root/root/Player")
 
 @export var max_player_spawn_distance : float = 1000
-@export var min_player_spawn_distance : float = 300
-@export var min_ship_spawn_distance : float = 400
+@export var min_player_spawn_distance : float = 400
+@export var min_ship_spawn_distance : float = 500
 
 var time_since_last_spawn : float = 0.0
 @export var spawn_interval : float = 10.0
@@ -55,6 +55,7 @@ func spawn_ship():
 		return
 
 	var new_ship = pirate_ship_scene.instantiate()
+	new_ship.setup()
 	new_ship.global_position = selected_ship_cord
 	add_child(new_ship)
 	new_ship.global_position = selected_ship_cord
