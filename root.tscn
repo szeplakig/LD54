@@ -1,0 +1,37 @@
+[gd_scene load_steps=11 format=3 uid="uid://fo3ji2x5epm"]
+
+[ext_resource type="PackedScene" uid="uid://p3qbpd3b3ftx" path="res://character/player/player.tscn" id="1_bg4ji"]
+[ext_resource type="PackedScene" uid="uid://beqv2hpgx88ef" path="res://tilemap/tile_map.tscn" id="1_xth2g"]
+[ext_resource type="PackedScene" uid="uid://c7dx0kfycuher" path="res://object/projectile/projectile.tscn" id="2_um3tn"]
+[ext_resource type="PackedScene" uid="uid://dl7wf28hen4nq" path="res://character/pirate/pirate_ship.tscn" id="3_m5ltw"]
+[ext_resource type="PackedScene" uid="uid://d2sre57itv6b1" path="res://object/chest/chest.tscn" id="4_6vp7h"]
+[ext_resource type="PackedScene" uid="uid://cdjevaidefaod" path="res://object/tree/tree.tscn" id="5_q2mea"]
+[ext_resource type="PackedScene" uid="uid://bicy6we1bo0ai" path="res://item/plank/plank_item.tscn" id="7_vk6fn"]
+[ext_resource type="PackedScene" uid="uid://du0vakoic60ds" path="res://item/treasure/treasure_item.tscn" id="8_jbfwg"]
+[ext_resource type="PackedScene" uid="uid://bro7clagbiq2p" path="res://object/ship/ship_frame.tscn" id="9_dkewd"]
+[ext_resource type="PackedScene" uid="uid://wjdv5ou27r43" path="res://object/ship/ship_built.tscn" id="10_mleym"]
+
+[node name="root" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="TileMap" parent="." instance=ExtResource("1_xth2g")]
+
+[node name="Player" parent="." instance=ExtResource("1_bg4ji")]
+
+[node name="Projectile" parent="." instance=ExtResource("2_um3tn")]
+
+[node name="PirateShip" parent="." instance=ExtResource("3_m5ltw")]
+
+[node name="Chest" parent="." instance=ExtResource("4_6vp7h")]
+
+[node name="Tree" parent="." instance=ExtResource("5_q2mea")]
+
+[node name="PlankItem" parent="." instance=ExtResource("7_vk6fn")]
+
+[node name="TreasureItem" parent="." instance=ExtResource("8_jbfwg")]
+
+[node name="ShipFrame" parent="." instance=ExtResource("9_dkewd")]
+
+[node name="ShipBuilt" parent="." instance=ExtResource("10_mleym")]
