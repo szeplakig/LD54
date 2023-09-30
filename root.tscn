@@ -82,6 +82,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="GUI/CanvasLayer/Control"]
+layout_mode = 0
 offset_left = 13.0
 offset_top = 15.0
 offset_right = 488.0
@@ -99,6 +100,7 @@ texture = ExtResource("9_k53i8")
 
 [node name="Heart2" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 101.0
 offset_top = 6.0
 offset_right = 191.0
@@ -107,6 +109,7 @@ texture = ExtResource("9_k53i8")
 
 [node name="Heart3" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 193.0
 offset_top = 6.0
 offset_right = 283.0
@@ -115,6 +118,7 @@ texture = ExtResource("9_k53i8")
 
 [node name="Heart4" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 285.0
 offset_top = 6.0
 offset_right = 375.0
@@ -123,6 +127,7 @@ texture = ExtResource("9_k53i8")
 
 [node name="Heart5" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 377.0
 offset_top = 6.0
 offset_right = 467.0

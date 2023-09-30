@@ -1,5 +1,7 @@
 extends TileMap
 
+@onready var event_bus: Node2D = get_node("/root/root/EventBus")
+
 const ISLAND_LVL_COORDS = [
 		Vector2i(5,0),
 		Vector2i(4,0),
@@ -24,8 +26,8 @@ const WATER_TILE_COORDS = [
 	Vector2i(2,1),
 ]
 
-@export var WATER_RISE_TICK = 1
-@export var TILES_PER_TICK = 20
+@export var WATER_RISE_TICK = 3
+@export var TILES_PER_TICK = 10
 @export var WATER_NEIGHBOR_FLOOD_THRESHOLD = 3
 
 var time_passed = 0
@@ -49,8 +51,9 @@ func _process(delta):
 
 func raise_water_lvl():
 	var rng = RandomNumberGenerator.new()
-	var player_pos = get_node("../Player").position
+	var player_pos = local_to_map(to_local(get_node("../Player").global_position))
 
+	print("++++++++++++++++++++++++++++")
 	for i in range(0,TILES_PER_TICK):
 		if current_water_lvl >= len(ISLAND_LVL_COORDS):
 			# The whole island is flooded
@@ -67,9 +70,13 @@ func raise_water_lvl():
 		depth = 0
 		
 		var remove_coord = tiles.pop_at(rnd_ind)
-		var global_coord = to_global(map_to_local(remove_coord))
 		
-		if abs(player_pos[0] - global_coord[0]) <= 8 && abs(player_pos[1] - global_coord[1]) <= 8:
+		print("-------------")
+		print("remove_coord:",remove_coord)
+		print("player_pos:",player_pos)
+		print("-------------")
+		
+		if player_pos == remove_coord:
 			game_over()
 			
 		set_cell(0,remove_coord,0,WATER_TILE_COORDS[0])
@@ -80,6 +87,7 @@ func raise_water_lvl():
 
 func game_over():
 	print("GAME OVER")
+	event_bus.game_over()
 	
 func floodable(coord) -> bool:
 	var water_neighbors = 0
