@@ -100,11 +100,18 @@ func raise_water_lvl():
 	#if player_pos == remove_coord:
 	#	game_over()
 	var flooded = 0
+	var old_flooded = 0
 
 	while flooded < TILES_PER_TICK && current_water_lvl < len(ISLAND_LVL_COORDS):
+		old_flooded = flooded
+		print("AAA",flooded)
+		print("current_water_lvl",current_water_lvl)
+		print("len(ground_tiles[current_water_lvl])",len(ground_tiles[current_water_lvl]))
 		var i = 0
 		while i < len(ground_tiles[current_water_lvl]) && flooded < TILES_PER_TICK:
-			if floodable(ground_tiles[current_water_lvl][i]):
+			if get_cell_source_id(0,ground_tiles[current_water_lvl][i]) == 1:
+				print("cell source id == 1 : ",ground_tiles[current_water_lvl][i])
+			if floodable(ground_tiles[current_water_lvl][i]) && get_cell_source_id(0,ground_tiles[current_water_lvl][i]) != 1:
 				set_cell(0, ground_tiles[current_water_lvl][i], 0, WATER_TILE_COORDS[0])
 				flooded += 1
 
@@ -116,16 +123,19 @@ func raise_water_lvl():
 
 		i = 0
 		while i < len(ground_tiles[current_water_lvl]) && flooded < TILES_PER_TICK:
-			set_cell(0, ground_tiles[current_water_lvl][i], 0, WATER_TILE_COORDS[0])
-			flooded += 1
+			if get_cell_source_id(0,ground_tiles[current_water_lvl][i]) == 1:
+				print("cell source id == 1 : ",ground_tiles[current_water_lvl][i])
+			if get_cell_source_id(0,ground_tiles[current_water_lvl][i]) != 1:
+				set_cell(0, ground_tiles[current_water_lvl][i], 0, WATER_TILE_COORDS[0])
+				flooded += 1
 
-			if player_pos == ground_tiles[current_water_lvl][i]:
-				game_over()
-				return
-			ground_tiles[current_water_lvl].remove_at(i)
+				if player_pos == ground_tiles[current_water_lvl][i]:
+					game_over()
+					return
+				ground_tiles[current_water_lvl].remove_at(i)
 			i += 1
 
-		if len(ground_tiles[current_water_lvl]) == 0:
+		if len(ground_tiles[current_water_lvl]) == 0 || old_flooded == flooded:
 			current_water_lvl += 1
 
 	recolor_water()
@@ -138,6 +148,9 @@ func game_over():
 
 
 func floodable(coord) -> bool:
+	if get_cell_source_id(0,coord) == 1:
+		return false
+	
 	var water_neighbors = 0
 	for offset in NEIGHBOR_OFFSETS:
 		if get_cell_atlas_coords(0, coord + offset) == WATER_TILE_COORDS[0]:
@@ -153,6 +166,8 @@ func recolor_water():
 	# Get all tiles that are water
 	var water_tiles = []
 	for water_coord in WATER_TILE_COORDS:
+		if get_cell_source_id(0,water_coord) == 1:
+			continue
 		water_tiles += get_used_cells_by_id(0, 0, water_coord)
 	# Set them all to the darkest water
 	for water_tile in water_tiles:
@@ -171,6 +186,8 @@ func recolor_water():
 				get_cell_atlas_coords(0, land_tile + offset)
 				== WATER_TILE_COORDS[len(WATER_TILE_COORDS) - 1]
 			):
+				if get_cell_source_id(0,land_tile+offset) == 1:
+					continue	
 				set_cell(0, land_tile + offset, 0, WATER_TILE_COORDS[0])
 
 	for i in range(0, len(WATER_TILE_COORDS) - 1):
@@ -183,6 +200,8 @@ func recolor_water():
 					get_cell_atlas_coords(0, water_tile + offset)
 					== WATER_TILE_COORDS[len(WATER_TILE_COORDS) - 1]
 				):
+					if get_cell_source_id(0,water_tile+offset) == 1:
+						continue	
 					set_cell(0, water_tile + offset, 0, WATER_TILE_COORDS[i + 1])
 
 
