@@ -26,9 +26,9 @@ const WATER_TILE_COORDS = [
 	Vector2i(2,1),
 ]
 
-@export var WATER_RISE_TICK = 1
+@export var WATER_RISE_TICK = 2
 @export var TILES_PER_TICK = 20
-@export var WATER_NEIGHBOR_FLOOD_THRESHOLD = 3
+@export var WATER_NEIGHBOR_FLOOD_THRESHOLD = 2
 
 var time_passed = 0
 
@@ -37,6 +37,8 @@ var tilemap = []
 
 var ground_tiles = []
 var rng = RandomNumberGenerator.new()
+
+var closest_water_tile_distance = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -57,8 +59,39 @@ func _process(delta):
 		raise_water_lvl()
 	pass
 
+func find_water_tile_distance(player_pos: Vector2i) -> float:
+	var queue = []
+	queue.push_back([player_pos, 0])  # [Position, Distance]
+
+	var visited = {}
+	visited[player_pos] = true
+
+	while queue.size() > 0:
+		var current = queue.pop_front()
+		var current_pos = current[0]
+		var current_distance = current[1]
+
+		if is_water_tile(current_pos):
+			return current_distance
+
+		for offset in NEIGHBOR_OFFSETS:
+			var neighbor_pos = current_pos + offset
+
+			if neighbor_pos not in visited and get_cell_source_id(0, neighbor_pos) != -1: 
+				visited[neighbor_pos] = true
+				queue.push_back([neighbor_pos, current_distance + 1])
+
+	return -1
+
+func is_water_tile(cell: Vector2i) -> bool:
+	var atlas_coord = get_cell_atlas_coords(0, cell)
+	return atlas_coord in WATER_TILE_COORDS
+
 func raise_water_lvl():
-	var player_pos = local_to_map(to_local(get_node("../Player").global_position))
+	var local_player_pos = to_local(get_node("../Player").global_position)
+	var player_pos = local_to_map(local_player_pos)
+	closest_water_tile_distance = find_water_tile_distance(player_pos)
+	print(closest_water_tile_distance)
 	#if player_pos == remove_coord:
 	#	game_over()
 	var flooded = 0;
@@ -78,7 +111,7 @@ func raise_water_lvl():
 		
 		i = 0
 		while i < len(ground_tiles[current_water_lvl]) && flooded < TILES_PER_TICK:
-			set_cell(0,ground_tiles[current_water_lvl][i],0,WATER_TILE_COORDS[0])
+			set_cell(0, ground_tiles[current_water_lvl][i],0,WATER_TILE_COORDS[0])
 			flooded += 1
 		
 			if player_pos == ground_tiles[current_water_lvl][i]:
@@ -89,40 +122,8 @@ func raise_water_lvl():
 		
 		if len(ground_tiles[current_water_lvl]) == 0:
 			current_water_lvl += 1
-#	for x in range(0,TILES_PER_TICK):
-#		if current_water_lvl >= len(ISLAND_LVL_COORDS):
-#			# The whole island is flooded
-#			# TODO: check if player is on the raft escaping
-#			game_over()
-#			break
-#
-#		var i = 0
-#		while i < len(tiles):
-#			if floodable(tiles[i]):
-#				floodables.push_back(tiles.pop_at(i))
-#			i += 1
-#
-#		if len(floodables) == 0:
-#			floodables = tiles
-#
-#		var rnd_ind = rng.randf_range(0,len(floodables))
-#		print("rnd_ind:",rnd_ind)
-#		print("floodables:",floodables)
-#		var remove_coord = floodables.pop_at(rnd_ind)
-#
-#
-#
-#		set_cell(0,remove_coord,0,WATER_TILE_COORDS[0])
-#
-#		for offset in NEIGHBOR_OFFSETS:
-#			if floodable(remove_coord+offset):
-#				floodables.push_back(remove_coord+offset)
-#
-#		if len(tiles) == 0:
-#			current_water_lvl += 1
-#			tiles = get_used_cells_by_id(0, 0, ISLAND_LVL_COORDS[current_water_lvl])
+
 	recolor_water()
-	pass
 
 func game_over():
 	print("GAME OVER")

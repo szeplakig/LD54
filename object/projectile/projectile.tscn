@@ -1,7 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7dx0kfycuher"]
+[gd_scene load_steps=6 format=3 uid="uid://c7dx0kfycuher"]
 
 [ext_resource type="Script" path="res://object/projectile/projectile.gd" id="1_e1sxy"]
 [ext_resource type="Texture2D" uid="uid://d4gcxc7pegtsf" path="res://object/projectile/assets/cannonball.png" id="2_qovd0"]
+
+[sub_resource type="Curve" id="Curve_vqbb4"]
+max_value = 4.0
+_data = [Vector2(0.0113347, 2.68375), 0.0, 0.0, 0, 0, Vector2(0.208207, 1.66859), -2.00779, -2.00779, 0, 0, Vector2(0.510547, 0.611137), 0.0, 0.0, 0, 0, Vector2(0.972845, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dgq2m"]
 
@@ -12,6 +17,18 @@ gravity_scale = 2.66454e-15
 contact_monitor = true
 linear_damp = 0.05
 script = ExtResource("1_e1sxy")
+
+[node name="Tail" type="CPUParticles2D" parent="."]
+amount = 30
+emission_shape = 1
+emission_sphere_radius = 8.23
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 0.5
+initial_velocity_max = 3.0
+damping_max = 0.997
+scale_amount_max = 1.3
+scale_amount_curve = SubResource("Curve_vqbb4")
+color = Color(0.8, 0.8, 0.8, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dgq2m")
@@ -25,12 +42,3 @@ texture = ExtResource("2_qovd0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile"]
 shape = SubResource("CircleShape2D_1o6d2")
-
-[node name="WaterHit" type="CPUParticles2D" parent="."]
-visible = false
-
-[node name="GroundHit" type="CPUParticles2D" parent="."]
-visible = false
-
-[node name="TargetHit" type="CPUParticles2D" parent="."]
-visible = false

@@ -51,6 +51,7 @@ func spawn_ship():
 			closest_distance = distance_to_player
 
 	if closest_distance == INF:
+		min_ship_spawn_distance *= 0.9
 		print("No valid spawn location found.")
 		return
 
