@@ -32,22 +32,23 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.431373)
 
-[node name="Panel" type="Panel" parent="GameOverCanvas/ColorRect"]
+[node name="MarginContainer" type="MarginContainer" parent="GameOverCanvas/ColorRect"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -269.0
-offset_top = -146.5
-offset_right = 269.0
-offset_bottom = 146.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 120
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 120
+
+[node name="Panel" type="Panel" parent="GameOverCanvas/ColorRect/MarginContainer"]
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_toam8")
 
-[node name="GemsLabel" type="Label" parent="GameOverCanvas/ColorRect/Panel"]
+[node name="GemsLabel" type="Label" parent="GameOverCanvas/ColorRect/MarginContainer/Panel"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
@@ -62,7 +63,7 @@ text = "You escaped with X gems"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Label2" type="Label" parent="GameOverCanvas/ColorRect/Panel"]
+[node name="Label2" type="Label" parent="GameOverCanvas/ColorRect/MarginContainer/Panel"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
