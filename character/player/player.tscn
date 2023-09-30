@@ -4,11 +4,6 @@
 [ext_resource type="Script" path="res://character/player/PlayerCamera.gd" id="2_1qofp"]
 [ext_resource type="Texture2D" uid="uid://my0ywr5qepjc" path="res://graphics-test/player.png" id="2_a7fmy"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2fy3j"]
-height = 24.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jst0w"]
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_twlco"]
 animations = [{
 "frames": [{
@@ -20,12 +15,24 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2fy3j"]
+height = 24.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jst0w"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b1c5d"]
 radius = 14.0092
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_77alq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -24)
+scale = Vector2(1.25, 1.875)
+sprite_frames = SubResource("SpriteFrames_twlco")
+offset = Vector2(0, 4.8)
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
@@ -47,12 +54,6 @@ position = Vector2(0, -15)
 y_sort_enabled = true
 shape = SubResource("CapsuleShape2D_jst0w")
 disabled = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-y_sort_enabled = true
-position = Vector2(0, -15)
-scale = Vector2(1.25, 1.875)
-sprite_frames = SubResource("SpriteFrames_twlco")
 
 [node name="Slot" type="Node2D" parent="."]
 y_sort_enabled = true

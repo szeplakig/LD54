@@ -2,8 +2,9 @@ extends RigidBody2D
 
 @onready var collision = $CollisionShape2D
 @onready var area = $Area2D
-@export var repulsion_strength: float = 100.0
-# Store the bodies that are currently overlapping with this one
+@export var repulsion_strength: float = 50.0
+@onready var player: Node2D = get_node("/root/root/Player")
+
 var overlapping_bodies: Array = []
 
 func repel_body(body: RigidBody2D):
@@ -13,8 +14,6 @@ func repel_body(body: RigidBody2D):
 		apply_central_impulse(repulsion_direction * repulsion_strength)
 
 func _physics_process(_delta):
-	linear_velocity /= 1.1
-	# Apply repulsion to all overlapping bodies
 	for body in overlapping_bodies:
 		repel_body(body)
 
@@ -25,3 +24,8 @@ func _on_body_entered(body):
 func _on_body_exited(body):
 	if body in overlapping_bodies:
 		overlapping_bodies.erase(body)
+
+
+func _on_area_2d_input_event(viewport, event, shape_idx):
+	if event.is_action_pressed("interact") and player.can_interact(self):
+		player.interact(self)

@@ -53,3 +53,4 @@ func spawn_projectile(direction: Vector2):
 	projectile.global_position = global_position
 	projectile.linear_velocity = direction * projectile_speed
 	projectile.projectile_damage = projectile_damage
+	projectile.rotation = direction.angle()
