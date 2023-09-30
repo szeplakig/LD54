@@ -21,7 +21,7 @@ func _ready():
 	event_bus.PlayerDamaged.connect(_player_damaged_handler)
 	event_bus.PlayerScore.connect(_player_score_handler)
 
-func _update_health(max,curr):
+func _update_health(max_hp,curr):
 	for heart in hearts:
 		heart.texture = load("res://ui/assets/heart_empty.png")
 		

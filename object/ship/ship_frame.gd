@@ -18,7 +18,7 @@ func interact():
 	if player.currentItem != null and player.currentItem.has_node("treasure") and phase > built_phase:
 		player.add_score()
 		player.currentItem.reparent(slot)
-		player.currentItem.global_position = slot.global_position + Vector2(randf_range(-5, 5), randf_range(-.5, .5))
+		player.currentItem.global_position = slot.global_position + Vector2(randf_range(-10, 10), randf_range(-6, 6))
 		player.currentItem.get_node("Interactable").queue_free()
 		player.currentItem = null
 		
