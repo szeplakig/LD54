@@ -16,15 +16,15 @@ position = Vector2(0, 27)
 scale = Vector2(4, 4)
 script = ExtResource("2_k4nxd")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-y_sort_enabled = true
-position = Vector2(0, -3.25)
-offset = Vector2(0, -4.5)
-
 [node name="ghost" type="Sprite2D" parent="."]
 y_sort_enabled = true
 position = Vector2(0, -3.25)
 texture = ExtResource("3_u2sln")
+offset = Vector2(0, -4.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -3.25)
 offset = Vector2(0, -4.5)
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -9,7 +9,7 @@ extends Node2D
 @export var min_ship_spawn_distance : float = 400
 
 var time_since_last_spawn : float = 0.0
-@export var spawn_interval : float = 1.0
+@export var spawn_interval : float = 10.0
 
 func _ready():
 	spawn_ship()
@@ -30,7 +30,7 @@ func spawn_ship():
 	var selected_ship_cord = null
 
 	for cell in cells:
-		print(cell)
+
 		if not tilemap.is_deep_water(cell):
 			continue
 		var cell_world_pos = tilemap.to_global(tilemap.map_to_local(cell))

@@ -5,7 +5,7 @@ extends Node2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var player: Node2D = get_node("/root/root/Player")
 
-var drop_speed = 200
+var drop_speed = 50
 var drop_count_range = range(1,3)
 
 var durability = 5
@@ -35,10 +35,10 @@ func _ready():
 
 
 func spawn_plank(direction: Vector2):
-	var treasure: RigidBody2D = treasure_scene.instantiate()
-	get_parent().add_child(treasure)
-	treasure.global_position = global_position
-	treasure.linear_velocity = direction * drop_speed
+	var tree: RigidBody2D = treasure_scene.instantiate(1)
+	get_parent().add_child(tree)
+	tree.global_position = global_position + direction * 10
+	tree.linear_velocity = direction * drop_speed
 
 
 func _on_area_2d_input_event(viewport, event: InputEvent, shape_idx):

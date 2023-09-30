@@ -5,9 +5,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_matct"]
 
-<<<<<<< HEAD
-[node name="PlankItem" type="RigidBody2D"]
-=======
 [sub_resource type="CircleShape2D" id="CircleShape2D_jtpya"]
 
 [node name="Plank" type="RigidBody2D"]
@@ -16,9 +13,8 @@ y_sort_enabled = true
 position = Vector2(0, 9)
 collision_layer = 2
 collision_mask = 2
->>>>>>> 77dba8c4e58a43a6b7d0124706d7c32eb5a6e45a
 gravity_scale = 0.0
-linear_damp = 0.7
+linear_damp = 5.0
 script = ExtResource("1_fsync")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -40,3 +36,5 @@ shape = SubResource("CircleShape2D_jtpya")
 
 [node name="Interactable" type="Node2D" parent="."]
 position = Vector2(0, -9)
+
+[node name="plank" type="Node2D" parent="."]
