@@ -102,11 +102,12 @@ func recolor_water():
 			if get_cell_atlas_coords(0,land_tile + offset) == WATER_TILE_COORDS[len(WATER_TILE_COORDS) - 1]:
 				set_cell(0,land_tile+offset,0,WATER_TILE_COORDS[0])
 	
-	# Get all lightest water tiles
-	water_tiles = get_used_cells_by_id(0,0,WATER_TILE_COORDS[0])
-	# Set their water neighbors to lighter
-	for water_tile in water_tiles:
-		for offset in NEIGHBOR_OFFSETS:
-			if get_cell_atlas_coords(0,water_tile+offset) == WATER_TILE_COORDS[len(WATER_TILE_COORDS) - 1]:
-				set_cell(0,water_tile+offset,0,WATER_TILE_COORDS[1])
+	for i in range(0,len(WATER_TILE_COORDS)-1):
+		# Get all lightest water tiles
+		water_tiles = get_used_cells_by_id(0,0,WATER_TILE_COORDS[i])
+		# Set their water neighbors to lighter
+		for water_tile in water_tiles:
+			for offset in NEIGHBOR_OFFSETS:
+				if get_cell_atlas_coords(0,water_tile+offset) == WATER_TILE_COORDS[len(WATER_TILE_COORDS) - 1]:
+					set_cell(0,water_tile+offset,0,WATER_TILE_COORDS[i+1])
 	
