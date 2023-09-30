@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://p3qbpd3b3ftx"]
+[gd_scene load_steps=7 format=3 uid="uid://p3qbpd3b3ftx"]
 
-[ext_resource type="Script" path="res://character/player/movement.gd" id="1_gj3h3"]
+[ext_resource type="Script" path="res://character/player/character_controller.gd" id="1_77alq"]
 [ext_resource type="Texture2D" uid="uid://my0ywr5qepjc" path="res://graphics-test/player.png" id="2_a7fmy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2fy3j"]
@@ -19,9 +19,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_v6yyo"]
+radius = 21.3776
+
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_gj3h3")
-SPEED = 300.0
+script = ExtResource("1_77alq")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
@@ -36,8 +38,21 @@ zoom = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_jst0w")
+disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(4.76837e-07, 1.19209e-06)
 scale = Vector2(1.25, 1.875)
 sprite_frames = SubResource("SpriteFrames_twlco")
+
+[node name="Slot" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 8)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_v6yyo")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

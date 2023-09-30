@@ -1,10 +1,34 @@
-[gd_scene load_steps=2 format=3 uid="uid://du0vakoic60ds"]
+[gd_scene load_steps=5 format=3 uid="uid://du0vakoic60ds"]
+
+[ext_resource type="Script" path="res://item/treasure/treasure_item.gd" id="1_i2ro8"]
+[ext_resource type="Texture2D" uid="uid://ce1gll4qkbk1c" path="res://graphics-test/pink-treasure.png" id="1_mpk18"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_um525"]
+radius = 14.0
 
-[node name="TreasureItem" type="Area2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_8lht1"]
+
+[node name="TreasureItem" type="RigidBody2D"]
+disable_mode = 2
+collision_layer = 2
+collision_mask = 2
+gravity_scale = 2.66454e-15
+contact_monitor = true
+script = ExtResource("1_i2ro8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 0.00252276
 shape = SubResource("CircleShape2D_um525")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mpk18")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_8lht1")
+
+[node name="Interactable" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
