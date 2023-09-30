@@ -7,19 +7,23 @@ extends RigidBody2D
 
 var overlapping_bodies: Array = []
 
+
 func repel_body(body: RigidBody2D):
 	if body is RigidBody2D:
 		var repulsion_direction = global_position - body.global_position
 		repulsion_direction = repulsion_direction.normalized()
 		apply_central_impulse(repulsion_direction * repulsion_strength)
 
+
 func _physics_process(_delta):
 	for body in overlapping_bodies:
 		repel_body(body)
 
+
 func _on_body_entered(body):
 	if body is RigidBody2D:
 		overlapping_bodies.append(body)
+
 
 func _on_body_exited(body):
 	if body in overlapping_bodies:

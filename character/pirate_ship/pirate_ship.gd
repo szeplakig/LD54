@@ -1,15 +1,26 @@
 extends Node2D
 
-enum TargettingStrategy {
-	direct_shot,
-	predictive_shot
-}
+# From first script
+@onready var treasure_scene: PackedScene = preload("res://item/plank/plank_item.tscn")
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var player: Node2D = get_node("/root/root/Player")
 
-enum ShootStrategy {
-	single,
-	spread,
-	around
-}
+var drop_speed = 50
+@export var drop_count_range_min: int = 10
+@export var drop_count_range_max: int = 25
+var drop_count_range = range(drop_count_range_min, drop_count_range_max)
+
+var durability = 5
+var default_offset = 0
+
+var shake_amount = 0.2
+var shake_duration = 0.1
+var current_shake = 0
+
+# From second script
+enum TargettingStrategy { direct_shot, predictive_shot }
+
+enum ShootStrategy { single, spread, around }
 
 @onready var small_ship = preload("res://character/pirate_ship/assets/pirateship2.png")
 @onready var medium_ship = preload("res://character/pirate_ship/assets/pirateship3.png")
@@ -21,33 +32,34 @@ enum ShootStrategy {
 @export var projectile_speed: float = 200
 @export var projectile_damage: float = 1
 
-
 @onready var projectile_scene: PackedScene = preload("res://object/projectile/projectile.tscn")
 @onready var target: CharacterBody2D = get_node("/root/root/Player")
-@onready var sprite: Sprite2D = $Sprite2D
 
 var last_shoot_time: float = randf_range(0, shooting_interval - 2)
 
-func setup():
-	selected_shoot_strategy = [
-		ShootStrategy.single,
-		ShootStrategy.single,
-		ShootStrategy.single,
-		ShootStrategy.single,
-		ShootStrategy.single,
-		ShootStrategy.single,
-		ShootStrategy.single,
-		ShootStrategy.single,
-		ShootStrategy.spread,
-		ShootStrategy.spread,
-		ShootStrategy.spread,
-		ShootStrategy.spread,
-		ShootStrategy.spread,
-		ShootStrategy.around,
-		ShootStrategy.around,
-	].pick_random()
 
 func _ready():
+	# From first script
+	sprite.set_texture(
+		(
+			[
+				ImageTexture.create_from_image(
+					Image.load_from_file("res://object/tree/assets/tree1.png")
+				),
+				ImageTexture.create_from_image(
+					Image.load_from_file("res://object/tree/assets/tree2.png")
+				),
+				ImageTexture.create_from_image(
+					Image.load_from_file("res://object/tree/assets/tree3.png")
+				)
+			]
+			. pick_random()
+		)
+	)
+	default_offset = sprite.offset
+
+	# From second script
+	setup()
 	match selected_shoot_strategy:
 		ShootStrategy.single:
 			sprite.texture = small_ship
@@ -56,28 +68,90 @@ func _ready():
 		ShootStrategy.around:
 			sprite.texture = large_ship
 
+
 func _process(delta):
+	# From first script
+	if current_shake > 0:
+		shake(delta, shake_amount)
+		current_shake -= 1 * delta
+
+	# From second script
 	last_shoot_time += delta
 	if last_shoot_time >= shooting_interval:
 		shoot()
 		last_shoot_time = 0
 
+
+func setup():
+	selected_shoot_strategy = (
+		[
+			ShootStrategy.single,
+			ShootStrategy.single,
+			ShootStrategy.single,
+			ShootStrategy.single,
+			ShootStrategy.single,
+			ShootStrategy.single,
+			ShootStrategy.single,
+			ShootStrategy.single,
+			ShootStrategy.spread,
+			ShootStrategy.spread,
+			ShootStrategy.spread,
+			ShootStrategy.spread,
+			ShootStrategy.spread,
+			ShootStrategy.around,
+			ShootStrategy.around,
+		]
+		. pick_random()
+	)
+
+
+# Functions from the first script
+func shake(delta, amount):
+	sprite.offset = (
+		default_offset
+		+ Vector2(range(-1.0, 1.0).pick_random() * amount, range(-1.0, 1.0).pick_random() * amount)
+	)
+
+
+func spawn_plank(direction: Vector2):
+	var tree: RigidBody2D = treasure_scene.instantiate()
+	get_parent().add_child(tree)
+	tree.global_position = global_position + direction * 10
+	tree.linear_velocity = direction * drop_speed
+
+
+func _on_area_2d_input_event(viewport, event: InputEvent, shape_idx):
+	if event.is_action_pressed("interact") and player.can_interact(self):
+		interact()
+
+
+func interact():
+	durability -= 1
+	current_shake = 0.1
+	if durability == 0:
+		var drop_count = drop_count_range.pick_random()
+		for i in range(drop_count):
+			spawn_plank(Vector2.UP.rotated(i * PI / drop_count * 2))
+		queue_free()
+		return true
+
+
+# Functions from the second script
 func shoot():
 	var shoot_direction = Vector2.ZERO
 	shoot_direction = (target.global_position - global_position).normalized()
-	
+
 	match selected_shoot_strategy:
 		ShootStrategy.single:
 			spawn_projectile(shoot_direction)
 		ShootStrategy.spread:
-			# Shooting 3 projectiles as an example
 			spawn_projectile(shoot_direction.rotated(deg_to_rad(-15)))
 			spawn_projectile(shoot_direction)
 			spawn_projectile(shoot_direction.rotated(deg_to_rad(15)))
 		ShootStrategy.around:
-			# Shooting projectiles in 360-degree spread
-			for i in range(8):  # Spawning 8 projectiles evenly spaced around the ship
+			for i in range(8):
 				spawn_projectile(shoot_direction.rotated(i * PI / 4 + last_shoot_time))
+
 
 func spawn_projectile(direction: Vector2):
 	var projectile: RigidBody2D = projectile_scene.instantiate()

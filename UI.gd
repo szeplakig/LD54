@@ -11,27 +11,31 @@ extends CanvasLayer
 
 @onready var score_text = $Control/Panel2/RichTextLabel
 
+
 func _player_damaged_handler(max_health: float, current_health: float, damage_amount: float):
-	_update_health(max_health,current_health)
+	_update_health(max_health, current_health)
+
 
 func _player_score_handler(score: int):
-	score_text.text = ' Gems: ' + str(score)
+	score_text.text = " Gems: " + str(score)
+
 
 func _ready():
 	event_bus.PlayerDamaged.connect(_player_damaged_handler)
 	event_bus.PlayerScore.connect(_player_score_handler)
 
-func _update_health(max_hp,curr):
+
+func _update_health(max_hp, curr):
 	for heart in hearts:
 		heart.texture = load("res://ui/assets/heart_empty.png")
-		
+
 	var full_hearts = int(floor(curr / 2))
-	for i in range(0,full_hearts):
+	for i in range(0, full_hearts):
 		hearts[i].texture = load("res://ui/assets/heart_full.png")
-	
+
 	if int(curr) % 2 == 1:
 		hearts[full_hearts].texture = load("res://ui/assets/heart_half.png")
-	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

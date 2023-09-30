@@ -70,6 +70,7 @@ y_sort_enabled = true
 position = Vector2(0, 8)
 scale = Vector2(2, 2)
 script = ExtResource("1_c37do")
+drop_count_range_min = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true

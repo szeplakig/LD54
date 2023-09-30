@@ -5,6 +5,7 @@ extends CharacterBody2D
 
 @onready var root: Node2D = get_node("/root/root")
 @onready var ship: Node2D = get_node("/root/root/ShipFrame")
+@onready var tilemap: TileMap = get_node("/root/root/Island")
 
 @onready var slot: Node2D = $Slot
 var currentItem: Node2D = null
@@ -19,19 +20,25 @@ var score: int = 0
 @export var SPEED: float = 100
 var motion = Vector2.ZERO
 
+
 func _input(event: InputEvent):
 	if event.is_action_pressed("interact"):
-		interact(get_overlapping_item(overlapping_items), get_overlapping_item(overlapping_harverstables))
+		interact(
+			get_overlapping_item(overlapping_items), get_overlapping_item(overlapping_harverstables)
+		)
 	elif event.is_action_pressed("drop"):
 		drop()
 	elif event.is_action_pressed("finish") and can_interact(ship) and ship.phase > ship.built_phase:
 		finish()
 
+
 func _ready():
 	$AnimatedSprite2D.play("stand")
 
+
 func finish():
 	event_bus.player_win(score)
+
 
 func _physics_process(delta):
 	motion = Vector2.ZERO
@@ -46,23 +53,50 @@ func _physics_process(delta):
 		motion.y -= 1
 
 	motion = motion.normalized() * SPEED
-	if not motion == Vector2.ZERO: $AnimatedSprite2D.play("move")
-	else: $AnimatedSprite2D.play("stand")
+	if not motion == Vector2.ZERO:
+		$AnimatedSprite2D.play("move")
+	else:
+		$AnimatedSprite2D.play("stand")
 	var collision = move_and_collide(motion * delta)
 	velocity = motion
-	if collision: move_and_slide()
-	
+	if collision:
+		move_and_slide()
+
 	if get_global_mouse_position().x > global_position.x:
 		$AnimatedSprite2D.scale.x = -4
 	else:
 		$AnimatedSprite2D.scale.x = 4
 
-func interact(item, harvestable=null):
-	if currentItem != null and currentItem.has_node("plank") and can_interact(ship):
-		ship.interact()
-		return
-	
-	if currentItem != null and currentItem.has_node("treasure") and can_interact(ship) and ship.phase > ship.built_phase:
+
+func interact(item, harvestable = null):
+	if currentItem != null and currentItem.has_node("plank"):
+		if can_interact(ship):
+			ship.interact()
+			return
+		var mouse_pos = get_global_mouse_position()
+		if can_interact_pos(mouse_pos):
+			var tile_pos = utils.get_tile_at_position(mouse_pos)
+			if tile_pos != null:
+				for offset in [
+					Vector2i(-1, -1),
+					Vector2i(-1, 0),
+					Vector2i(0, -1),
+					Vector2i(0, 0),
+					Vector2i(-1, 1),
+					Vector2i(1, -1),
+					Vector2i(1, 1),
+					Vector2i(1, 0),
+					Vector2i(0, 1)
+				]:
+					tilemap.set_plank(tile_pos + offset)
+				spend_item()
+
+	if (
+		currentItem != null
+		and currentItem.has_node("treasure")
+		and can_interact(ship)
+		and ship.phase > ship.built_phase
+	):
 		ship.interact()
 		return
 
@@ -78,11 +112,12 @@ func interact(item, harvestable=null):
 		else:
 			swap(item)
 
+
 func get_overlapping_item(arr: Array) -> Node2D:
 	if arr.size() > 0:
-		var closest_item : Node2D = arr[0]
+		var closest_item: Node2D = arr[0]
 		var min_distance = self.position.distance_to(closest_item.position)
-		
+
 		for item in arr:
 			var distance = self.position.distance_to(item.position)
 			if distance < min_distance:
@@ -98,9 +133,11 @@ func pickup(item: Node2D):
 	currentItem.position = Vector2.ZERO
 	currentItem.collision.disabled = true
 
+
 func swap(item: Node2D):
 	drop(item.global_position)
 	pickup(item)
+
 
 func spend_item():
 	if currentItem != null:
@@ -108,7 +145,7 @@ func spend_item():
 		drop()
 
 
-func drop(itemGlobalPosition=null):
+func drop(itemGlobalPosition = null):
 	if currentItem != null:
 		currentItem.collision.disabled = false
 		currentItem.reparent(root)
@@ -116,28 +153,43 @@ func drop(itemGlobalPosition=null):
 			currentItem.global_position = itemGlobalPosition
 		currentItem = null
 
+
 func damage(amount):
 	player_hp -= amount
 	event_bus.player_damaged(player_max_hp, player_hp, amount)
 
+
+func can_interact_pos(pos):
+	return global_position.distance_to(pos) < 65
+
+
 func can_interact(other):
-	return global_position.distance_to(other.global_position) < 65
+	return can_interact_pos(other.global_position)
+
 
 func add_score():
 	score += 1
 	event_bus.player_score(score)
+
 
 func _on_area_2d_area_entered(area):
 	if not (area is Node2D):
 		return
 
 	if area.get_parent().has_node("Interactable"):
-		if area.get_parent() != currentItem and (currentItem == null or area != currentItem.area) and not (area.get_parent() in overlapping_items):
+		if (
+			area.get_parent() != currentItem
+			and (currentItem == null or area != currentItem.area)
+			and not (area.get_parent() in overlapping_items)
+		):
 			overlapping_items.append(area.get_parent())
 	if area.get_parent().has_node("Projectile"):
 		damage(area.get_parent().projectile_damage)
 		area.get_parent().target_hit()
-	if area.get_parent().has_node("Harvestable") and not (area.get_parent() in overlapping_harverstables):
+	if (
+		area.get_parent().has_node("Harvestable")
+		and not (area.get_parent() in overlapping_harverstables)
+	):
 		overlapping_harverstables.append(area.get_parent())
 
 

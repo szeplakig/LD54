@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cufom8c60kwxt"]
+[gd_scene load_steps=4 format=3 uid="uid://cufom8c60kwxt"]
+
+[ext_resource type="Script" path="res://object/projectile/target_hit.gd" id="1_p334m"]
 
 [sub_resource type="Curve" id="Curve_nkfdc"]
 max_value = 1.5
@@ -31,3 +33,4 @@ scale_amount_min = 3.0
 scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_nkfdc")
 color_ramp = SubResource("Gradient_0c86r")
+script = ExtResource("1_p334m")

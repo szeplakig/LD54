@@ -13,12 +13,15 @@ func _physics_process(delta):
 	if linear_velocity.length() < stopped_speed:
 		queue_free()
 
+
 func water_hit():
 	queue_free()
-	
+
+
 func ground_hit():
 	queue_free()
-	
+
+
 func target_hit():
 	var effect = TargetHitEffects.instantiate()
 	get_node("/root/root").add_child(effect)
