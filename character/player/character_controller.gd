@@ -60,6 +60,11 @@ func swap(item: Node2D):
 	drop(item.global_position)
 	pickup(item)
 
+func spend_item():
+	if currentItem != null:
+		currentItem.queue_free()
+		drop()
+
 
 func drop(itemGlobalPosition=null):
 	if currentItem != null:
@@ -73,6 +78,9 @@ func damage(amount):
 	print("damaged: ", amount)
 	player_hp -= amount
 	event_bus.player_damaged(player_max_hp, player_hp, amount)
+
+func can_interact(other):
+	return global_position.distance_to(other.global_position) < 50
 
 func _on_area_2d_area_entered(area):
 	if not (area is Node2D):

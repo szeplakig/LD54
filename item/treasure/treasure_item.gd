@@ -2,7 +2,7 @@ extends RigidBody2D
 
 @onready var collision = $CollisionShape2D
 @onready var area = $Area2D
-@export var repulsion_strength: float = 100.0
+@export var repulsion_strength: float = 50.0
 # Store the bodies that are currently overlapping with this one
 var overlapping_bodies: Array = []
 
@@ -13,8 +13,6 @@ func repel_body(body: RigidBody2D):
 		apply_central_impulse(repulsion_direction * repulsion_strength)
 
 func _physics_process(_delta):
-	linear_velocity /= 1.1
-	# Apply repulsion to all overlapping bodies
 	for body in overlapping_bodies:
 		repel_body(body)
 

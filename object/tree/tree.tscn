@@ -11,26 +11,31 @@ size = Vector2(8.25, 18)
 
 [node name="Tree" type="Node2D"]
 y_sort_enabled = true
+position = Vector2(1, 19)
 scale = Vector2(4, 4)
 script = ExtResource("1_lasem")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-0.25, -0.25)
+texture = ExtResource("2_m5orf")
+offset = Vector2(0, -4.75)
+
 [node name="RigidBody2D" type="StaticBody2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, 0.25)
+position = Vector2(0, 3.25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 y_sort_enabled = true
 position = Vector2(-0.25, -3.25)
 shape = SubResource("CircleShape2D_q5560")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-0.25, -8)
-texture = ExtResource("2_m5orf")
-
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-0.25, -8)
+y_sort_enabled = true
+position = Vector2(-0.25, -5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+y_sort_enabled = true
 position = Vector2(0.125, -1)
 shape = SubResource("RectangleShape2D_hr5kl")
 

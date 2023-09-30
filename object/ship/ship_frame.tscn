@@ -1,21 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://bro7clagbiq2p"]
+[gd_scene load_steps=5 format=3 uid="uid://bro7clagbiq2p"]
 
-[ext_resource type="Texture2D" uid="uid://csdnqdj4dbykv" path="res://object/ship/assets/frame1.png" id="1_2kar0"]
 [ext_resource type="Script" path="res://object/ship/ship_frame.gd" id="2_k4nxd"]
 [ext_resource type="Texture2D" uid="uid://1wv5eayph85v" path="res://object/ship/assets/placeholder2.png" id="3_u2sln"]
 
-[node name="ShipFrame" type="TextureButton"]
-z_index = 1
-offset_left = -33.0
-offset_top = -32.0
-offset_right = -17.0
-offset_bottom = -16.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cyxe"]
+size = Vector2(16, 14)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0s3ei"]
+radius = 3.0
+height = 12.0
+
+[node name="ShipFrame" type="Node2D"]
+y_sort_enabled = true
+position = Vector2(0, 27)
 scale = Vector2(4, 4)
-texture_normal = ExtResource("1_2kar0")
 script = ExtResource("2_k4nxd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(8, 8)
-texture = ExtResource("3_u2sln")
+y_sort_enabled = true
+position = Vector2(0, -3.25)
+offset = Vector2(0, -4.5)
 
-[connection signal="pressed" from="." to="." method="_on_pressed"]
+[node name="ghost" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -3.25)
+texture = ExtResource("3_u2sln")
+offset = Vector2(0, -4.5)
+
+[node name="Area2D" type="Area2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+y_sort_enabled = true
+position = Vector2(0, -7.25)
+shape = SubResource("RectangleShape2D_3cyxe")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+y_sort_enabled = true
+position = Vector2(0, -4.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0s3ei")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://fo3ji2x5epm"]
+[gd_scene load_steps=16 format=3 uid="uid://fo3ji2x5epm"]
 
 [ext_resource type="PackedScene" uid="uid://p3qbpd3b3ftx" path="res://character/player/player.tscn" id="1_bg4ji"]
 [ext_resource type="Script" path="res://EventBus/EventBus.gd" id="1_r0nvk"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://cdjevaidefaod" path="res://object/tree/tree.tscn" id="9_5u5sd"]
 [ext_resource type="Texture2D" uid="uid://b87rvbi0n4by7" path="res://ui/assets/heart_full.png" id="9_k53i8"]
 [ext_resource type="PackedScene" uid="uid://bro7clagbiq2p" path="res://object/ship/ship_frame.tscn" id="11_3au0e"]
+[ext_resource type="PackedScene" uid="uid://d2sre57itv6b1" path="res://object/chest/chest.tscn" id="13_cmla8"]
+[ext_resource type="PackedScene" uid="uid://bicy6we1bo0ai" path="res://item/plank/plank_item.tscn" id="14_rvanq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2pvb"]
 bg_color = Color(1, 1, 1, 0)
@@ -26,55 +28,53 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="root" type="Node2D"]
+y_sort_enabled = true
 position = Vector2(249, -155)
 script = ExtResource("1_r0nvk")
 
 [node name="Player" parent="." instance=ExtResource("1_bg4ji")]
-z_index = 2
 position = Vector2(7, 0)
 
 [node name="Island" parent="." instance=ExtResource("1_xth2g")]
+z_index = -1
+z_as_relative = false
 position = Vector2(1, 1)
 scale = Vector2(2, 2)
 layer_0/name = "tiles"
 layer_1/name = "planks"
-layer_1/enabled = true
-layer_1/modulate = Color(1, 1, 1, 1)
-layer_1/y_sort_enabled = false
-layer_1/y_sort_origin = 0
-layer_1/z_index = 1
-layer_1/tile_data = PackedInt32Array()
 
 [node name="TreasureItem" parent="." instance=ExtResource("3_es02r")]
-z_index = 9
-position = Vector2(-22, 33)
+z_index = 0
+position = Vector2(-64, -30)
 
 [node name="TreasureItem4" parent="." instance=ExtResource("3_es02r")]
-z_index = 9
-position = Vector2(-22, 33)
+z_index = 0
+position = Vector2(-76, 26)
 
 [node name="TreasureItem2" parent="." instance=ExtResource("3_es02r")]
-z_index = 9
-position = Vector2(67, 70)
-rotation = 0.592451
+z_index = 0
+position = Vector2(41, -79)
 
 [node name="TreasureItem3" parent="." instance=ExtResource("3_es02r")]
-z_index = 9
-position = Vector2(71, -79)
-rotation = -1.06592
+z_index = 0
+position = Vector2(98, 38)
 
 [node name="Utils" type="Node2D" parent="."]
+y_sort_enabled = true
 script = ExtResource("5_mg6h3")
 
 [node name="EventBus" parent="." instance=ExtResource("7_et6cx")]
+y_sort_enabled = true
 position = Vector2(-85, 604)
 
 [node name="GUI" parent="." instance=ExtResource("7_ihymt")]
+y_sort_enabled = true
 offset_left = -175.0
 offset_top = -102.0
 offset_right = 191.0
 offset_bottom = 102.0
 mouse_filter = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="GUI"]
 script = ExtResource("8_r6sbs")
@@ -142,14 +142,10 @@ offset_bottom = 96.0
 texture = ExtResource("9_k53i8")
 
 [node name="MotherShip" parent="." instance=ExtResource("7_1u8ju")]
+y_sort_enabled = true
 
 [node name="ShipFrame" parent="." instance=ExtResource("11_3au0e")]
-z_index = 0
-y_sort_enabled = true
-offset_left = 87.0
-offset_top = -78.0
-offset_right = 103.0
-offset_bottom = -62.0
+position = Vector2(-45, 126)
 
 [node name="Tree" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(-141, 91)
@@ -162,3 +158,15 @@ position = Vector2(27, 129)
 
 [node name="Tree4" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(126, -183)
+
+[node name="Chest" parent="." instance=ExtResource("13_cmla8")]
+position = Vector2(89, -6)
+
+[node name="Chest2" parent="." instance=ExtResource("13_cmla8")]
+position = Vector2(-82, -21)
+
+[node name="Chest3" parent="." instance=ExtResource("13_cmla8")]
+position = Vector2(126, -80)
+
+[node name="Plank" parent="." instance=ExtResource("14_rvanq")]
+position = Vector2(-160, -21)
