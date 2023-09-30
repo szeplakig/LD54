@@ -12,7 +12,7 @@ const WATER_TILE_COORDS = Vector2i(0,1)
 
 @export var WATER_RISE_TICK = 5
 @export var TILES_PER_TICK = 20
-@export var WATER_NEIGHBOR_FLOOD_THRESHOLD = 2
+@export var WATER_NEIGHBOR_FLOOD_THRESHOLD = 3
 
 var time_passed = 0
 
@@ -39,8 +39,11 @@ func raise_water_lvl():
 	for i in range(0,TILES_PER_TICK):
 		var tiles = get_used_cells_by_id(0,0,ISLAND_LVL_COORDS[current_water_lvl])
 		var rnd_ind = rng.randf_range(0,len(tiles))
-		while !floodable(tiles[rnd_ind]):
+		var depth = 0
+		while !floodable(tiles[rnd_ind]) && depth < 30:
 			rnd_ind =  rng.randf_range(0,len(tiles))
+			depth += 1
+		depth = 0
 		
 		var remove_coord = tiles.pop_at(rnd_ind)
 		var global_coord = to_global(map_to_local(remove_coord))
