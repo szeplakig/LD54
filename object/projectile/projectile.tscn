@@ -9,6 +9,7 @@
 
 [node name="CannonBall" type="RigidBody2D"]
 gravity_scale = 2.66454e-15
+contact_monitor = true
 linear_damp = 0.05
 script = ExtResource("1_e1sxy")
 

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://iscm1jr07thf"]
+
+[ext_resource type="Script" path="res://character/mothership/gui.gd" id="1_tk8qp"]
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_tk8qp")

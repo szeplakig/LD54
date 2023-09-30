@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://fo3ji2x5epm"]
+[gd_scene load_steps=9 format=3 uid="uid://fo3ji2x5epm"]
 
 [ext_resource type="PackedScene" uid="uid://p3qbpd3b3ftx" path="res://character/player/player.tscn" id="1_bg4ji"]
 [ext_resource type="Script" path="res://EventBus/EventBus.gd" id="1_r0nvk"]
 [ext_resource type="PackedScene" uid="uid://beqv2hpgx88ef" path="res://tilemap/island.tscn" id="1_xth2g"]
 [ext_resource type="PackedScene" uid="uid://du0vakoic60ds" path="res://item/treasure/treasure_item.tscn" id="3_es02r"]
-[ext_resource type="PackedScene" uid="uid://dl7wf28hen4nq" path="res://character/pirate_ship/pirate_ship.tscn" id="4_hkiyx"]
 [ext_resource type="Script" path="res://utils.gd" id="5_mg6h3"]
+[ext_resource type="PackedScene" uid="uid://dfg0dvj01kpl1" path="res://character/mothership/mother_ship.tscn" id="7_1u8ju"]
 [ext_resource type="PackedScene" uid="uid://cmsn3yc3o0f5q" path="res://EventBus/EventBus.tscn" id="7_et6cx"]
+[ext_resource type="PackedScene" uid="uid://iscm1jr07thf" path="res://character/mothership/gui.tscn" id="7_ihymt"]
 
 [node name="root" type="Node2D"]
 position = Vector2(249, -155)
@@ -43,65 +44,12 @@ z_index = 9
 position = Vector2(71, -79)
 rotation = -1.06592
 
-[node name="PirateShip" parent="." instance=ExtResource("4_hkiyx")]
-position = Vector2(-432, 330)
-
-[node name="PirateShip2" parent="." instance=ExtResource("4_hkiyx")]
-position = Vector2(-443, 109)
-selected_targetting_strategy = 1
-
-[node name="PirateShip3" parent="." instance=ExtResource("4_hkiyx")]
-position = Vector2(-401, -112)
-selected_shoot_strategy = 1
-
-[node name="PirateShip4" parent="." instance=ExtResource("4_hkiyx")]
-position = Vector2(-331, -252)
-selected_shoot_strategy = 2
-
-[node name="PirateShip5" parent="." instance=ExtResource("4_hkiyx")]
-position = Vector2(-218, -475)
-selected_shoot_strategy = 2
-
-[node name="PirateShip6" parent="." instance=ExtResource("4_hkiyx")]
-position = Vector2(61, -495)
-selected_shoot_strategy = 2
-
-[node name="PirateShip7" parent="." instance=ExtResource("4_hkiyx")]
-position = Vector2(394, -379)
-selected_shoot_strategy = 2
-
-[node name="PirateShip8" parent="." instance=ExtResource("4_hkiyx")]
-position = Vector2(413, -97)
-selected_shoot_strategy = 2
-
-[node name="PirateShip9" parent="." instance=ExtResource("4_hkiyx")]
-position = Vector2(445, 142)
-selected_shoot_strategy = 2
-
-[node name="PirateShip10" parent="." instance=ExtResource("4_hkiyx")]
-position = Vector2(332, 330)
-selected_shoot_strategy = 2
-
-[node name="PirateShip11" parent="." instance=ExtResource("4_hkiyx")]
-position = Vector2(140, 394)
-selected_shoot_strategy = 2
-
-[node name="PirateShip12" parent="." instance=ExtResource("4_hkiyx")]
-position = Vector2(-91, 409)
-selected_shoot_strategy = 2
-
-[node name="PirateShip13" parent="." instance=ExtResource("4_hkiyx")]
-position = Vector2(-271, 388)
-selected_shoot_strategy = 2
-
 [node name="Utils" type="Node2D" parent="."]
 script = ExtResource("5_mg6h3")
 
 [node name="EventBus" parent="." instance=ExtResource("7_et6cx")]
 position = Vector2(-85, 604)
 
-[node name="GUI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="GUI" parent="." instance=ExtResource("7_ihymt")]
+
+[node name="MotherShip" parent="." instance=ExtResource("7_1u8ju")]

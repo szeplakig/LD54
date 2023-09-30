@@ -14,10 +14,10 @@ func _physics_process(delta):
 		queue_free()
 
 func water_hit():
-	pass
+	queue_free()
 	
 func ground_hit():
-	pass
+	queue_free()
 	
 func target_hit():
-	pass
+	queue_free()
