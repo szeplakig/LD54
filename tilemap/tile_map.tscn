@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://beqv2hpgx88ef"]
+
+[ext_resource type="Script" path="res://tilemap/water_level.gd" id="1_o2pve"]
+
+[sub_resource type="TileSet" id="TileSet_46wb4"]
+
+[node name="TileMap" type="TileMap"]
+tile_set = SubResource("TileSet_46wb4")
+format = 2
+script = ExtResource("1_o2pve")
