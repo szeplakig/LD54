@@ -41,7 +41,6 @@ position = Vector2(7, 0)
 z_index = -1
 z_as_relative = false
 position = Vector2(1, 1)
-scale = Vector2(1.5, 1.5)
 layer_0/name = "tiles"
 layer_1/name = "planks"
 layer_1/enabled = true
@@ -52,19 +51,15 @@ layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
 
 [node name="TreasureItem" parent="." instance=ExtResource("3_es02r")]
-z_index = 0
 position = Vector2(-64, -30)
 
 [node name="TreasureItem4" parent="." instance=ExtResource("3_es02r")]
-z_index = 0
 position = Vector2(-76, 26)
 
 [node name="TreasureItem2" parent="." instance=ExtResource("3_es02r")]
-z_index = 0
 position = Vector2(41, -79)
 
 [node name="TreasureItem3" parent="." instance=ExtResource("3_es02r")]
-z_index = 0
 position = Vector2(98, 38)
 
 [node name="Utils" type="Node2D" parent="."]
