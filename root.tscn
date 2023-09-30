@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://fo3ji2x5epm"]
+[gd_scene load_steps=18 format=3 uid="uid://fo3ji2x5epm"]
 
 [ext_resource type="PackedScene" uid="uid://p3qbpd3b3ftx" path="res://character/player/player.tscn" id="1_bg4ji"]
 [ext_resource type="Script" path="res://EventBus/EventBus.gd" id="1_r0nvk"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://UI.gd" id="8_r6sbs"]
 [ext_resource type="PackedScene" uid="uid://cdjevaidefaod" path="res://object/tree/tree.tscn" id="9_5u5sd"]
 [ext_resource type="Texture2D" uid="uid://b87rvbi0n4by7" path="res://ui/assets/heart_full.png" id="9_k53i8"]
-[ext_resource type="PackedScene" uid="uid://d3ykk2abfxhv0" path="res://win.tscn" id="10_jq5qf"]
+[ext_resource type="PackedScene" uid="uid://c7wx00546kgv0" path="res://win.tscn" id="10_jq5qf"]
 [ext_resource type="PackedScene" uid="uid://bro7clagbiq2p" path="res://object/ship/ship_frame.tscn" id="11_3au0e"]
 [ext_resource type="Script" path="res://win.gd" id="11_u663k"]
 [ext_resource type="PackedScene" uid="uid://d2sre57itv6b1" path="res://object/chest/chest.tscn" id="13_cmla8"]
@@ -36,8 +36,6 @@ script = ExtResource("1_r0nvk")
 
 [node name="Player" parent="." instance=ExtResource("1_bg4ji")]
 position = Vector2(7, 0)
-player_max_hp = 10.0
-SPEED = 100.0
 
 [node name="Island" parent="." instance=ExtResource("1_xth2g")]
 z_index = -1
@@ -152,6 +150,8 @@ offset_bottom = 96.0
 texture = ExtResource("9_k53i8")
 
 [node name="WinScreen" parent="GUI/CanvasLayer" instance=ExtResource("10_jq5qf")]
+unique_name_in_owner = true
+visible = false
 offset_left = 74.0
 offset_top = -257.0
 offset_right = 74.0
