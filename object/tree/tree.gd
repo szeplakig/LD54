@@ -9,7 +9,7 @@ var drop_speed = 200
 var drop_count_range = range(1,3)
 
 var durability = 5
-
+var default_offset = 0
 
 var shake_amount = 0.2
 var shake_duration = 0.1
@@ -19,9 +19,10 @@ func _process(delta):
 	if current_shake > 0:
 		shake(delta, shake_amount)
 		current_shake -= 1 * delta
-	
+
+		
 func shake(delta, amount):
-	sprite.offset = Vector2(range(-1.0, 1.0).pick_random() * amount, range(-1.0, 1.0).pick_random() * amount)
+	sprite.offset = default_offset + Vector2(range(-1.0, 1.0).pick_random() * amount, range(-1.0, 1.0).pick_random() * amount)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,6 +33,7 @@ func _ready():
 			ImageTexture.create_from_image(Image.load_from_file("res://object/tree/assets/tree3.png"))
 		].pick_random()
 	)
+	default_offset = sprite.offset
 
 
 func spawn_plank(direction: Vector2):

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c7dx0kfycuher"]
 
 [ext_resource type="Script" path="res://object/projectile/projectile.gd" id="1_e1sxy"]
-[ext_resource type="Texture2D" uid="uid://cqsqhvlfmu0c1" path="res://icon.svg" id="1_om1jb"]
+[ext_resource type="Texture2D" uid="uid://d4gcxc7pegtsf" path="res://object/projectile/assets/cannonball.png" id="2_qovd0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dgq2m"]
 
@@ -18,8 +18,8 @@ shape = SubResource("CircleShape2D_dgq2m")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_om1jb")
+scale = Vector2(2, 2)
+texture = ExtResource("2_qovd0")
 
 [node name="Projectile" type="Area2D" parent="."]
 
