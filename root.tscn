@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://fo3ji2x5epm"]
+[gd_scene load_steps=6 format=3 uid="uid://fo3ji2x5epm"]
 
 [ext_resource type="PackedScene" uid="uid://p3qbpd3b3ftx" path="res://character/player/player.tscn" id="1_bg4ji"]
 [ext_resource type="PackedScene" uid="uid://beqv2hpgx88ef" path="res://tilemap/island.tscn" id="1_xth2g"]
 [ext_resource type="PackedScene" uid="uid://du0vakoic60ds" path="res://item/treasure/treasure_item.tscn" id="3_es02r"]
 [ext_resource type="PackedScene" uid="uid://dl7wf28hen4nq" path="res://character/pirate_ship/pirate_ship.tscn" id="4_hkiyx"]
+[ext_resource type="Script" path="res://utils.gd" id="5_mg6h3"]
 
 [node name="root" type="Node2D"]
 position = Vector2(249, -155)
@@ -27,18 +28,15 @@ layer_1/tile_data = PackedInt32Array()
 
 [node name="TreasureItem" parent="." instance=ExtResource("3_es02r")]
 z_index = 9
-y_sort_enabled = true
 position = Vector2(-22, 33)
 
 [node name="TreasureItem2" parent="." instance=ExtResource("3_es02r")]
 z_index = 9
-y_sort_enabled = true
 position = Vector2(67, 70)
 rotation = 0.592451
 
 [node name="TreasureItem3" parent="." instance=ExtResource("3_es02r")]
 z_index = 9
-y_sort_enabled = true
 position = Vector2(71, -79)
 rotation = -1.06592
 
@@ -92,3 +90,6 @@ selected_shoot_strategy = 2
 [node name="PirateShip13" parent="." instance=ExtResource("4_hkiyx")]
 position = Vector2(-271, 388)
 selected_shoot_strategy = 2
+
+[node name="Utils" type="Node2D" parent="."]
+script = ExtResource("5_mg6h3")

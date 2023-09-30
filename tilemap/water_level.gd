@@ -10,8 +10,10 @@ const ISLAND_LVL_COORDS = [
 	]
 const WATER_TILE_COORDS = Vector2i(0,1)
 
+
 @export var WATER_RISE_TICK = 2
 @export var TILES_PER_TICK = 2
+
 
 var time_passed = 0
 
@@ -52,3 +54,30 @@ func raise_water_lvl():
 
 func game_over():
 	print("GAME OVER")
+	
+	
+enum Tile {
+	Sand0,
+	Sand1,
+	Sand2,
+	Sand3,
+	Sand4,
+	Sand5,
+	Ship
+}
+
+var tile_map: Dictionary = {
+	Vector2i(0, 0): Tile.Sand0,
+	Vector2i(1, 0): Tile.Sand1,
+	Vector2i(2, 0): Tile.Sand2,
+	Vector2i(3, 0): Tile.Sand3,
+	Vector2i(4, 0): Tile.Sand4,
+	Vector2i(5, 0): Tile.Sand5,
+	Vector2i(6, 0): Tile.Ship
+}
+
+func map_source_id_to_tile(source_id: Vector2i):
+	if source_id in tile_map:
+		return tile_map[source_id]
+	else:
+		return null
