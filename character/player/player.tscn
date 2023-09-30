@@ -44,6 +44,7 @@ shape = SubResource("CapsuleShape2D_jst0w")
 disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 position = Vector2(4.76837e-07, 1.19209e-06)
 scale = Vector2(1.25, 1.875)
 sprite_frames = SubResource("SpriteFrames_twlco")
