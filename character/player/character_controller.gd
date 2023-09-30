@@ -1,11 +1,13 @@
 extends CharacterBody2D
 
+@onready var utils: Node2D = get_node("/root/root/Utils")
+
 @onready var root: Node2D = get_node("/root/root")
 @onready var slot: Node2D = $Slot
 var currentItem: Node2D = null
 var overlapping_items: Array = []
 
-@export var SPEED: float = 100
+@export var SPEED: float = 150
 var motion = Vector2.ZERO
 
 func _input(event: InputEvent):
@@ -13,6 +15,9 @@ func _input(event: InputEvent):
 		interact(get_overlapping_item())
 	elif event.is_action_pressed("drop"):
 		drop()
+
+func _process(delta):
+	print(utils.get_tile_at_position(global_position))
 
 func _physics_process(delta):
 	motion = Vector2.ZERO
@@ -43,8 +48,8 @@ func get_overlapping_item() -> Node2D:
 
 func pickup(item: Node2D):
 	currentItem = item
-	currentItem.global_position = Vector2.ZERO
-	currentItem.reparent(slot, false)
+	currentItem.reparent(slot, true)
+	currentItem.position = Vector2.ZERO
 	currentItem.collision.disabled = true
 
 func swap(item: Node2D):
@@ -71,7 +76,7 @@ func _on_area_2d_area_entered(area):
 		if area != currentItem and (currentItem == null or area != currentItem.area):
 			overlapping_items.append(area.get_parent())
 	elif area.get_parent().has_node("Projectile"):
-		pass
+		damage(area.get_parent().projectile_damage)
 
 
 func _on_area_2d_area_exited(area):

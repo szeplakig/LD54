@@ -13,8 +13,8 @@ enum ShootStrategy {
 
 @export var selected_targetting_strategy: TargettingStrategy = TargettingStrategy.direct_shot
 @export var selected_shoot_strategy: ShootStrategy = ShootStrategy.single
-@export var shooting_interval: float = 4
-@export var projectile_speed: float = 300
+@export var shooting_interval: float = randf_range(3, 6)
+@export var projectile_speed: float = 200
 @export var projectile_damage: float = 1
 
 
@@ -22,7 +22,7 @@ enum ShootStrategy {
 @onready var target: CharacterBody2D = get_node("/root/root/Player")
 
 
-var last_shoot_time: float = randf_range(0, shooting_interval)
+var last_shoot_time: float = randf_range(0, shooting_interval - 2)
 
 func _process(delta):
 	last_shoot_time += delta
@@ -52,3 +52,4 @@ func spawn_projectile(direction: Vector2):
 	get_parent().add_child(projectile)
 	projectile.global_position = global_position
 	projectile.linear_velocity = direction * projectile_speed
+	projectile.projectile_damage = projectile_damage

@@ -9,6 +9,7 @@
 
 [node name="CannonBall" type="RigidBody2D"]
 gravity_scale = 2.66454e-15
+linear_damp = 0.05
 script = ExtResource("1_e1sxy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -23,3 +24,12 @@ texture = ExtResource("1_om1jb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile"]
 shape = SubResource("CircleShape2D_1o6d2")
+
+[node name="WaterHit" type="CPUParticles2D" parent="."]
+visible = false
+
+[node name="GroundHit" type="CPUParticles2D" parent="."]
+visible = false
+
+[node name="TargetHit" type="CPUParticles2D" parent="."]
+visible = false
