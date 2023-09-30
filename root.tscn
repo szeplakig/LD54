@@ -189,14 +189,20 @@ position = Vector2(-45, 126)
 [node name="Tree" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(-141, 91)
 
+[node name="Tree5" parent="." instance=ExtResource("9_5u5sd")]
+position = Vector2(-279, 344)
+
+[node name="Tree6" parent="." instance=ExtResource("9_5u5sd")]
+position = Vector2(385, -252)
+
 [node name="Tree2" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(-20, -78)
 
 [node name="Tree3" parent="." instance=ExtResource("9_5u5sd")]
-position = Vector2(27, 129)
+position = Vector2(125, 300)
 
 [node name="Tree4" parent="." instance=ExtResource("9_5u5sd")]
-position = Vector2(126, -183)
+position = Vector2(85, -287)
 
 [node name="Chest" parent="." instance=ExtResource("13_cmla8")]
 position = Vector2(89, -6)

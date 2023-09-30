@@ -26,9 +26,9 @@ const WATER_TILE_COORDS = [
 	Vector2i(2,1),
 ]
 
-@export var WATER_RISE_TICK = 2
-@export var TILES_PER_TICK = 20
-@export var WATER_NEIGHBOR_FLOOD_THRESHOLD = 2
+@export var WATER_RISE_TICK = 1
+@export var TILES_PER_TICK = 30
+@export var WATER_NEIGHBOR_FLOOD_THRESHOLD = 3
 
 var time_passed = 0
 
@@ -137,7 +137,11 @@ func floodable(coord) -> bool:
 			water_neighbors += 1
 	
 	return water_neighbors > WATER_NEIGHBOR_FLOOD_THRESHOLD
-	
+
+
+var deep_waters = {}
+
+
 func recolor_water():
 	# Get all tiles that are water
 	var water_tiles = []
@@ -145,11 +149,13 @@ func recolor_water():
 		water_tiles += get_used_cells_by_id(0,0,water_coord)
 	# Set them all to the darkest water
 	for water_tile in water_tiles:
+		if water_tile in deep_waters:
+			continue
 		set_cell(0,water_tile,0,WATER_TILE_COORDS[len(WATER_TILE_COORDS) - 1])
 	# Get all land tiles of current lvl +  1 higher
 	var land_tiles = []
 	for land_coord in ISLAND_LVL_COORDS:
-		land_tiles +=  get_used_cells_by_id(0,0,land_coord)
+		land_tiles += get_used_cells_by_id(0,0,land_coord)
 	
 	# Set their water neighbors to lightest
 	for land_tile in land_tiles:
