@@ -1,16 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdjevaidefaod"]
+[gd_scene load_steps=5 format=3 uid="uid://cdjevaidefaod"]
 
-[ext_resource type="Texture2D" uid="uid://ddurx4874je4w" path="res://object/tree/assets/tree3.png" id="1_ftuhs"]
 [ext_resource type="Script" path="res://object/tree/tree.gd" id="1_lasem"]
+[ext_resource type="Texture2D" uid="uid://bwx7n4sn7uwlh" path="res://object/tree/assets/tree1.png" id="2_m5orf"]
 
-[node name="Tree" type="TextureButton"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_q5560"]
+radius = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hr5kl"]
+size = Vector2(8.25, 18)
+
+[node name="Tree" type="Node2D"]
 y_sort_enabled = true
-offset_left = -16.0
-offset_top = -44.0
-offset_right = -8.0
-offset_bottom = -28.0
 scale = Vector2(4, 4)
-texture_normal = ExtResource("1_ftuhs")
 script = ExtResource("1_lasem")
 
-[connection signal="pressed" from="." to="." method="_on_pressed"]
+[node name="RigidBody2D" type="StaticBody2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+y_sort_enabled = true
+position = Vector2(-0.25, -3.25)
+shape = SubResource("CircleShape2D_q5560")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.25, -8)
+texture = ExtResource("2_m5orf")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-0.25, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.125, -1)
+shape = SubResource("RectangleShape2D_hr5kl")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
