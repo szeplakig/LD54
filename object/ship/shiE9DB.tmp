@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bro7clagbiq2p"]
+
+[ext_resource type="Texture2D" uid="uid://csdnqdj4dbykv" path="res://object/ship/assets/frame1.png" id="1_2kar0"]
+[ext_resource type="Script" path="res://object/ship/ship_frame.gd" id="2_k4nxd"]
+
+[node name="ShipFrame" type="TextureButton"]
+offset_left = -16.0
+offset_top = -16.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("1_2kar0")
+script = ExtResource("2_k4nxd")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
