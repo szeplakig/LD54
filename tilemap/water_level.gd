@@ -198,4 +198,15 @@ func is_deep_water(cell: Vector2i) -> bool:
 
 
 func set_plank(pos: Vector2i):
-	set_cell(0, pos, 1, Vector2i(0, 0))
+	for offset in [
+					Vector2i(-1, -1),
+					Vector2i(-1, 0),
+					Vector2i(0, -1),
+					Vector2i(0, 0),
+					Vector2i(-1, 1),
+					Vector2i(1, -1),
+					Vector2i(1, 1),
+					Vector2i(1, 0),
+					Vector2i(0, 1)
+				]:
+		set_cell(0, pos+offset, 1, offset+Vector2i(1,1))

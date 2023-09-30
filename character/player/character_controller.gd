@@ -77,18 +77,7 @@ func interact(item, harvestable = null):
 		if can_interact_pos(mouse_pos):
 			var tile_pos = utils.get_tile_at_position(mouse_pos)
 			if tile_pos != null:
-				for offset in [
-					Vector2i(-1, -1),
-					Vector2i(-1, 0),
-					Vector2i(0, -1),
-					Vector2i(0, 0),
-					Vector2i(-1, 1),
-					Vector2i(1, -1),
-					Vector2i(1, 1),
-					Vector2i(1, 0),
-					Vector2i(0, 1)
-				]:
-					tilemap.set_plank(tile_pos + offset)
+				tilemap.set_plank(tile_pos)
 				spend_item()
 
 	if (
