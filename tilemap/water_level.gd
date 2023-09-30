@@ -53,7 +53,6 @@ func raise_water_lvl():
 	var rng = RandomNumberGenerator.new()
 	var player_pos = local_to_map(to_local(get_node("../Player").global_position))
 
-	print("++++++++++++++++++++++++++++")
 	for i in range(0,TILES_PER_TICK):
 		if current_water_lvl >= len(ISLAND_LVL_COORDS):
 			# The whole island is flooded
@@ -70,11 +69,7 @@ func raise_water_lvl():
 		depth = 0
 		
 		var remove_coord = tiles.pop_at(rnd_ind)
-		
-		print("-------------")
-		print("remove_coord:",remove_coord)
-		print("player_pos:",player_pos)
-		print("-------------")
+
 		
 		if player_pos == remove_coord:
 			game_over()
