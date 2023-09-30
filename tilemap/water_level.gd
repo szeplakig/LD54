@@ -24,7 +24,7 @@ const WATER_TILE_COORDS = [
 	Vector2i(2,1),
 ]
 
-@export var WATER_RISE_TICK = 5
+@export var WATER_RISE_TICK = 1
 @export var TILES_PER_TICK = 20
 @export var WATER_NEIGHBOR_FLOOD_THRESHOLD = 3
 
@@ -52,6 +52,12 @@ func raise_water_lvl():
 	var player_pos = get_node("../Player").position
 
 	for i in range(0,TILES_PER_TICK):
+		if current_water_lvl >= len(ISLAND_LVL_COORDS):
+			# The whole island is flooded
+			# TODO: check if player is on the raft escaping
+			game_over()
+			break
+			
 		var tiles = get_used_cells_by_id(0,0,ISLAND_LVL_COORDS[current_water_lvl])
 		var rnd_ind = rng.randf_range(0,len(tiles))
 		var depth = 0
@@ -67,7 +73,7 @@ func raise_water_lvl():
 			game_over()
 			
 		set_cell(0,remove_coord,0,WATER_TILE_COORDS[0])
-		if len(tiles) == 0 :
+		if len(tiles) == 0:
 			current_water_lvl += 1
 	recolor_water()
 	pass
@@ -92,9 +98,9 @@ func recolor_water():
 	for water_tile in water_tiles:
 		set_cell(0,water_tile,0,WATER_TILE_COORDS[len(WATER_TILE_COORDS) - 1])
 	# Get all land tiles of current lvl +  1 higher
-	var land_tiles = get_used_cells_by_id(0,0,ISLAND_LVL_COORDS[current_water_lvl])
-	if current_water_lvl + 1 < len(ISLAND_LVL_COORDS) :
-		land_tiles += get_used_cells_by_id(0,0,ISLAND_LVL_COORDS[current_water_lvl + 1])
+	var land_tiles = []
+	for land_coord in ISLAND_LVL_COORDS:
+		land_tiles +=  get_used_cells_by_id(0,0,land_coord)
 	
 	# Set their water neighbors to lightest
 	for land_tile in land_tiles:
