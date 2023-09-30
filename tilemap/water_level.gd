@@ -100,11 +100,16 @@ func raise_water_lvl():
 	#if player_pos == remove_coord:
 	#	game_over()
 	var flooded = 0
+	var old_flooded = 0
 
 	while flooded < TILES_PER_TICK && current_water_lvl < len(ISLAND_LVL_COORDS):
+		old_flooded = flooded
+		print("AAA",flooded)
+		print("current_water_lvl",current_water_lvl)
+		print("len(ground_tiles[current_water_lvl])",len(ground_tiles[current_water_lvl]))
 		var i = 0
 		while i < len(ground_tiles[current_water_lvl]) && flooded < TILES_PER_TICK:
-			if floodable(ground_tiles[current_water_lvl][i]):
+			if floodable(ground_tiles[current_water_lvl][i]) && get_cell_source_id(0,ground_tiles[current_water_lvl][i]) != 1:
 				set_cell(0, ground_tiles[current_water_lvl][i], 0, WATER_TILE_COORDS[0])
 				flooded += 1
 
@@ -116,16 +121,17 @@ func raise_water_lvl():
 
 		i = 0
 		while i < len(ground_tiles[current_water_lvl]) && flooded < TILES_PER_TICK:
-			set_cell(0, ground_tiles[current_water_lvl][i], 0, WATER_TILE_COORDS[0])
-			flooded += 1
+			if get_cell_source_id(0,ground_tiles[current_water_lvl][i]) != 1:
+				set_cell(0, ground_tiles[current_water_lvl][i], 0, WATER_TILE_COORDS[0])
+				flooded += 1
 
-			if player_pos == ground_tiles[current_water_lvl][i]:
-				game_over()
-				return
-			ground_tiles[current_water_lvl].remove_at(i)
+				if player_pos == ground_tiles[current_water_lvl][i]:
+					game_over()
+					return
+				ground_tiles[current_water_lvl].remove_at(i)
 			i += 1
 
-		if len(ground_tiles[current_water_lvl]) == 0:
+		if len(ground_tiles[current_water_lvl]) == 0 || old_flooded == flooded:
 			current_water_lvl += 1
 
 	recolor_water()
