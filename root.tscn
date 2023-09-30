@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://fo3ji2x5epm"]
+[gd_scene load_steps=18 format=3 uid="uid://fo3ji2x5epm"]
 
 [ext_resource type="PackedScene" uid="uid://p3qbpd3b3ftx" path="res://character/player/player.tscn" id="1_bg4ji"]
 [ext_resource type="Script" path="res://EventBus/EventBus.gd" id="1_r0nvk"]
@@ -11,7 +11,9 @@
 [ext_resource type="Script" path="res://UI.gd" id="8_r6sbs"]
 [ext_resource type="PackedScene" uid="uid://cdjevaidefaod" path="res://object/tree/tree.tscn" id="9_5u5sd"]
 [ext_resource type="Texture2D" uid="uid://b87rvbi0n4by7" path="res://ui/assets/heart_full.png" id="9_k53i8"]
+[ext_resource type="PackedScene" uid="uid://c7wx00546kgv0" path="res://win.tscn" id="10_jq5qf"]
 [ext_resource type="PackedScene" uid="uid://bro7clagbiq2p" path="res://object/ship/ship_frame.tscn" id="11_3au0e"]
+[ext_resource type="Script" path="res://win.gd" id="11_u663k"]
 [ext_resource type="PackedScene" uid="uid://d2sre57itv6b1" path="res://object/chest/chest.tscn" id="13_cmla8"]
 [ext_resource type="PackedScene" uid="uid://bicy6we1bo0ai" path="res://item/plank/plank_item.tscn" id="14_rvanq"]
 
@@ -42,6 +44,12 @@ position = Vector2(1, 1)
 scale = Vector2(2, 2)
 layer_0/name = "tiles"
 layer_1/name = "planks"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()
 
 [node name="TreasureItem" parent="." instance=ExtResource("3_es02r")]
 z_index = 0
@@ -140,6 +148,15 @@ offset_top = 6.0
 offset_right = 467.0
 offset_bottom = 96.0
 texture = ExtResource("9_k53i8")
+
+[node name="WinScreen" parent="GUI/CanvasLayer" instance=ExtResource("10_jq5qf")]
+unique_name_in_owner = true
+visible = false
+offset_left = 74.0
+offset_top = -257.0
+offset_right = 74.0
+offset_bottom = -257.0
+script = ExtResource("11_u663k")
 
 [node name="MotherShip" parent="." instance=ExtResource("7_1u8ju")]
 y_sort_enabled = true

@@ -1,0 +1,80 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7wx00546kgv0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_toam8"]
+bg_color = Color(0, 0.431373, 0.647059, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverCanvas" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOverCanvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.431373)
+
+[node name="Panel" type="Panel" parent="GameOverCanvas/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -269.0
+offset_top = -146.5
+offset_right = 269.0
+offset_bottom = 146.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_toam8")
+
+[node name="GemsLabel" type="Label" parent="GameOverCanvas/ColorRect/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.5
+offset_right = 105.5
+offset_bottom = 106.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 34
+text = "You escaped with X gems"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Label2" type="Label" parent="GameOverCanvas/ColorRect/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -230.0
+offset_top = -121.0
+offset_right = 230.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "\"Ye slippery scallywag! Enjoy the treasure while ye can; we'll be chasin' ye to the ends of the earth!\""
+horizontal_alignment = 1
+autowrap_mode = 2
