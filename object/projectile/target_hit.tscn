@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://cufom8c60kwxt"]
+
+[sub_resource type="Curve" id="Curve_nkfdc"]
+max_value = 1.5
+_data = [Vector2(0, 1.5), 0.0, 0.0, 0, 0, Vector2(0.287308, 0.646769), 0.0, 0.0, 0, 0, Vector2(0.644139, 0.154436), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_0c86r"]
+offsets = PackedFloat32Array(0, 0.458661, 1)
+colors = PackedColorArray(0.79, 0.697833, 0, 1, 0.76, 0, 0, 1, 0, 0, 0, 1)
+
+[node name="TargetHit" type="CPUParticles2D"]
+emitting = false
+amount = 3200
+lifetime = 2.0
+one_shot = true
+speed_scale = 3.0
+explosiveness = 0.8
+randomness = 0.3
+lifetime_randomness = 0.43
+emission_shape = 1
+emission_sphere_radius = 15.46
+spread = 180.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 60.0
+initial_velocity_max = 100.0
+damping_max = 0.664
+scale_amount_curve = SubResource("Curve_nkfdc")
+color_ramp = SubResource("Gradient_0c86r")

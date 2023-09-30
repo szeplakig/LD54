@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://dyf8dxnn7s87j"]
+
+[node name="GroundHit" type="CPUParticles2D"]
+visible = false

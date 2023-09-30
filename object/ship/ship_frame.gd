@@ -3,7 +3,7 @@ extends Node2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var player: Node2D = get_node("/root/root/Player")
 @onready var slot: Node2D = $Slot
-var phase = 7
+var phase = 0
 var built_phase = 7
 
 
