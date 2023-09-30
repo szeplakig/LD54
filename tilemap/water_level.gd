@@ -26,7 +26,7 @@ const WATER_TILE_COORDS = [
 	Vector2i(2,1),
 ]
 
-@export var WATER_RISE_TICK = 3
+@export var WATER_RISE_TICK = 2
 @export var TILES_PER_TICK = 10
 @export var WATER_NEIGHBOR_FLOOD_THRESHOLD = 3
 
@@ -122,6 +122,5 @@ func recolor_water():
 
 
 func is_deep_water(cell: Vector2i) -> bool:
-	var atlas_coords = get_cell_atlas_coords(0, cell)
-
-	return atlas_coords in WATER_TILE_COORDS.slice(2)
+	var atlas_coord = get_cell_atlas_coords(0, cell)
+	return atlas_coord == WATER_TILE_COORDS[2]
