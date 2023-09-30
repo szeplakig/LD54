@@ -10,10 +10,8 @@ var motion = Vector2.ZERO
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("interact"):
-		print("Interact pressed")
-		interact()
+		interact(get_overlapping_item())
 	elif event.is_action_pressed("drop"):
-		print("Drop pressed")
 		drop()
 
 func _physics_process(delta):
@@ -31,8 +29,7 @@ func _physics_process(delta):
 	motion = motion.normalized() * SPEED
 	move_and_collide(motion * delta)
 
-func interact():
-	var item = get_overlapping_item()
+func interact(item):
 	if item != null:
 		if currentItem == null:
 			pickup(item)
@@ -63,10 +60,18 @@ func drop(itemGlobalPosition=null):
 			currentItem.global_position = itemGlobalPosition
 		currentItem = null
 
+func damage(amount):
+	print("damaged: ", amount)
 
 func _on_area_2d_area_entered(area):
-	if area is Node2D and area.get_parent().has_node("Interactable") and area != currentItem and (currentItem == null or area != currentItem.area):
-		overlapping_items.append(area.get_parent())
+	if not (area is Node2D):
+		return
+
+	if area.get_parent().has_node("Interactable"):
+		if area != currentItem and (currentItem == null or area != currentItem.area):
+			overlapping_items.append(area.get_parent())
+	elif area.get_parent().has_node("Projectile"):
+		pass
 
 
 func _on_area_2d_area_exited(area):
