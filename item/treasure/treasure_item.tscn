@@ -4,10 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://cnpakv84gunfm" path="res://item/treasure/assets/diamond.png" id="2_q62he"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_um525"]
-radius = 12.2187
+radius = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8lht1"]
-radius = 8.0
 
 [node name="TreasureItem" type="RigidBody2D"]
 z_index = 5
@@ -29,16 +28,14 @@ texture = ExtResource("2_q62he")
 offset = Vector2(0.120317, -2.01441)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -11)
+position = Vector2(0, -8)
 rotation = 0.00252276
-scale = Vector2(0.973723, 1.01363)
 shape = SubResource("CircleShape2D_um525")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_8lht1")
 
 [node name="Interactable" type="Node2D" parent="."]
