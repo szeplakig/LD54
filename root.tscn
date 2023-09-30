@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://fo3ji2x5epm"]
+[gd_scene load_steps=14 format=3 uid="uid://fo3ji2x5epm"]
 
 [ext_resource type="PackedScene" uid="uid://p3qbpd3b3ftx" path="res://character/player/player.tscn" id="1_bg4ji"]
 [ext_resource type="Script" path="res://EventBus/EventBus.gd" id="1_r0nvk"]
@@ -8,6 +8,22 @@
 [ext_resource type="PackedScene" uid="uid://dfg0dvj01kpl1" path="res://character/mothership/mother_ship.tscn" id="7_1u8ju"]
 [ext_resource type="PackedScene" uid="uid://cmsn3yc3o0f5q" path="res://EventBus/EventBus.tscn" id="7_et6cx"]
 [ext_resource type="PackedScene" uid="uid://iscm1jr07thf" path="res://character/mothership/gui.tscn" id="7_ihymt"]
+[ext_resource type="Script" path="res://UI.gd" id="8_r6sbs"]
+[ext_resource type="PackedScene" uid="uid://cdjevaidefaod" path="res://object/tree/tree.tscn" id="9_5u5sd"]
+[ext_resource type="Texture2D" uid="uid://b87rvbi0n4by7" path="res://ui/assets/heart_full.png" id="9_k53i8"]
+[ext_resource type="PackedScene" uid="uid://bro7clagbiq2p" path="res://object/ship/ship_frame.tscn" id="11_3au0e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2pvb"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="root" type="Node2D"]
 position = Vector2(249, -155)
@@ -15,7 +31,6 @@ script = ExtResource("1_r0nvk")
 
 [node name="Player" parent="." instance=ExtResource("1_bg4ji")]
 z_index = 2
-y_sort_enabled = true
 position = Vector2(7, 0)
 
 [node name="Island" parent="." instance=ExtResource("1_xth2g")]
@@ -31,6 +46,10 @@ layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array()
 
 [node name="TreasureItem" parent="." instance=ExtResource("3_es02r")]
+z_index = 9
+position = Vector2(-22, 33)
+
+[node name="TreasureItem4" parent="." instance=ExtResource("3_es02r")]
 z_index = 9
 position = Vector2(-22, 33)
 
@@ -51,5 +70,95 @@ script = ExtResource("5_mg6h3")
 position = Vector2(-85, 604)
 
 [node name="GUI" parent="." instance=ExtResource("7_ihymt")]
+offset_left = -175.0
+offset_top = -102.0
+offset_right = 191.0
+offset_bottom = 102.0
+mouse_filter = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GUI"]
+script = ExtResource("8_r6sbs")
+
+[node name="Control" type="Control" parent="GUI/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Panel" type="Panel" parent="GUI/CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 15.0
+offset_right = 488.0
+offset_bottom = 116.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_n2pvb")
+
+[node name="Heart1" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 9.0
+offset_top = 6.0
+offset_right = 99.0
+offset_bottom = 96.0
+texture = ExtResource("9_k53i8")
+
+[node name="Heart2" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 101.0
+offset_top = 6.0
+offset_right = 191.0
+offset_bottom = 96.0
+texture = ExtResource("9_k53i8")
+
+[node name="Heart3" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 193.0
+offset_top = 6.0
+offset_right = 283.0
+offset_bottom = 96.0
+texture = ExtResource("9_k53i8")
+
+[node name="Heart4" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 285.0
+offset_top = 6.0
+offset_right = 375.0
+offset_bottom = 96.0
+texture = ExtResource("9_k53i8")
+
+[node name="Heart5" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 377.0
+offset_top = 6.0
+offset_right = 467.0
+offset_bottom = 96.0
+texture = ExtResource("9_k53i8")
 
 [node name="MotherShip" parent="." instance=ExtResource("7_1u8ju")]
+
+[node name="ShipFrame" parent="." instance=ExtResource("11_3au0e")]
+z_index = 0
+y_sort_enabled = true
+offset_left = 87.0
+offset_top = -78.0
+offset_right = 103.0
+offset_bottom = -62.0
+
+[node name="Tree" parent="." instance=ExtResource("9_5u5sd")]
+position = Vector2(-141, 91)
+
+[node name="Tree2" parent="." instance=ExtResource("9_5u5sd")]
+position = Vector2(-20, -78)
+
+[node name="Tree3" parent="." instance=ExtResource("9_5u5sd")]
+position = Vector2(27, 129)
+
+[node name="Tree4" parent="." instance=ExtResource("9_5u5sd")]
+position = Vector2(126, -183)

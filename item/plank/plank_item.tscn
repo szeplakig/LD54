@@ -1,18 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://bicy6we1bo0ai"]
+[gd_scene load_steps=5 format=3 uid="uid://bicy6we1bo0ai"]
 
 [ext_resource type="Script" path="res://item/plank/plank_item.gd" id="1_fsync"]
 [ext_resource type="Texture2D" uid="uid://lm0ugolb1qa8" path="res://item/plank/assets/plank.png" id="1_lrspp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_matct"]
 
+<<<<<<< HEAD
 [node name="PlankItem" type="RigidBody2D"]
+=======
+[sub_resource type="CircleShape2D" id="CircleShape2D_jtpya"]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+z_index = 5
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 2
+>>>>>>> 77dba8c4e58a43a6b7d0124706d7c32eb5a6e45a
 gravity_scale = 0.0
 script = ExtResource("1_fsync")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_matct")
-disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
 scale = Vector2(2, 2)
 texture = ExtResource("1_lrspp")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_jtpya")
+
+[node name="Interactable" type="Node2D" parent="."]

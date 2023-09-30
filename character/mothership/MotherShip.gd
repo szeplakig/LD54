@@ -6,10 +6,10 @@ extends Node2D
 
 @export var max_player_spawn_distance : float = 1000
 @export var min_player_spawn_distance : float = 300
-@export var min_ship_spawn_distance : float = 200
+@export var min_ship_spawn_distance : float = 400
 
 var time_since_last_spawn : float = 0.0
-var spawn_interval : float = 1.0
+@export var spawn_interval : float = 1.0
 
 func _ready():
 	spawn_ship()
@@ -26,11 +26,11 @@ func spawn_ship():
 	cells.shuffle()
 	current_ships.shuffle()
 	
-	var valid_cells: Array = []
 	var closest_distance = INF
 	var selected_ship_cord = null
 
 	for cell in cells:
+		print(cell)
 		if not tilemap.is_deep_water(cell):
 			continue
 		var cell_world_pos = tilemap.to_global(tilemap.map_to_local(cell))
@@ -39,9 +39,10 @@ func spawn_ship():
 			continue
 		if distance_to_player > max_player_spawn_distance:
 			continue
+
 		var too_close_to_ship = false
 		for ship in current_ships:
-			if cell_world_pos.distance_to(ship.position) <= min_ship_spawn_distance:
+			if cell_world_pos.distance_to(ship.global_position) <= min_ship_spawn_distance:
 				too_close_to_ship = true
 				break
 		
@@ -56,3 +57,4 @@ func spawn_ship():
 	var new_ship = pirate_ship_scene.instantiate()
 	new_ship.global_position = selected_ship_cord
 	add_child(new_ship)
+	new_ship.global_position = selected_ship_cord
