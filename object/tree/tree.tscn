@@ -12,3 +12,5 @@ offset_bottom = -28.0
 scale = Vector2(4, 4)
 texture_normal = ExtResource("1_ftuhs")
 script = ExtResource("1_lasem")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
