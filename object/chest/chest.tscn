@@ -1,10 +1,82 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2sre57itv6b1"]
+[gd_scene load_steps=8 format=3 uid="uid://d2sre57itv6b1"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6155"]
+[ext_resource type="Script" path="res://object/chest/chest.gd" id="1_c37do"]
+[ext_resource type="Texture2D" uid="uid://cfjsgd21ltd01" path="res://object/chest/assets/opened.png" id="2_6htei"]
+[ext_resource type="Texture2D" uid="uid://csw7uvlvpci3h" path="res://object/chest/assets/almost_opened.png" id="3_5gvu7"]
+[ext_resource type="Texture2D" uid="uid://bcqpo1mlgsg2f" path="res://object/chest/assets/almost_closed.png" id="4_qf803"]
+[ext_resource type="Texture2D" uid="uid://b85fqnsr3fi4p" path="res://object/chest/assets/closed.png" id="5_b2f2g"]
 
-[node name="Chest" type="StaticBody2D"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_s6del"]
+resource_local_to_scene = true
+size = Vector2(16, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_m6155")
+[sub_resource type="SpriteFrames" id="SpriteFrames_0d7t4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6htei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5gvu7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qf803")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_b2f2g")
+}],
+"loop": true,
+"name": &"close",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_b2f2g")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_b2f2g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qf803")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5gvu7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6htei")
+}],
+"loop": true,
+"name": &"open",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6htei")
+}],
+"loop": true,
+"name": &"opened",
+"speed": 5.0
+}]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Chest" type="TextureButton"]
+y_sort_enabled = true
+offset_right = 16.0
+offset_bottom = 16.0
+texture_normal = SubResource("PlaceholderTexture2D_s6del")
+stretch_mode = 3
+script = ExtResource("1_c37do")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(8, 0)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_0d7t4")
+animation = &"closed"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://p3qbpd3b3ftx"]
+[gd_scene load_steps=8 format=3 uid="uid://p3qbpd3b3ftx"]
 
 [ext_resource type="Script" path="res://character/player/character_controller.gd" id="1_77alq"]
+[ext_resource type="Script" path="res://character/player/PlayerCamera.gd" id="2_1qofp"]
 [ext_resource type="Texture2D" uid="uid://my0ywr5qepjc" path="res://graphics-test/player.png" id="2_a7fmy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2fy3j"]
@@ -32,7 +33,9 @@ shape = SubResource("CapsuleShape2D_2fy3j")
 [node name="Camera2D" type="Camera2D" parent="."]
 z_index = 2
 y_sort_enabled = true
-zoom = Vector2(2, 2)
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+script = ExtResource("2_1qofp")
 
 [node name="Hitbox" type="Area2D" parent="."]
 

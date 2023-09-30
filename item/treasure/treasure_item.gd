@@ -24,3 +24,11 @@ func _on_body_entered(body):
 func _on_body_exited(body):
 	if body in overlapping_bodies:
 		overlapping_bodies.erase(body)
+
+func _ready():
+	$Sprite2D.texture = [
+		ImageTexture.create_from_image(Image.load_from_file("res://item/treasure/assets/diamond.png")),
+		ImageTexture.create_from_image(Image.load_from_file("res://item/treasure/assets/emerald.png")),
+		ImageTexture.create_from_image(Image.load_from_file("res://item/treasure/assets/gold.png"))
+		].pick_random()
+

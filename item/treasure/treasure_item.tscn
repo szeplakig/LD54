@@ -21,6 +21,7 @@ rotation = 0.00252276
 shape = SubResource("CircleShape2D_um525")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
 texture = ExtResource("1_mpk18")
 
 [node name="Area2D" type="Area2D" parent="."]
