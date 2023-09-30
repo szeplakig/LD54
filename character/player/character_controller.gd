@@ -20,8 +20,8 @@ func _input(event: InputEvent):
 	elif event.is_action_pressed("drop"):
 		drop()
 
-func _process(delta):
-	print(utils.get_tile_at_position(global_position))
+# func _process(delta):
+# 	print(utils.get_tile_at_position(global_position))
 
 func _physics_process(delta):
 	motion = Vector2.ZERO
@@ -81,8 +81,12 @@ func _on_area_2d_area_entered(area):
 	if area.get_parent().has_node("Interactable"):
 		if area != currentItem and (currentItem == null or area != currentItem.area):
 			overlapping_items.append(area.get_parent())
-	elif area.get_parent().has_node("Projectile"):
+	
+	if not (area is Node2D):
+		return
+	if area.get_parent().has_node("Projectile"):
 		damage(area.get_parent().projectile_damage)
+		area.get_parent().target_hit()
 
 
 func _on_area_2d_area_exited(area):

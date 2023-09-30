@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfg0dvj01kpl1"]
+
+[ext_resource type="Script" path="res://character/mothership/MotherShip.gd" id="1_lqgh4"]
+
+[node name="MotherShip" type="Node2D"]
+script = ExtResource("1_lqgh4")

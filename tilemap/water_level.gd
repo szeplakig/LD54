@@ -117,3 +117,8 @@ func recolor_water():
 				if get_cell_atlas_coords(0,water_tile+offset) == WATER_TILE_COORDS[len(WATER_TILE_COORDS) - 1]:
 					set_cell(0,water_tile+offset,0,WATER_TILE_COORDS[i+1])
 
+
+func is_deep_water(cell: Vector2i) -> bool:
+	var atlas_coords = get_cell_atlas_coords(0, cell)
+
+	return atlas_coords in WATER_TILE_COORDS.slice(2)
