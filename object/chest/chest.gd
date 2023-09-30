@@ -13,7 +13,7 @@ var status = "CLOSED"
 
 @onready var  treasure_scene: PackedScene = preload("res://item/treasure/treasure_item.tscn")
 var drop_speed = 50
-var drop_count_range = range(1,6)
+var drop_count_range = range(1,10)
 
 func _on_animated_sprite_2d_animation_looped():
 	if in_motion:
@@ -31,7 +31,7 @@ func _on_animated_sprite_2d_animation_looped():
 func spawn_treasure(direction: Vector2):
 	var treasure: RigidBody2D = treasure_scene.instantiate()
 	get_parent().add_child(treasure)
-	treasure.global_position = global_position + direction * 10
+	treasure.global_position = global_position + direction * 15
 	treasure.linear_velocity = direction * drop_speed
 
 

@@ -15,6 +15,10 @@ collision_layer = 2
 collision_mask = 2
 gravity_scale = 0.0
 contact_monitor = true
+<<<<<<< HEAD
+=======
+linear_damp = 5.0
+>>>>>>> 5e5e2e40a678184b37c71f5e2039ff09c3640f21
 script = ExtResource("1_i2ro8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -32,6 +36,8 @@ texture = ExtResource("2_q62he")
 shape = SubResource("CircleShape2D_8lht1")
 
 [node name="Interactable" type="Node2D" parent="."]
+
+[node name="treasure" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -82,6 +82,7 @@ func raise_water_lvl():
 
 func game_over():
 	print("GAME OVER")
+	return
 	event_bus.game_over()
 	
 func floodable(coord) -> bool:

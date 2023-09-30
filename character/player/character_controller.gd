@@ -75,7 +75,6 @@ func drop(itemGlobalPosition=null):
 		currentItem = null
 
 func damage(amount):
-	print("damaged: ", amount)
 	player_hp -= amount
 	event_bus.player_damaged(player_max_hp, player_hp, amount)
 

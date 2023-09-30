@@ -5,14 +5,40 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_matct"]
 
+<<<<<<< HEAD
 [node name="PlankItem" type="RigidBody2D"]
 gravity_scale = 0.0
+=======
+[sub_resource type="CircleShape2D" id="CircleShape2D_jtpya"]
+
+[node name="Plank" type="RigidBody2D"]
+z_index = 5
+y_sort_enabled = true
+position = Vector2(0, 9)
+collision_layer = 2
+collision_mask = 2
+gravity_scale = 0.0
+linear_damp = 5.0
+>>>>>>> 5e5e2e40a678184b37c71f5e2039ff09c3640f21
 script = ExtResource("1_fsync")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_matct")
 disabled = true
 
+<<<<<<< HEAD
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
 texture = ExtResource("1_lrspp")
+=======
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_jtpya")
+
+[node name="Interactable" type="Node2D" parent="."]
+position = Vector2(0, -9)
+
+[node name="plank" type="Node2D" parent="."]
+>>>>>>> 5e5e2e40a678184b37c71f5e2039ff09c3640f21

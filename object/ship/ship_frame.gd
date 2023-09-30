@@ -6,7 +6,9 @@ var phase = 1
 
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
-	if event.is_action_pressed("interact") and player.can_interact(self) and player.currentItem and "Plank" in player.currentItem.name:
+	if player.currentItem:
+		print(player.currentItem.name)
+	if event.is_action_pressed("interact") and player.can_interact(self) and player.currentItem != null and player.currentItem.has_node("plank"):
 		interact()
 
 func interact():
