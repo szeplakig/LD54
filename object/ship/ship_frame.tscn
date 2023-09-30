@@ -1,10 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://bro7clagbiq2p"]
+[gd_scene load_steps=4 format=3 uid="uid://bro7clagbiq2p"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wew43"]
+[ext_resource type="Texture2D" uid="uid://csdnqdj4dbykv" path="res://object/ship/assets/frame1.png" id="1_2kar0"]
+[ext_resource type="Script" path="res://object/ship/ship_frame.gd" id="2_k4nxd"]
+[ext_resource type="Texture2D" uid="uid://1wv5eayph85v" path="res://object/ship/assets/placeholder2.png" id="3_u2sln"]
 
-[node name="ShipFrame" type="StaticBody2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_wew43")
+[node name="ShipFrame" type="TextureButton"]
+z_index = 1
+offset_left = -33.0
+offset_top = -32.0
+offset_right = -17.0
+offset_bottom = -16.0
+scale = Vector2(4, 4)
+texture_normal = ExtResource("1_2kar0")
+script = ExtResource("2_k4nxd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("3_u2sln")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
