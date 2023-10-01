@@ -1,6 +1,7 @@
 extends TileMap
 
 @onready var event_bus: Node2D = get_node("/root/root/EventBus")
+@onready var player = get_node("../Player")
 
 const ISLAND_LVL_COORDS = [
 	Vector2i(5, 0),
@@ -55,8 +56,26 @@ func _ready():
 	var water_tiles = []
 	for coords in WATER_TILE_COORDS:
 		water_tiles += get_used_cells_by_id(0,0,coords)
+	
+	for water_tile in water_tiles:
+		set_cell(0,water_tile,0,WATER_TILE_COORDS[-1])
 
-	recolor_water(water_tiles)
+	var all_ground_tiles = []
+	for tiles in ground_tiles:
+		all_ground_tiles += tiles
+	
+	var lightest_water_tiles = []
+	for land_tile in all_ground_tiles:
+		for offset in NEIGHBOR_OFFSETS:
+			if get_cell_atlas_coords(0,land_tile + offset) == WATER_TILE_COORDS[-1]:
+				set_cell(0,land_tile+offset,0,WATER_TILE_COORDS[0])
+				lightest_water_tiles.push_back(land_tile+offset)
+	
+	for water_tile in lightest_water_tiles:
+		for offset in NEIGHBOR_OFFSETS:
+			if get_cell_atlas_coords(0,water_tile + offset) == WATER_TILE_COORDS[-1]:
+				set_cell(0,water_tile+offset,0,WATER_TILE_COORDS[1])
+	
 	pass  # Replace with function body.
 
 
@@ -108,7 +127,10 @@ func is_water_tile(cell: Vector2i) -> bool:
 
 
 func raise_water_lvl():
-	var local_player_pos = to_local(get_node("../Player").global_position)
+	if not player:
+		return
+
+	var local_player_pos = to_local(player.global_position)
 	var player_pos = local_to_map(local_player_pos)
 	closest_water_tile_distance = find_water_tile_distance(player_pos)
 

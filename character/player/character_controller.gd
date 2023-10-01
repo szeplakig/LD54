@@ -40,6 +40,8 @@ func build():
 		if can_interact_pos(mouse_pos):
 			var tile_pos = utils.get_tile_at_position(mouse_pos)
 			if tile_pos != null:
+				if not $drop.playing:
+					$drop.play()
 				tilemap.set_plank(tile_pos)
 				spend_item()
 
@@ -145,10 +147,9 @@ func spend_item():
 
 
 func drop(itemGlobalPosition = null):
-	if not $drop.playing:
-		$drop.play()
-
 	if currentItem != null:
+		if not $drop.playing:
+			$drop.play()
 		currentItem.collision.disabled = false
 		currentItem.reparent(root)
 		if itemGlobalPosition != null:

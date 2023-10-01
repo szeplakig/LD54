@@ -1,4 +1,39 @@
-[gd_scene format=3 uid="uid://dyf8dxnn7s87j"]
+[gd_scene load_steps=5 format=3 uid="uid://dyf8dxnn7s87j"]
+
+[ext_resource type="Script" path="res://object/projectile/ground_hit.gd" id="1_8m5l1"]
+[ext_resource type="AudioStream" uid="uid://c8b27227jnbjo" path="res://sounds/ground_hit.mp3" id="2_yfa2e"]
+
+[sub_resource type="Curve" id="Curve_6qkgs"]
+_data = [Vector2(0, 0.37824), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_a36n1"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.237654, 0.845679, 1)
+colors = PackedColorArray(0.933333, 0.913725, 0.541176, 1, 0.886275, 0.709804, 0.439216, 1, 0.737255, 0.34902, 0.376471, 1, 0.568627, 0.227451, 0.321569, 1)
 
 [node name="GroundHit" type="CPUParticles2D"]
-visible = false
+emitting = false
+amount = 200
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 12.02
+direction = Vector2(2.08165e-12, -1)
+gravity = Vector2(2.08165e-12, 980)
+initial_velocity_min = 100.0
+initial_velocity_max = 400.0
+linear_accel_max = 1.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_6qkgs")
+color_ramp = SubResource("Gradient_a36n1")
+hue_variation_min = 0.05
+hue_variation_max = 0.05
+script = ExtResource("1_8m5l1")
+
+[node name="ground_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_yfa2e")
+volume_db = -5.0
+attenuation = 6.0

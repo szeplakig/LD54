@@ -147,6 +147,9 @@ func interact():
 
 # Functions from the second script
 func shoot():
+	if not target:
+		return
+
 	var shoot_direction = Vector2.ZERO
 	shoot_direction = (target.global_position - global_position).normalized()
 

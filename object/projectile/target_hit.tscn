@@ -38,5 +38,5 @@ script = ExtResource("1_p334m")
 
 [node name="explosion" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_oetc4")
-volume_db = -10.0
-attenuation = 10.0
+volume_db = -5.0
+attenuation = 6.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://fo3ji2x5epm"]
+[gd_scene load_steps=24 format=3 uid="uid://fo3ji2x5epm"]
 
 [ext_resource type="PackedScene" uid="uid://p3qbpd3b3ftx" path="res://character/player/player.tscn" id="1_bg4ji"]
 [ext_resource type="Script" path="res://EventBus/EventBus.gd" id="1_r0nvk"]
@@ -18,7 +18,6 @@
 [ext_resource type="Script" path="res://RestartButton.gd" id="12_oo0ob"]
 [ext_resource type="PackedScene" uid="uid://d2sre57itv6b1" path="res://object/chest/chest.tscn" id="13_cmla8"]
 [ext_resource type="PackedScene" uid="uid://bicy6we1bo0ai" path="res://item/plank/plank_item.tscn" id="14_rvanq"]
-[ext_resource type="PackedScene" uid="uid://c7dx0kfycuher" path="res://object/projectile/projectile.tscn" id="17_guxc4"]
 [ext_resource type="PackedScene" uid="uid://160btyd2e2oh" path="res://sounds/sounds.tscn" id="18_wavea"]
 [ext_resource type="Texture2D" uid="uid://c8w80t4l6sp2g" path="res://ui/assets/restart_button.png" id="19_p5plw"]
 [ext_resource type="Texture2D" uid="uid://cfsngdau1ih7v" path="res://ui/assets/menu_button.png" id="20_4ymc0"]
@@ -274,9 +273,6 @@ position = Vector2(0, 485)
 
 [node name="Plank" parent="." instance=ExtResource("14_rvanq")]
 position = Vector2(-160, -21)
-
-[node name="CannonBall" parent="." instance=ExtResource("17_guxc4")]
-position = Vector2(-285, 228)
 
 [node name="Sounds" parent="." instance=ExtResource("18_wavea")]
 
