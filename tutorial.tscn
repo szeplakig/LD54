@@ -274,32 +274,6 @@ offset_right = 600.0
 offset_bottom = 120.0
 texture = ExtResource("9_bmyjm")
 
-[node name="Panel2" type="Panel" parent="GUI/CanvasLayer/Control"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -1904.0
-offset_top = 144.0
-offset_right = -1304.0
-offset_bottom = 254.0
-grow_horizontal = 0
-scale = Vector2(0.543, 1)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="GUI/CanvasLayer/Control/Panel2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 80
-text = " Gems: 0"
-fit_content = true
-scroll_active = false
-
 [node name="WinScreen" parent="GUI/CanvasLayer" instance=ExtResource("10_7wfgj")]
 unique_name_in_owner = true
 offset_left = 74.0
