@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdjevaidefaod"]
+[gd_scene load_steps=7 format=3 uid="uid://cdjevaidefaod"]
 
 [ext_resource type="Script" path="res://object/tree/tree.gd" id="1_lasem"]
 [ext_resource type="Texture2D" uid="uid://bwx7n4sn7uwlh" path="res://object/tree/assets/tree1.png" id="2_m5orf"]
 [ext_resource type="AudioStream" uid="uid://fhoy18uulw0k" path="res://sounds/wood_chop.mp3" id="3_15gmo"]
+[ext_resource type="PackedScene" uid="uid://dy5mqibwv43pi" path="res://UnderWaterParentDeleter.tscn" id="4_v7hx7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q5560"]
 radius = 3.0
@@ -47,6 +48,9 @@ shape = SubResource("RectangleShape2D_hr5kl")
 
 [node name="wood_chop" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_15gmo")
+
+[node name="UnderWaterParentDeleter" parent="." instance=ExtResource("4_v7hx7")]
+position = Vector2(0, 0.25)
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="finished" from="wood_chop" to="." method="_on_wood_chop_finished"]

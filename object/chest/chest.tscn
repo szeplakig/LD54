@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2sre57itv6b1"]
+[gd_scene load_steps=11 format=3 uid="uid://d2sre57itv6b1"]
 
 [ext_resource type="Script" path="res://object/chest/chest.gd" id="1_c37do"]
 [ext_resource type="Texture2D" uid="uid://cfjsgd21ltd01" path="res://object/chest/assets/opened.png" id="2_6htei"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bcqpo1mlgsg2f" path="res://object/chest/assets/almost_closed.png" id="4_qf803"]
 [ext_resource type="Texture2D" uid="uid://b85fqnsr3fi4p" path="res://object/chest/assets/closed.png" id="5_b2f2g"]
 [ext_resource type="AudioStream" uid="uid://b8n7oik2tcmkk" path="res://sounds/chest_open.mp3" id="6_hnty4"]
+[ext_resource type="PackedScene" uid="uid://dy5mqibwv43pi" path="res://UnderWaterParentDeleter.tscn" id="7_85wee"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0d7t4"]
 animations = [{
@@ -103,6 +104,9 @@ shape = SubResource("CircleShape2D_hqw5e")
 [node name="chest_open" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_hnty4")
 volume_db = -5.0
+
+[node name="UnderWaterParentDeleter" parent="." instance=ExtResource("7_85wee")]
+position = Vector2(0, -5.5)
 
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

@@ -1,6 +1,7 @@
 extends TileMap
 
 @onready var event_bus: Node2D = get_node("/root/root/EventBus")
+@onready var player = get_node("../Player")
 
 const ISLAND_LVL_COORDS = [
 	Vector2i(5, 0),
@@ -108,7 +109,10 @@ func is_water_tile(cell: Vector2i) -> bool:
 
 
 func raise_water_lvl():
-	var local_player_pos = to_local(get_node("../Player").global_position)
+	if not player:
+		return
+
+	var local_player_pos = to_local(player.global_position)
 	var player_pos = local_to_map(local_player_pos)
 	closest_water_tile_distance = find_water_tile_distance(player_pos)
 

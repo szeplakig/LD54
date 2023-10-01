@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://du0vakoic60ds"]
+[gd_scene load_steps=6 format=3 uid="uid://du0vakoic60ds"]
 
 [ext_resource type="Script" path="res://item/treasure/treasure_item.gd" id="1_i2ro8"]
 [ext_resource type="Texture2D" uid="uid://cnpakv84gunfm" path="res://item/treasure/assets/diamond.png" id="2_q62he"]
+[ext_resource type="PackedScene" uid="uid://dy5mqibwv43pi" path="res://UnderWaterParentDeleter.tscn" id="3_gl8j2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_um525"]
 radius = 14.0
@@ -44,6 +45,9 @@ shape = SubResource("CircleShape2D_8lht1")
 position = Vector2(0, -8)
 
 [node name="treasure" type="Node2D" parent="."]
+
+[node name="UnderWaterParentDeleter" parent="." instance=ExtResource("3_gl8j2")]
+position = Vector2(0, -10)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
