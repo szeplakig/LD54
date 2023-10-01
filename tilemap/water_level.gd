@@ -55,67 +55,69 @@ func _ready():
 
 	var water_tiles = []
 	for coords in WATER_TILE_COORDS:
-		water_tiles += get_used_cells_by_id(0,0,coords)
-	
+		water_tiles += get_used_cells_by_id(0, 0, coords)
+
 	for water_tile in water_tiles:
-		set_cell(0,water_tile,0,WATER_TILE_COORDS[-1])
+		set_cell(0, water_tile, 0, WATER_TILE_COORDS[-1])
 
 	var all_ground_tiles = []
 	for tiles in ground_tiles:
 		all_ground_tiles += tiles
-	
+
 	var lightest_water_tiles = []
 	for land_tile in all_ground_tiles:
 		for offset in NEIGHBOR_OFFSETS:
-			if get_cell_atlas_coords(0,land_tile + offset) == WATER_TILE_COORDS[-1]:
-				set_cell(0,land_tile+offset,0,WATER_TILE_COORDS[0])
-				lightest_water_tiles.push_back(land_tile+offset)
-	
+			if get_cell_atlas_coords(0, land_tile + offset) == WATER_TILE_COORDS[-1]:
+				set_cell(0, land_tile + offset, 0, WATER_TILE_COORDS[0])
+				lightest_water_tiles.push_back(land_tile + offset)
+
 	for water_tile in lightest_water_tiles:
 		for offset in NEIGHBOR_OFFSETS:
-			if get_cell_atlas_coords(0,water_tile + offset) == WATER_TILE_COORDS[-1]:
-				set_cell(0,water_tile+offset,0,WATER_TILE_COORDS[1])
-	
+			if get_cell_atlas_coords(0, water_tile + offset) == WATER_TILE_COORDS[-1]:
+				set_cell(0, water_tile + offset, 0, WATER_TILE_COORDS[1])
+
 	pass  # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time_passed += delta
-	
-	if (update_floodable_tiles && time_passed > float(WATER_RISE_TICK) * 0.3):
+
+	if update_floodable_tiles && time_passed > float(WATER_RISE_TICK) * 0.3:
 		calculate_floodable_tiles()
 		update_floodable_tiles = false
-	
-	if (time_passed >= WATER_RISE_TICK):
+
+	if time_passed >= WATER_RISE_TICK:
 		time_passed = 0
 		raise_water_lvl()
 		recheck_lighter_tiles()
 		update_floodable_tiles = true
 	pass
 
+
 func recheck_lighter_tiles():
-	var lightest_water_tiles = get_used_cells_by_id(0,0,WATER_TILE_COORDS[0])
-	
+	var lightest_water_tiles = get_used_cells_by_id(0, 0, WATER_TILE_COORDS[0])
+
 	for tile in lightest_water_tiles:
 		var recolor = true
 		for offset in NEIGHBOR_OFFSETS:
-			if ISLAND_LVL_COORDS.has(get_cell_atlas_coords(0,tile+offset)):
-				recolor=false
+			if ISLAND_LVL_COORDS.has(get_cell_atlas_coords(0, tile + offset)):
+				recolor = false
 				break
 		if recolor:
-			set_cell(0,tile,0,WATER_TILE_COORDS[1])
-		
-	var lighter_water_tiles = get_used_cells_by_id(0,0,WATER_TILE_COORDS[1])
-	
+			set_cell(0, tile, 0, WATER_TILE_COORDS[1])
+
+	var lighter_water_tiles = get_used_cells_by_id(0, 0, WATER_TILE_COORDS[1])
+
 	for tile in lighter_water_tiles:
 		var recolor = true
 		for offset in NEIGHBOR_OFFSETS:
-			if get_cell_atlas_coords(0,tile+offset) == WATER_TILE_COORDS[0]:
-				recolor=false
+			if get_cell_atlas_coords(0, tile + offset) == WATER_TILE_COORDS[0]:
+				recolor = false
 				break
 		if recolor:
-			set_cell(0,tile,0,WATER_TILE_COORDS[-1])
+			set_cell(0, tile, 0, WATER_TILE_COORDS[-1])
+
 
 func find_water_tile_distance(player_pos: Vector2i):
 	var queue = []
@@ -161,15 +163,18 @@ func raise_water_lvl():
 	#	game_over()
 	var flooded = 0
 	var old_flooded = 0
-	
+
 	var changed_tiles = []
 
 	while flooded < TILES_PER_TICK && current_water_lvl < len(ISLAND_LVL_COORDS):
 		old_flooded = flooded
 		var i = 0
 		while i < len(ground_tiles[current_water_lvl]) && flooded < TILES_PER_TICK:
-			if floodable_tiles.has(ground_tiles[current_water_lvl][i]) && get_cell_source_id(0, ground_tiles[current_water_lvl][i]) != 1:
-				set_cell(0,ground_tiles[current_water_lvl][i],0,WATER_TILE_COORDS[0])
+			if (
+				floodable_tiles.has(ground_tiles[current_water_lvl][i])
+				&& get_cell_source_id(0, ground_tiles[current_water_lvl][i]) != 1
+			):
+				set_cell(0, ground_tiles[current_water_lvl][i], 0, WATER_TILE_COORDS[0])
 				changed_tiles.push_back(ground_tiles[current_water_lvl][i])
 				flooded += 1
 
@@ -183,7 +188,7 @@ func raise_water_lvl():
 		while i < len(ground_tiles[current_water_lvl]) && flooded < TILES_PER_TICK:
 			if get_cell_source_id(0, ground_tiles[current_water_lvl][i]) != 1:
 				set_cell(0, ground_tiles[current_water_lvl][i], 0, WATER_TILE_COORDS[0])
-				changed_tiles.push_back(ground_tiles[current_water_lvl][i])				
+				changed_tiles.push_back(ground_tiles[current_water_lvl][i])
 				flooded += 1
 
 				if player_pos == ground_tiles[current_water_lvl][i]:
@@ -219,30 +224,29 @@ var deep_waters = {}
 
 
 func recolor_water(changed_tiles):
-	print("")
-	print("recolor_water")
 	# Go through changed_tiles
-		# If it's not lightest, continue out
-		# For each water neighbor
-			# if it doesn't have a land neighbor
-				# set it to lighter
+	# If it's not lightest, continue out
+	# For each water neighbor
+	# if it doesn't have a land neighbor
+	# set it to lighter
 	for changed_tile in changed_tiles:
-		if get_cell_atlas_coords(0,changed_tile) != WATER_TILE_COORDS[0]:
+		if get_cell_atlas_coords(0, changed_tile) != WATER_TILE_COORDS[0]:
 			continue
-		
-		for offset in NEIGHBOR_OFFSETS:
-			check_recolor_tile(changed_tile+offset,1)
 
-func check_recolor_tile(tile,remaining_depth):
-	var tile_color = get_cell_atlas_coords(0,tile)
+		for offset in NEIGHBOR_OFFSETS:
+			check_recolor_tile(changed_tile + offset, 1)
+
+
+func check_recolor_tile(tile, remaining_depth):
+	var tile_color = get_cell_atlas_coords(0, tile)
 	# Only lightest and lighter water can change
 	if tile_color != WATER_TILE_COORDS[0] && tile_color != WATER_TILE_COORDS[1]:
 		return
-	
+
 	var color = WATER_TILE_COORDS[2]
 	var changed = false
 	for offset in NEIGHBOR_OFFSETS:
-		var neighbor_color = get_cell_atlas_coords(0,tile+offset)
+		var neighbor_color = get_cell_atlas_coords(0, tile + offset)
 		if ISLAND_LVL_COORDS.has(neighbor_color):
 			color = WATER_TILE_COORDS[0]
 			changed = true
@@ -250,30 +254,32 @@ func check_recolor_tile(tile,remaining_depth):
 		if neighbor_color == WATER_TILE_COORDS[0]:
 			changed = true
 			color = WATER_TILE_COORDS[1]
-			
+
 	if get_cell_source_id(0, tile) != 1:
-		set_cell(0,tile,0,color)
-	
+		set_cell(0, tile, 0, color)
+
 	if changed && remaining_depth > 0:
 		for offset in NEIGHBOR_OFFSETS:
-			check_recolor_tile(tile+offset, remaining_depth - 1)
-	
+			check_recolor_tile(tile + offset, remaining_depth - 1)
+
 
 func is_deep_water(cell: Vector2i) -> bool:
 	var atlas_coord = get_cell_atlas_coords(0, cell)
 	return atlas_coord == WATER_TILE_COORDS[2]
 
+
 func calculate_floodable_tiles():
 	var all_ground_tiles = []
 	for tiles in ground_tiles:
 		all_ground_tiles += tiles
-	
+
 	var new_floodable_tiles = []
 	for tile in all_ground_tiles:
-		if (floodable(tile)):
+		if floodable(tile):
 			new_floodable_tiles.push_back(tile)
-	
+
 	floodable_tiles = new_floodable_tiles
+
 
 func set_plank(pos: Vector2i):
 	for offset in [

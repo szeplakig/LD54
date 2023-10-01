@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://fo3ji2x5epm"]
+[gd_scene load_steps=22 format=3 uid="uid://fo3ji2x5epm"]
 
 [ext_resource type="PackedScene" uid="uid://p3qbpd3b3ftx" path="res://character/player/player.tscn" id="1_bg4ji"]
 [ext_resource type="Script" path="res://EventBus/EventBus.gd" id="1_r0nvk"]
@@ -7,34 +7,20 @@
 [ext_resource type="PackedScene" uid="uid://dfg0dvj01kpl1" path="res://character/mothership/mother_ship.tscn" id="7_1u8ju"]
 [ext_resource type="PackedScene" uid="uid://cmsn3yc3o0f5q" path="res://EventBus/EventBus.tscn" id="7_et6cx"]
 [ext_resource type="PackedScene" uid="uid://iscm1jr07thf" path="res://character/mothership/gui.tscn" id="7_ihymt"]
-[ext_resource type="Script" path="res://UI.gd" id="8_r6sbs"]
 [ext_resource type="PackedScene" uid="uid://cdjevaidefaod" path="res://object/tree/tree.tscn" id="9_5u5sd"]
 [ext_resource type="Texture2D" uid="uid://b87rvbi0n4by7" path="res://ui/assets/heart_full.png" id="9_k53i8"]
-[ext_resource type="PackedScene" uid="uid://c7wx00546kgv0" path="res://win.tscn" id="10_jq5qf"]
+[ext_resource type="PackedScene" uid="uid://dmfwgpd1kw88u" path="res://win.tscn" id="10_jq5qf"]
 [ext_resource type="PackedScene" uid="uid://bro7clagbiq2p" path="res://object/ship/ship_frame.tscn" id="11_3au0e"]
 [ext_resource type="Script" path="res://MenuButton.gd" id="11_bskhr"]
 [ext_resource type="Script" path="res://win.gd" id="11_u663k"]
 [ext_resource type="Script" path="res://RestartButton.gd" id="12_oo0ob"]
 [ext_resource type="PackedScene" uid="uid://d2sre57itv6b1" path="res://object/chest/chest.tscn" id="13_cmla8"]
+[ext_resource type="Script" path="res://UI.gd" id="16_sbs01"]
 [ext_resource type="PackedScene" uid="uid://160btyd2e2oh" path="res://sounds/sounds.tscn" id="18_wavea"]
 [ext_resource type="Texture2D" uid="uid://c8w80t4l6sp2g" path="res://ui/assets/restart_button.png" id="19_p5plw"]
 [ext_resource type="Texture2D" uid="uid://cfsngdau1ih7v" path="res://ui/assets/menu_button.png" id="20_4ymc0"]
 [ext_resource type="AudioStream" uid="uid://bjwuj1j4oivsn" path="res://ost/main.mp3" id="22_2xnib"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2pvb"]
-bg_color = Color(1, 1, 1, 0)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 0)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_233do"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[ext_resource type="PackedScene" uid="uid://c584h2tigcod0" path="res://leaderboard/leaderboard.tscn" id="22_w6qfr"]
 
 [node name="root" type="Node2D"]
 y_sort_enabled = true
@@ -64,123 +50,6 @@ script = ExtResource("5_mg6h3")
 [node name="EventBus" parent="." instance=ExtResource("7_et6cx")]
 y_sort_enabled = true
 position = Vector2(-85, 604)
-
-[node name="GUI" parent="." instance=ExtResource("7_ihymt")]
-y_sort_enabled = true
-offset_left = -175.0
-offset_top = -102.0
-offset_right = 191.0
-offset_bottom = 102.0
-mouse_filter = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="GUI"]
-script = ExtResource("8_r6sbs")
-
-[node name="Control" type="Control" parent="GUI/CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Panel" type="Panel" parent="GUI/CanvasLayer/Control"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 483.0
-offset_bottom = 112.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_n2pvb")
-
-[node name="Heart1" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 120.0
-offset_bottom = 120.0
-texture = ExtResource("9_k53i8")
-
-[node name="Heart2" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 128.0
-offset_top = 8.0
-offset_right = 240.0
-offset_bottom = 120.0
-texture = ExtResource("9_k53i8")
-
-[node name="Heart3" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 248.0
-offset_top = 8.0
-offset_right = 360.0
-offset_bottom = 120.0
-texture = ExtResource("9_k53i8")
-
-[node name="Heart4" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 368.0
-offset_top = 8.0
-offset_right = 480.0
-offset_bottom = 120.0
-texture = ExtResource("9_k53i8")
-
-[node name="Heart5" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 488.0
-offset_top = 8.0
-offset_right = 600.0
-offset_bottom = 120.0
-texture = ExtResource("9_k53i8")
-
-[node name="WinScreen" parent="GUI/CanvasLayer" instance=ExtResource("10_jq5qf")]
-unique_name_in_owner = true
-offset_left = 74.0
-offset_top = -257.0
-offset_right = 74.0
-offset_bottom = -257.0
-script = ExtResource("11_u663k")
-
-[node name="Panel3" type="Panel" parent="GUI/CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -277.0
-offset_top = 19.0
-offset_right = -53.0
-offset_bottom = 115.0
-grow_horizontal = 0
-scale = Vector2(1.15994, 1.18658)
-theme_override_styles/panel = SubResource("StyleBoxFlat_233do")
-
-[node name="HSplitContainer" type="HSplitContainer" parent="GUI/CanvasLayer/Panel3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MenuButton" type="TextureButton" parent="GUI/CanvasLayer/Panel3/HSplitContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("20_4ymc0")
-stretch_mode = 0
-script = ExtResource("11_bskhr")
-
-[node name="RestartButton" type="TextureButton" parent="GUI/CanvasLayer/Panel3/HSplitContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("19_p5plw")
-stretch_mode = 0
-script = ExtResource("12_oo0ob")
 
 [node name="MotherShip" parent="." instance=ExtResource("7_1u8ju")]
 y_sort_enabled = true
@@ -237,8 +106,162 @@ position = Vector2(0, 485)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("22_2xnib")
-volume_db = 5.0
+volume_db = -5.0
 autoplay = true
 
-[connection signal="pressed" from="GUI/CanvasLayer/Panel3/HSplitContainer/MenuButton" to="GUI/CanvasLayer/Panel3/HSplitContainer/MenuButton" method="_on_pressed"]
-[connection signal="pressed" from="GUI/CanvasLayer/Panel3/HSplitContainer/RestartButton" to="GUI/CanvasLayer/Panel3/HSplitContainer/RestartButton" method="_on_pressed"]
+[node name="leaderboard" parent="." instance=ExtResource("22_w6qfr")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="WinScreen" parent="CanvasLayer" instance=ExtResource("10_jq5qf")]
+unique_name_in_owner = true
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 252.0
+offset_right = 900.0
+offset_bottom = 648.0
+grow_horizontal = 1
+grow_vertical = 1
+script = ExtResource("11_u663k")
+
+[node name="GUI" parent="CanvasLayer" instance=ExtResource("7_ihymt")]
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("16_sbs01")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/GUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GUI/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer1" type="MarginContainer" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Heart1" type="TextureRect" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer/MarginContainer1"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("9_k53i8")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Heart2" type="TextureRect" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("9_k53i8")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Heart3" type="TextureRect" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer/MarginContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("9_k53i8")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Heart4" type="TextureRect" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer/MarginContainer4"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("9_k53i8")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MarginContainer5" type="MarginContainer" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Heart5" type="TextureRect" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer/MarginContainer5"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("9_k53i8")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="HSplitContainer" type="HBoxContainer" parent="CanvasLayer/GUI/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/GUI/MarginContainer/HSplitContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MenuButton" type="TextureButton" parent="CanvasLayer/GUI/MarginContainer/HSplitContainer/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture_normal = ExtResource("20_4ymc0")
+stretch_mode = 5
+script = ExtResource("11_bskhr")
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/GUI/MarginContainer/HSplitContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="RestartButton" type="TextureButton" parent="CanvasLayer/GUI/MarginContainer/HSplitContainer/MarginContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture_normal = ExtResource("19_p5plw")
+stretch_mode = 5
+script = ExtResource("12_oo0ob")
+
+[connection signal="pressed" from="CanvasLayer/GUI/MarginContainer/HSplitContainer/MarginContainer/MenuButton" to="CanvasLayer/GUI/MarginContainer/HSplitContainer/MarginContainer/MenuButton" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/GUI/MarginContainer/HSplitContainer/MarginContainer2/RestartButton" to="CanvasLayer/GUI/MarginContainer/HSplitContainer/MarginContainer2/RestartButton" method="_on_pressed"]

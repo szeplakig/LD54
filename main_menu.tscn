@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://br711aqt0cu86"]
+[gd_scene load_steps=15 format=3 uid="uid://dceohrf44sler"]
 
 [ext_resource type="Texture2D" uid="uid://xbr05as7a1ep" path="res://ui/assets/play_button.png" id="1_i5vtv"]
 [ext_resource type="Texture2D" uid="uid://hrjnwr6at4jg" path="res://imageedit_1_7156765100.png" id="1_mm64l"]
@@ -15,119 +15,222 @@
 [ext_resource type="Texture2D" uid="uid://devoyy3pdshhb" path="res://ui/assets/you_won.png" id="12_8ma8c"]
 [ext_resource type="Texture2D" uid="uid://cwoo1wbankrbd" path="res://ui/assets/game_over.png" id="13_q4sxf"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jfdi"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inmel"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tx354"]
-bg_color = Color(0, 0, 0, 0.741176)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1d5iy"]
-bg_color = Color(0, 0, 0, 0.952941)
-
-[node name="MainMenu" type="Panel"]
-anchors_preset = -1
-anchor_right = 1.66667
-anchor_bottom = 1.53086
+[node name="CanvasLayer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_2jfdi")
 script = ExtResource("1_qhbxd")
-metadata/_edit_use_anchors_ = true
 
-[node name="MenuBackground" type="Sprite2D" parent="."]
-position = Vector2(959, 499.25)
-scale = Vector2(1.46049, 1.35521)
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.8928
+stretch_mode = 3
+
+[node name="Background" type="Panel" parent="AspectRatioContainer2"]
+clip_contents = true
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer2/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_mm64l")
+expand_mode = 5
+stretch_mode = 5
 
-[node name="PlayButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 672.0
-offset_right = 576.0
-offset_bottom = 928.0
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AspectRatioContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 30
+
+[node name="PlayButton" type="TextureButton" parent="AspectRatioContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 2
+size_flags_vertical = 8
 texture_normal = ExtResource("1_i5vtv")
-stretch_mode = 0
+stretch_mode = 5
 script = ExtResource("3_xjbph")
 
-[node name="QuitButton" type="TextureButton" parent="."]
-layout_mode = 1
-offset_left = 1344.0
-offset_top = 672.0
-offset_right = 1856.0
-offset_bottom = 928.0
-texture_normal = ExtResource("2_4kebc")
-stretch_mode = 0
-script = ExtResource("5_hl0h6")
+[node name="MarginContainer2" type="MarginContainer" parent="AspectRatioContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
 
-[node name="HowToButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 704.0
-offset_top = 672.0
-offset_right = 1216.0
-offset_bottom = 928.0
+[node name="HowToButton" type="TextureButton" parent="AspectRatioContainer/HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 2
+size_flags_vertical = 8
 texture_normal = ExtResource("6_yjr0o")
-stretch_mode = 0
+stretch_mode = 5
 script = ExtResource("7_eux0o")
 
-[node name="TitlePanel" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 64.0
-offset_right = 1856.0
-offset_bottom = 288.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_inmel")
+[node name="MarginContainer3" type="MarginContainer" parent="AspectRatioContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
 
-[node name="Title" type="Sprite2D" parent="TitlePanel"]
-position = Vector2(892, 112)
-scale = Vector2(23.0526, 24)
+[node name="QuitButton" type="TextureButton" parent="AspectRatioContainer/HBoxContainer/MarginContainer3"]
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 2
+size_flags_vertical = 8
+texture_normal = ExtResource("2_4kebc")
+stretch_mode = 5
+script = ExtResource("5_hl0h6")
+
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 30
+
+[node name="TitlePanel" type="Panel" parent="AspectRatioContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer/MarginContainer/TitlePanel"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -151.0
+offset_right = 201.0
+offset_bottom = 100.0
+grow_horizontal = 2
 texture = ExtResource("4_vf7ck")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(8, -8)
+position = Vector2(-203, -8)
 stream = ExtResource("7_r508r")
-volume_db = 20.0
 autoplay = true
 
-[node name="CreditsPanel" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 1344.0
-offset_top = 352.0
-offset_right = 1856.0
-offset_bottom = 608.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_tx354")
+[node name="MarginContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -165.0
+offset_right = 450.0
+offset_bottom = 165.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 0.7024
 
-[node name="Credits" type="Sprite2D" parent="CreditsPanel"]
-position = Vector2(256, 62.25)
-scale = Vector2(1, 1.0614)
-texture = ExtResource("9_owk24")
+[node name="EndPanel" type="Panel" parent="MarginContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(900, 330)
+layout_mode = 2
+size_flags_horizontal = 0
 
-[node name="CreditsContent" type="Sprite2D" parent="CreditsPanel"]
-position = Vector2(256, 190.906)
-scale = Vector2(0.283856, 0.295939)
-texture = ExtResource("10_kq2re")
-
-[node name="EndPanel" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 352.0
-offset_right = 1216.0
-offset_bottom = 608.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_1d5iy")
-
-[node name="YouWon" type="Sprite2D" parent="EndPanel"]
+[node name="YouWon" type="TextureRect" parent="MarginContainer/EndPanel"]
 visible = false
-position = Vector2(576, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -302.0
+offset_top = -62.0
+offset_right = -264.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(16, 16)
 texture = ExtResource("12_8ma8c")
+expand_mode = 3
+stretch_mode = 5
 
-[node name="GameOver" type="Sprite2D" parent="EndPanel"]
+[node name="GameOver" type="TextureRect" parent="MarginContainer/EndPanel"]
 visible = false
-position = Vector2(576, 120)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -399.0
+offset_top = -60.0
+offset_right = -349.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(16, 16)
 texture = ExtResource("13_q4sxf")
+expand_mode = 5
+stretch_mode = 5
 
-[connection signal="pressed" from="PlayButton" to="PlayButton" method="_on_pressed"]
-[connection signal="pressed" from="QuitButton" to="QuitButton" method="_on_pressed"]
-[connection signal="pressed" from="HowToButton" to="HowToButton" method="_on_pressed"]
+[node name="Credits" type="TextureRect" parent="MarginContainer/EndPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -216.5
+offset_top = -134.0
+offset_right = 216.5
+offset_bottom = -77.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_owk24")
+
+[node name="CreditsContent" type="TextureRect" parent="MarginContainer/EndPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -307.0
+offset_top = -48.0
+offset_right = 306.0
+offset_bottom = 159.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_kq2re")
+expand_mode = 5
+
+[connection signal="pressed" from="AspectRatioContainer/HBoxContainer/MarginContainer/PlayButton" to="AspectRatioContainer/HBoxContainer/MarginContainer/PlayButton" method="_on_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/HBoxContainer/MarginContainer2/HowToButton" to="AspectRatioContainer/HBoxContainer/MarginContainer2/HowToButton" method="_on_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/HBoxContainer/MarginContainer3/QuitButton" to="AspectRatioContainer/HBoxContainer/MarginContainer3/QuitButton" method="_on_pressed"]

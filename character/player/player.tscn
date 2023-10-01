@@ -95,8 +95,8 @@ scale = Vector2(0.759, 0.759)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 y_sort_enabled = true
-position = Vector2(0, -3.68907)
-scale = Vector2(1, 1.39835)
+position = Vector2(0, -8.95916)
+scale = Vector2(2.2648, 2.4678)
 shape = SubResource("CapsuleShape2D_b1c5d")
 
 [node name="pickup" type="AudioStreamPlayer2D" parent="."]

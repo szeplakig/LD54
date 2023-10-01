@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bvr2qye5qfv26"]
+[gd_scene load_steps=18 format=3 uid="uid://c6prbfggsw64w"]
 
 [ext_resource type="Script" path="res://leader_board.gd" id="1_iut11"]
 [ext_resource type="Texture2D" uid="uid://bt6guyfgk5mlt" path="res://ui/assets/restart_big_button.png" id="2_2sl6r"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://cpl1swruis0wb" path="res://ui/assets/leaderboard.png" id="10_1nc6n"]
 [ext_resource type="AudioStream" uid="uid://bghjirccnxkho" path="res://ost/menu.mp3" id="10_pnwxl"]
 [ext_resource type="Texture2D" uid="uid://7de8auct5ejs" path="res://ui/assets/username.png" id="10_rhi6y"]
-[ext_resource type="Texture2D" uid="uid://dlj0nnxyagvb6" path="res://ui/assets/credits_content.png" id="12_drrr5"]
 [ext_resource type="Texture2D" uid="uid://dmh6qwbwouxmn" path="res://ui/assets/submit_button.png" id="12_na0dr"]
 [ext_resource type="Texture2D" uid="uid://d2sjgo4vdmqtj" path="res://ui/assets/score.png" id="12_uq2bw"]
 [ext_resource type="Texture2D" uid="uid://devoyy3pdshhb" path="res://ui/assets/you_won.png" id="13_3ux4p"]
@@ -65,23 +64,36 @@ stream = ExtResource("10_pnwxl")
 volume_db = 20.0
 autoplay = true
 
-[node name="CreditsPanel" type="Panel" parent="."]
+[node name="CreditsPanel" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 1344.0
 offset_top = 64.0
 offset_right = 1856.0
 offset_bottom = 928.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_tx354")
 
-[node name="Credits" type="Sprite2D" parent="CreditsPanel"]
-position = Vector2(256, 62.25)
-scale = Vector2(1, 1.0614)
+[node name="Leaderboard" type="TextureRect" parent="CreditsPanel"]
+custom_minimum_size = Vector2(2.08165e-12, 70)
+layout_mode = 2
 texture = ExtResource("10_1nc6n")
 
-[node name="CreditsContent" type="Sprite2D" parent="CreditsPanel"]
-position = Vector2(256, 190.906)
-scale = Vector2(0.283856, 0.295939)
-texture = ExtResource("12_drrr5")
+[node name="RichTextLabel" type="RichTextLabel" parent="CreditsPanel"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("13_fr62o")
+theme_override_fonts/bold_font = ExtResource("13_fr62o")
+theme_override_fonts/italics_font = ExtResource("13_fr62o")
+theme_override_font_sizes/normal_font_size = 69
+text = " 1. aadsad: 50
+ 2. sdadsd: 50
+ 3. sdadsd
+ 4. sdadsd
+ 5. sdadsd
+ 6. sdadsd
+ 7. sdadsd
+ 8. sdadsd
+ 9. sdadsd
+10. sdadsd
+"
+fit_content = true
 
 [node name="ScorePanel" type="Panel" parent="."]
 layout_mode = 0

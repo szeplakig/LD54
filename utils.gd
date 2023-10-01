@@ -7,9 +7,11 @@ func get_tile_at_position(object_global_position: Vector2):
 	var object_local_position = tilemap.to_local(object_global_position)
 	return tilemap.local_to_map(object_local_position)
 
+
 func get_atlas_coord(object_global_position: Vector2):
 	var tilemap_coord = get_tile_at_position(object_global_position)
 	return tilemap.get_cell_atlas_coords(0, tilemap_coord)
+
 
 func is_over_water_tile(object_global_position: Vector2):
 	var tilemap_coord = get_tile_at_position(object_global_position)
