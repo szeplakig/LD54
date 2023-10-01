@@ -20,7 +20,10 @@ func game_over():
 func player_win(score: int):
 	Global.score = score
 	Global.last_ending = "WIN"
-	get_tree().change_scene_to_file("res://leader_board.tscn")
+	if Global.is_tutorial:
+		get_tree().change_scene_to_file("res://main_menu.tscn")
+	else:
+		get_tree().change_scene_to_file("res://leader_board.tscn")
 
 
 func player_score(score: int):
