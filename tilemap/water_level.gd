@@ -52,7 +52,11 @@ func _ready():
 		shuffled_coords.shuffle()
 		ground_tiles.push_back(shuffled_coords)
 
-	recolor_water()
+	var water_tiles = []
+	for coords in WATER_TILE_COORDS:
+		water_tiles += get_used_cells_by_id(0,0,coords)
+
+	recolor_water(water_tiles)
 	pass  # Replace with function body.
 
 
@@ -110,6 +114,8 @@ func raise_water_lvl():
 	#	game_over()
 	var flooded = 0
 	var old_flooded = 0
+	
+	var changed_tiles = []
 
 	while flooded < TILES_PER_TICK && current_water_lvl < len(ISLAND_LVL_COORDS):
 		old_flooded = flooded
@@ -120,6 +126,7 @@ func raise_water_lvl():
 		while i < len(ground_tiles[current_water_lvl]) && flooded < TILES_PER_TICK:
 			if floodable_tiles.has(ground_tiles[current_water_lvl][i]):
 				set_cell(0,ground_tiles[current_water_lvl][i],0,WATER_TILE_COORDS[0])
+				changed_tiles.push_back(ground_tiles[current_water_lvl][i])
 				flooded += 1
 
 				if player_pos == ground_tiles[current_water_lvl][i]:
@@ -130,10 +137,9 @@ func raise_water_lvl():
 
 		i = 0
 		while i < len(ground_tiles[current_water_lvl]) && flooded < TILES_PER_TICK:
-			if get_cell_source_id(0, ground_tiles[current_water_lvl][i]) == 1:
-				print("cell source id == 1 : ", ground_tiles[current_water_lvl][i])
 			if get_cell_source_id(0, ground_tiles[current_water_lvl][i]) != 1:
 				set_cell(0, ground_tiles[current_water_lvl][i], 0, WATER_TILE_COORDS[0])
+				changed_tiles.push_back(ground_tiles[current_water_lvl][i])				
 				flooded += 1
 
 				if player_pos == ground_tiles[current_water_lvl][i]:
@@ -145,7 +151,7 @@ func raise_water_lvl():
 		if len(ground_tiles[current_water_lvl]) == 0 || old_flooded == flooded:
 			current_water_lvl += 1
 
-	recolor_water()
+	recolor_water(changed_tiles)
 
 
 func game_over():
@@ -169,49 +175,44 @@ func floodable(coord) -> bool:
 var deep_waters = {}
 
 
-func recolor_water():
+func recolor_water(changed_tiles):
 	print("")
 	print("recolor_water")
-	# Get all tiles that are water, but not deep water
-	var water_tiles = []
-	for i in range(0,len(WATER_TILE_COORDS)-1):
-		if get_cell_source_id(0,WATER_TILE_COORDS[i]) == 1:
+	# Go through changed_tiles
+		# If it's not lightest, continue out
+		# For each water neighbor
+			# if it doesn't have a land neighbor
+				# set it to lighter
+	for changed_tile in changed_tiles:
+		if get_cell_atlas_coords(0,changed_tile) != WATER_TILE_COORDS[0]:
 			continue
-		water_tiles += get_used_cells_by_id(0,0,WATER_TILE_COORDS[i])
-	
-	for water_tile in water_tiles:
-		if get_cell_source_id(0,water_tile) == 1:
-			continue
-		set_cell(0,water_tile,0,WATER_TILE_COORDS[len(WATER_TILE_COORDS) - 1])
-	
-	# Set their water neighbors to lightest
-	var colored_tiles = []
-	var all_ground_tiles = []
-	for tiles in ground_tiles:
-		all_ground_tiles += tiles
-	
-	for land_tile in all_ground_tiles:
+		
 		for offset in NEIGHBOR_OFFSETS:
-			if get_cell_source_id(0,land_tile + offset):
-				continue
-			if get_cell_atlas_coords(0,land_tile + offset) == WATER_TILE_COORDS[len(WATER_TILE_COORDS) - 1] :
-				set_cell(0,land_tile+offset,0,WATER_TILE_COORDS[0])
-				colored_tiles.push_back(land_tile+offset)
+			check_recolor_tile(changed_tile+offset,1)
+
+func check_recolor_tile(tile,remaining_depth):
+	var tile_color = get_cell_atlas_coords(0,tile)
+	# Only lightest and lighter water can change
+	if tile_color != WATER_TILE_COORDS[0] && tile_color != WATER_TILE_COORDS[1]:
+		return
 	
-#	print("len(colored_tiles): ",len(colored_tiles))
-#	print("colores_tiles: ",colored_tiles)
-	for i in range(0,len(WATER_TILE_COORDS)-2):
-		print("len(colored_tiles): ",len(colored_tiles))
-		# Set their water neighbors to lighter
-		var new_colored_tiles = []
-		for water_tile in colored_tiles:
-			for offset in NEIGHBOR_OFFSETS:
-				if get_cell_source_id(0,water_tile + offset):
-					continue
-				if get_cell_atlas_coords(0,water_tile+offset) == WATER_TILE_COORDS[len(WATER_TILE_COORDS) - 1]:
-					set_cell(0,water_tile+offset,0,WATER_TILE_COORDS[i+1])
-					new_colored_tiles.push_back(water_tile+offset)
-		colored_tiles = new_colored_tiles
+	var color = WATER_TILE_COORDS[2]
+	var changed = false
+	for offset in NEIGHBOR_OFFSETS:
+		var neighbor_color = get_cell_atlas_coords(0,tile+offset)
+		if ISLAND_LVL_COORDS.has(neighbor_color):
+			color = WATER_TILE_COORDS[0]
+			changed = true
+			break
+		if neighbor_color == WATER_TILE_COORDS[0]:
+			changed = true
+			color = WATER_TILE_COORDS[1]
+	
+	set_cell(0,tile,0,color)
+	if changed && remaining_depth > 0:
+		for offset in NEIGHBOR_OFFSETS:
+			check_recolor_tile(tile+offset, remaining_depth - 1)
+	
 
 func is_deep_water(cell: Vector2i) -> bool:
 	var atlas_coord = get_cell_atlas_coords(0, cell)
