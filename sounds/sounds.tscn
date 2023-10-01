@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=3 uid="uid://160btyd2e2oh"]
+
+[ext_resource type="Script" path="res://sounds/sounds.gd" id="1_p444l"]
+[ext_resource type="AudioStream" uid="uid://co8qirgxbifkv" path="res://sounds/explosion.mp3" id="2_okuvb"]
+[ext_resource type="AudioStream" uid="uid://e4ybgwrvl6l2" path="res://sounds/cannon_shot.mp3" id="3_pu5p7"]
+[ext_resource type="AudioStream" uid="uid://ew2kyclib6jl" path="res://sounds/water_splash.mp3" id="4_d4u8f"]
+[ext_resource type="AudioStream" uid="uid://0db4yb8lkcw2" path="res://sounds/score.mp3" id="5_xrrk3"]
+[ext_resource type="AudioStream" uid="uid://627okwy4b3ew" path="res://sounds/building.mp3" id="6_ci4bk"]
+[ext_resource type="AudioStream" uid="uid://fy6hf173u3bd" path="res://sounds/drop_wood.mp3" id="7_u3mgl"]
+[ext_resource type="AudioStream" uid="uid://c1hvpbyxhrmuf" path="res://sounds/drop_gem.mp3" id="8_cexgi"]
+
+[node name="Sounds" type="Node2D"]
+script = ExtResource("1_p444l")
+
+[node name="explosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_okuvb")
+
+[node name="ocean" type="AudioStreamPlayer2D" parent="."]
+
+[node name="cannon" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_pu5p7")
+volume_db = -6.588
+
+[node name="water_splash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_d4u8f")
+
+[node name="pickup" type="AudioStreamPlayer2D" parent="."]
+
+[node name="score" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_xrrk3")
+
+[node name="build" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ci4bk")
+
+[node name="drop_plank" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_u3mgl")
+
+[node name="drop_gem" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_cexgi")

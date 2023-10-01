@@ -11,9 +11,13 @@ var status = "CLOSED"
 @onready var player: Node2D = get_node("/root/root/Player")
 @onready var sprite = $AnimatedSprite2D
 
-@onready var  treasure_scene: PackedScene = preload("res://item/treasure/treasure_item.tscn")
+@onready var treasure_scene: PackedScene = preload("res://item/treasure/treasure_item.tscn")
 var drop_speed = 50
-var drop_count_range = range(1,10)
+
+@export var drop_count_range_min: int = 3
+@export var drop_count_range_max: int = 8
+var drop_count_range = range(drop_count_range_min, drop_count_range_max)
+
 
 func _on_animated_sprite_2d_animation_looped():
 	if in_motion:
@@ -23,10 +27,11 @@ func _on_animated_sprite_2d_animation_looped():
 			if not empty:
 				var drop_count = drop_count_range.pick_random()
 				for i in range(drop_count):
-					spawn_treasure(Vector2.UP.rotated(i * PI / drop_count*2))
+					spawn_treasure(Vector2.UP.rotated(i * PI / drop_count * 2))
 				empty = true
-		if status == CLOSED: sprite.play("closed")
-	
+		if status == CLOSED:
+			sprite.play("closed")
+
 
 func spawn_treasure(direction: Vector2):
 	var treasure: RigidBody2D = treasure_scene.instantiate()
@@ -39,14 +44,15 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("interact") and player.can_interact(self):
 		interact()
 
+
 func interact():
 	if not in_motion:
-		in_motion = true		
+		in_motion = true
 		if status == CLOSED:
 			sprite.play("open")
 			status = OPENED
 		elif status == OPENED:
 			# sprite.play("close")
 			# status = CLOSED
-			$Harvestable.queue_free()
-			
+			if $Harvestable != null:
+				$Harvestable.queue_free()

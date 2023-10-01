@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://c1nfqqgbr1f06"]
+
+[node name="WaterHit" type="CPUParticles2D"]
+visible = false
