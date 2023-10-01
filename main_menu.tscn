@@ -36,7 +36,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_2jfdi")
 script = ExtResource("1_qhbxd")
 metadata/_edit_use_anchors_ = true
 
-[node name="Imageedit17156765100" type="Sprite2D" parent="."]
+[node name="MenuBackground" type="Sprite2D" parent="."]
 position = Vector2(959, 499.25)
 scale = Vector2(1.46049, 1.35521)
 texture = ExtResource("1_mm64l")
