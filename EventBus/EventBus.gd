@@ -8,7 +8,7 @@ signal PlayerScore(score: int)
 func player_damaged(max_health: float, current_health: float, damage_amount: float):
 	PlayerDamaged.emit(max_health, current_health, damage_amount)
 	if current_health == 0:
-		#game_over()
+		game_over()
 		pass
 
 
