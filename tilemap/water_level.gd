@@ -83,16 +83,39 @@ func _ready():
 func _process(delta):
 	time_passed += delta
 	
-	if (update_floodable_tiles && time_passed > 1):
+	if (update_floodable_tiles && time_passed > float(WATER_RISE_TICK) * 0.3):
 		calculate_floodable_tiles()
 		update_floodable_tiles = false
 	
 	if (time_passed >= WATER_RISE_TICK):
 		time_passed = 0
 		raise_water_lvl()
+		recheck_lighter_tiles()
 		update_floodable_tiles = true
 	pass
 
+func recheck_lighter_tiles():
+	var lightest_water_tiles = get_used_cells_by_id(0,0,WATER_TILE_COORDS[0])
+	
+	for tile in lightest_water_tiles:
+		var recolor = true
+		for offset in NEIGHBOR_OFFSETS:
+			if ISLAND_LVL_COORDS.has(get_cell_atlas_coords(0,tile+offset)):
+				recolor=false
+				break
+		if recolor:
+			set_cell(0,tile,0,WATER_TILE_COORDS[1])
+		
+	var lighter_water_tiles = get_used_cells_by_id(0,0,WATER_TILE_COORDS[1])
+	
+	for tile in lighter_water_tiles:
+		var recolor = true
+		for offset in NEIGHBOR_OFFSETS:
+			if get_cell_atlas_coords(0,tile+offset) == WATER_TILE_COORDS[0]:
+				recolor=false
+				break
+		if recolor:
+			set_cell(0,tile,0,WATER_TILE_COORDS[-1])
 
 func find_water_tile_distance(player_pos: Vector2i):
 	var queue = []
