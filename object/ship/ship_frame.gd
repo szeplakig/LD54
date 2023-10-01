@@ -13,7 +13,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 		and player.can_interact(self)
 		and player.currentItem != null
 	):
-		if player.currentItem.has_node("plank"):
+		if player.currentItem.has_node("plank") and phase <= built_phase:
 			interact()
 		elif player.currentItem.has_node("treasure") and phase > built_phase:
 			interact()
@@ -30,7 +30,8 @@ func interact():
 		player.currentItem.global_position = (
 			slot.global_position + Vector2(randf_range(-10, 10), randf_range(-6, 6))
 		)
-		player.currentItem.get_node("Interactable").queue_free()
+		if player.currentItem.has_node("Interactable"):
+			player.currentItem.get_node("Interactable").queue_free()
 		player.currentItem = null
 
 	else:

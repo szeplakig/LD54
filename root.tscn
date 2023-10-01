@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://UI.gd" id="8_r6sbs"]
 [ext_resource type="PackedScene" uid="uid://cdjevaidefaod" path="res://object/tree/tree.tscn" id="9_5u5sd"]
 [ext_resource type="Texture2D" uid="uid://b87rvbi0n4by7" path="res://ui/assets/heart_full.png" id="9_k53i8"]
-[ext_resource type="PackedScene" uid="uid://c7wx00546kgv0" path="res://win.tscn" id="10_jq5qf"]
+[ext_resource type="PackedScene" path="res://win.tscn" id="10_jq5qf"]
 [ext_resource type="PackedScene" uid="uid://bro7clagbiq2p" path="res://object/ship/ship_frame.tscn" id="11_3au0e"]
 [ext_resource type="Script" path="res://MenuButton.gd" id="11_bskhr"]
 [ext_resource type="Script" path="res://win.gd" id="11_u663k"]
@@ -188,34 +188,35 @@ offset_bottom = -257.0
 script = ExtResource("11_u663k")
 
 [node name="Panel3" type="Panel" parent="GUI/CanvasLayer"]
-offset_left = 1640.0
-offset_top = -8.0
-offset_right = 1864.0
-offset_bottom = 88.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -277.0
+offset_top = 19.0
+offset_right = -53.0
+offset_bottom = 115.0
+grow_horizontal = 0
+scale = Vector2(1.15994, 1.18658)
 theme_override_styles/panel = SubResource("StyleBoxFlat_233do")
 
-[node name="MenuButton" type="TextureButton" parent="GUI/CanvasLayer/Panel3"]
+[node name="HSplitContainer" type="HSplitContainer" parent="GUI/CanvasLayer/Panel3"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.607
-anchor_top = 0.25
-anchor_right = 1.179
-anchor_bottom = 1.583
-offset_left = 0.0319824
-offset_right = -0.0960083
-offset_bottom = 0.0319977
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuButton" type="TextureButton" parent="GUI/CanvasLayer/Panel3/HSplitContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
 texture_normal = ExtResource("20_4ymc0")
 stretch_mode = 0
 script = ExtResource("11_bskhr")
 
-[node name="RestartButton" type="TextureButton" parent="GUI/CanvasLayer/Panel3"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.25
-anchor_right = 0.571
-anchor_bottom = 1.583
-offset_right = 0.095993
-offset_bottom = 0.0319977
+[node name="RestartButton" type="TextureButton" parent="GUI/CanvasLayer/Panel3/HSplitContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
 texture_normal = ExtResource("19_p5plw")
 stretch_mode = 0
 script = ExtResource("12_oo0ob")
@@ -276,5 +277,5 @@ position = Vector2(-160, -21)
 
 [node name="Sounds" parent="." instance=ExtResource("18_wavea")]
 
-[connection signal="pressed" from="GUI/CanvasLayer/Panel3/MenuButton" to="GUI/CanvasLayer/Panel3/MenuButton" method="_on_pressed"]
-[connection signal="pressed" from="GUI/CanvasLayer/Panel3/RestartButton" to="GUI/CanvasLayer/Panel3/RestartButton" method="_on_pressed"]
+[connection signal="pressed" from="GUI/CanvasLayer/Panel3/HSplitContainer/MenuButton" to="GUI/CanvasLayer/Panel3/HSplitContainer/MenuButton" method="_on_pressed"]
+[connection signal="pressed" from="GUI/CanvasLayer/Panel3/HSplitContainer/RestartButton" to="GUI/CanvasLayer/Panel3/HSplitContainer/RestartButton" method="_on_pressed"]
