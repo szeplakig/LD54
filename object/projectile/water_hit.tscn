@@ -1,4 +1,39 @@
-[gd_scene format=3 uid="uid://c1nfqqgbr1f06"]
+[gd_scene load_steps=5 format=3 uid="uid://c1nfqqgbr1f06"]
+
+[ext_resource type="Script" path="res://object/projectile/water_hit.gd" id="1_gs4j0"]
+[ext_resource type="AudioStream" uid="uid://ew2kyclib6jl" path="res://sounds/water_splash.mp3" id="2_jkb6i"]
+
+[sub_resource type="Curve" id="Curve_6qkgs"]
+_data = [Vector2(0, 0.37824), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_e44rf"]
+offsets = PackedFloat32Array(0, 0.314815, 1)
+colors = PackedColorArray(0.890196, 0.960784, 0.945098, 1, 0.702216, 0.918337, 0.874353, 1, 0.156863, 0.376471, 0.501961, 1)
 
 [node name="WaterHit" type="CPUParticles2D"]
-visible = false
+emitting = false
+amount = 200
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 12.02
+direction = Vector2(2.08165e-12, -1)
+spread = 30.0
+gravity = Vector2(2.08165e-12, 980)
+initial_velocity_min = 100.0
+initial_velocity_max = 400.0
+linear_accel_max = 1.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_6qkgs")
+color_ramp = SubResource("Gradient_e44rf")
+hue_variation_min = 0.05
+hue_variation_max = 0.05
+script = ExtResource("1_gs4j0")
+
+[node name="water_splash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_jkb6i")
+volume_db = -10.0
+attenuation = 6.0

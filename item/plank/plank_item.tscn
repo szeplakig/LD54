@@ -6,6 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_matct"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jtpya"]
+radius = 7.08064
 
 [node name="Plank" type="RigidBody2D"]
 z_index = 5
@@ -32,6 +33,7 @@ shape = SubResource("RectangleShape2D_matct")
 position = Vector2(0, -9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(3.67198, 3.67198)
 shape = SubResource("CircleShape2D_jtpya")
 
 [node name="Interactable" type="Node2D" parent="."]

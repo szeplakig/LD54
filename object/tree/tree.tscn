@@ -8,7 +8,7 @@
 radius = 3.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hr5kl"]
-size = Vector2(8.25, 18)
+size = Vector2(12.01, 21.1029)
 
 [node name="Tree" type="Node2D"]
 y_sort_enabled = true
@@ -37,7 +37,8 @@ position = Vector2(-0.25, -5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 y_sort_enabled = true
-position = Vector2(0.125, -1)
+position = Vector2(0.25, 0.25)
+scale = Vector2(1.87344, 1.27945)
 shape = SubResource("RectangleShape2D_hr5kl")
 
 [node name="Harvestable" type="Node2D" parent="."]
@@ -46,7 +47,6 @@ shape = SubResource("RectangleShape2D_hr5kl")
 
 [node name="wood_chop" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_15gmo")
-volume_db = 3.0
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="finished" from="wood_chop" to="." method="_on_wood_chop_finished"]
