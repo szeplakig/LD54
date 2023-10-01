@@ -145,7 +145,7 @@ func raise_water_lvl():
 		old_flooded = flooded
 		var i = 0
 		while i < len(ground_tiles[current_water_lvl]) && flooded < TILES_PER_TICK:
-			if floodable_tiles.has(ground_tiles[current_water_lvl][i]):
+			if floodable_tiles.has(ground_tiles[current_water_lvl][i]) && get_cell_source_id(0, ground_tiles[current_water_lvl][i]) != 1:
 				set_cell(0,ground_tiles[current_water_lvl][i],0,WATER_TILE_COORDS[0])
 				changed_tiles.push_back(ground_tiles[current_water_lvl][i])
 				flooded += 1
@@ -228,8 +228,10 @@ func check_recolor_tile(tile,remaining_depth):
 		if neighbor_color == WATER_TILE_COORDS[0]:
 			changed = true
 			color = WATER_TILE_COORDS[1]
+			
+	if get_cell_source_id(0, tile) != 1:
+		set_cell(0,tile,0,color)
 	
-	set_cell(0,tile,0,color)
 	if changed && remaining_depth > 0:
 		for offset in NEIGHBOR_OFFSETS:
 			check_recolor_tile(tile+offset, remaining_depth - 1)
