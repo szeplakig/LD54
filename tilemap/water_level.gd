@@ -55,8 +55,26 @@ func _ready():
 	var water_tiles = []
 	for coords in WATER_TILE_COORDS:
 		water_tiles += get_used_cells_by_id(0,0,coords)
+	
+	for water_tile in water_tiles:
+		set_cell(0,water_tile,0,WATER_TILE_COORDS[-1])
 
-	recolor_water(water_tiles)
+	var all_ground_tiles = []
+	for tiles in ground_tiles:
+		all_ground_tiles += tiles
+	
+	var lightest_water_tiles = []
+	for land_tile in all_ground_tiles:
+		for offset in NEIGHBOR_OFFSETS:
+			if get_cell_atlas_coords(0,land_tile + offset) == WATER_TILE_COORDS[-1]:
+				set_cell(0,land_tile+offset,0,WATER_TILE_COORDS[0])
+				lightest_water_tiles.push_back(land_tile+offset)
+	
+	for water_tile in lightest_water_tiles:
+		for offset in NEIGHBOR_OFFSETS:
+			if get_cell_atlas_coords(0,water_tile + offset) == WATER_TILE_COORDS[-1]:
+				set_cell(0,water_tile+offset,0,WATER_TILE_COORDS[1])
+	
 	pass  # Replace with function body.
 
 

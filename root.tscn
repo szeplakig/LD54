@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://UI.gd" id="8_r6sbs"]
 [ext_resource type="PackedScene" uid="uid://cdjevaidefaod" path="res://object/tree/tree.tscn" id="9_5u5sd"]
 [ext_resource type="Texture2D" uid="uid://b87rvbi0n4by7" path="res://ui/assets/heart_full.png" id="9_k53i8"]
-[ext_resource type="PackedScene" path="res://win.tscn" id="10_jq5qf"]
+[ext_resource type="PackedScene" uid="uid://c7wx00546kgv0" path="res://win.tscn" id="10_jq5qf"]
 [ext_resource type="PackedScene" uid="uid://bro7clagbiq2p" path="res://object/ship/ship_frame.tscn" id="11_3au0e"]
 [ext_resource type="Script" path="res://win.gd" id="11_u663k"]
 [ext_resource type="PackedScene" uid="uid://d2sre57itv6b1" path="res://object/chest/chest.tscn" id="13_cmla8"]
