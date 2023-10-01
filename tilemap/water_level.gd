@@ -113,9 +113,9 @@ func raise_water_lvl():
 
 	while flooded < TILES_PER_TICK && current_water_lvl < len(ISLAND_LVL_COORDS):
 		old_flooded = flooded
-		print("AAA", flooded)
-		print("current_water_lvl", current_water_lvl)
-		print("len(ground_tiles[current_water_lvl])", len(ground_tiles[current_water_lvl]))
+#		print("AAA", flooded)
+#		print("current_water_lvl", current_water_lvl)
+#		print("len(ground_tiles[current_water_lvl])", len(ground_tiles[current_water_lvl]))
 		var i = 0
 		while i < len(ground_tiles[current_water_lvl]) && flooded < TILES_PER_TICK:
 			if floodable_tiles.has(ground_tiles[current_water_lvl][i]):
@@ -170,12 +170,19 @@ var deep_waters = {}
 
 
 func recolor_water():
+	print("")
+	print("recolor_water")
 	# Get all tiles that are water, but not deep water
 	var water_tiles = []
-	for i in range(1,len(WATER_TILE_COORDS)):
+	for i in range(0,len(WATER_TILE_COORDS)-1):
 		if get_cell_source_id(0,WATER_TILE_COORDS[i]) == 1:
 			continue
 		water_tiles += get_used_cells_by_id(0,0,WATER_TILE_COORDS[i])
+	
+	for water_tile in water_tiles:
+		if get_cell_source_id(0,water_tile) == 1:
+			continue
+		set_cell(0,water_tile,0,WATER_TILE_COORDS[len(WATER_TILE_COORDS) - 1])
 	
 	# Set their water neighbors to lightest
 	var colored_tiles = []
@@ -191,7 +198,10 @@ func recolor_water():
 				set_cell(0,land_tile+offset,0,WATER_TILE_COORDS[0])
 				colored_tiles.push_back(land_tile+offset)
 	
-	for i in range(0,len(WATER_TILE_COORDS)-1):
+#	print("len(colored_tiles): ",len(colored_tiles))
+#	print("colores_tiles: ",colored_tiles)
+	for i in range(0,len(WATER_TILE_COORDS)-2):
+		print("len(colored_tiles): ",len(colored_tiles))
 		# Set their water neighbors to lighter
 		var new_colored_tiles = []
 		for water_tile in colored_tiles:
