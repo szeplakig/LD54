@@ -30,6 +30,18 @@ func _input(event: InputEvent):
 		drop()
 	elif event.is_action_pressed("finish") and can_interact(ship) and ship.phase > ship.built_phase:
 		finish()
+	elif event.is_action_pressed("build"):
+		build()
+
+
+func build():
+	if currentItem != null and currentItem.has_node("plank"):
+		var mouse_pos = get_global_mouse_position()
+		if can_interact_pos(mouse_pos):
+			var tile_pos = utils.get_tile_at_position(mouse_pos)
+			if tile_pos != null:
+				tilemap.set_plank(tile_pos)
+				spend_item()
 
 
 func _ready():
@@ -70,15 +82,9 @@ func _physics_process(delta):
 
 func interact(item, harvestable = null):
 	if currentItem != null and currentItem.has_node("plank"):
-		if can_interact(ship):
+		if can_interact(ship) and ship.phase <= ship.built_phase:
 			ship.interact()
 			return
-		var mouse_pos = get_global_mouse_position()
-		if can_interact_pos(mouse_pos):
-			var tile_pos = utils.get_tile_at_position(mouse_pos)
-			if tile_pos != null:
-				tilemap.set_plank(tile_pos)
-				spend_item()
 
 	if (
 		currentItem != null
@@ -117,9 +123,13 @@ func get_overlapping_item(arr: Array) -> Node2D:
 
 
 func pickup(item: Node2D):
+	if not $pickup.playing:
+		$pickup.play()
+
 	currentItem = item
 	currentItem.reparent(slot, true)
 	currentItem.position = Vector2.ZERO
+	currentItem.rotation = 0
 	currentItem.collision.disabled = true
 
 
@@ -135,11 +145,16 @@ func spend_item():
 
 
 func drop(itemGlobalPosition = null):
+	if not $drop.playing:
+		$drop.play()
+
 	if currentItem != null:
 		currentItem.collision.disabled = false
 		currentItem.reparent(root)
 		if itemGlobalPosition != null:
 			currentItem.global_position = itemGlobalPosition
+		else:
+			currentItem.global_position += Vector2(0, 15)
 		currentItem = null
 
 
@@ -149,7 +164,7 @@ func damage(amount):
 
 
 func can_interact_pos(pos):
-	return global_position.distance_to(pos) < 65
+	return global_position.distance_to(pos) < 80
 
 
 func can_interact(other):

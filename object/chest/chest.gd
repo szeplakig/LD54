@@ -10,6 +10,7 @@ var status = "CLOSED"
 
 @onready var player: Node2D = get_node("/root/root/Player")
 @onready var sprite = $AnimatedSprite2D
+@onready var chest_open = $chest_open
 
 @onready var treasure_scene: PackedScene = preload("res://item/treasure/treasure_item.tscn")
 var drop_speed = 50
@@ -49,6 +50,8 @@ func interact():
 	if not in_motion:
 		in_motion = true
 		if status == CLOSED:
+			if not chest_open.playing:
+				chest_open.play()
 			sprite.play("open")
 			status = OPENED
 		elif status == OPENED:

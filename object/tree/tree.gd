@@ -3,6 +3,7 @@ extends Node2D
 @onready var treasure_scene: PackedScene = preload("res://item/plank/plank_item.tscn")
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var player: Node2D = get_node("/root/root/Player")
+@onready var wood_chop = $wood_chop
 
 var drop_speed = 50
 @export var drop_count_range_min: int = 1
@@ -24,10 +25,11 @@ func _process(delta):
 
 
 func shake(delta, amount):
-	sprite.offset = (
-		default_offset
-		+ Vector2(range(-1.0, 1.0).pick_random() * amount, range(-1.0, 1.0).pick_random() * amount)
-	)
+	if sprite:
+		sprite.offset = (
+			default_offset
+			+ Vector2(range(-1.0, 1.0).pick_random() * amount, range(-1.0, 1.0).pick_random() * amount)
+		)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -64,11 +66,22 @@ func _on_area_2d_input_event(viewport, event: InputEvent, shape_idx):
 
 
 func interact():
+	if not wood_chop.playing:
+		wood_chop.play()
+	else:
+		return false
 	durability -= 1
 	current_shake = 0.1
 	if durability == 0:
 		var drop_count = drop_count_range.pick_random()
 		for i in range(drop_count):
 			spawn_plank(Vector2.UP.rotated(i * PI / drop_count * 2))
-		queue_free()
+			if sprite:
+				sprite.queue_free()
+				sprite = null
 		return true
+
+
+func _on_wood_chop_finished():
+	if durability <= 0:
+		queue_free()

@@ -1,13 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://160btyd2e2oh"]
+[gd_scene load_steps=12 format=3 uid="uid://160btyd2e2oh"]
 
 [ext_resource type="Script" path="res://sounds/sounds.gd" id="1_p444l"]
 [ext_resource type="AudioStream" uid="uid://co8qirgxbifkv" path="res://sounds/explosion.mp3" id="2_okuvb"]
+[ext_resource type="AudioStream" uid="uid://dlbin8ftiruv2" path="res://sounds/ocean2.mp3" id="3_i2oyc"]
 [ext_resource type="AudioStream" uid="uid://e4ybgwrvl6l2" path="res://sounds/cannon_shot.mp3" id="3_pu5p7"]
 [ext_resource type="AudioStream" uid="uid://ew2kyclib6jl" path="res://sounds/water_splash.mp3" id="4_d4u8f"]
 [ext_resource type="AudioStream" uid="uid://0db4yb8lkcw2" path="res://sounds/score.mp3" id="5_xrrk3"]
+[ext_resource type="AudioStream" uid="uid://bgib4g5u0q5i3" path="res://sounds/pickup.mp3" id="6_2rawv"]
 [ext_resource type="AudioStream" uid="uid://627okwy4b3ew" path="res://sounds/building.mp3" id="6_ci4bk"]
-[ext_resource type="AudioStream" uid="uid://fy6hf173u3bd" path="res://sounds/drop_wood.mp3" id="7_u3mgl"]
-[ext_resource type="AudioStream" uid="uid://c1hvpbyxhrmuf" path="res://sounds/drop_gem.mp3" id="8_cexgi"]
+[ext_resource type="AudioStream" uid="uid://cyh50nwspmae5" path="res://sounds/drop.mp3" id="9_xmaj0"]
+[ext_resource type="AudioStream" uid="uid://fhoy18uulw0k" path="res://sounds/wood_chop.mp3" id="10_kbkpb"]
+[ext_resource type="AudioStream" uid="uid://b8n7oik2tcmkk" path="res://sounds/chest_open.mp3" id="11_n5f6b"]
 
 [node name="Sounds" type="Node2D"]
 script = ExtResource("1_p444l")
@@ -16,6 +19,8 @@ script = ExtResource("1_p444l")
 stream = ExtResource("2_okuvb")
 
 [node name="ocean" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_i2oyc")
+volume_db = -3.0
 
 [node name="cannon" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_pu5p7")
@@ -25,6 +30,7 @@ volume_db = -6.588
 stream = ExtResource("4_d4u8f")
 
 [node name="pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_2rawv")
 
 [node name="score" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_xrrk3")
@@ -32,8 +38,13 @@ stream = ExtResource("5_xrrk3")
 [node name="build" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_ci4bk")
 
-[node name="drop_plank" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_u3mgl")
+[node name="drop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_xmaj0")
 
-[node name="drop_gem" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_cexgi")
+[node name="wood_chop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_kbkpb")
+volume_db = 5.0
+
+[node name="chest_open" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_n5f6b")
+volume_db = 5.0
