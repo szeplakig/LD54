@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://br711aqt0cu86"]
+
+[ext_resource type="Texture2D" uid="uid://xbr05as7a1ep" path="res://ui/assets/play_button.png" id="1_i5vtv"]
+[ext_resource type="Texture2D" uid="uid://hrjnwr6at4jg" path="res://imageedit_1_7156765100.png" id="1_mm64l"]
+[ext_resource type="Texture2D" uid="uid://dn2ummilfytku" path="res://ui/assets/quit_button.png" id="2_4kebc"]
+[ext_resource type="Script" path="res://PlayButton.gd" id="3_xjbph"]
+[ext_resource type="Texture2D" uid="uid://dleaghfh6sk78" path="res://ui/assets/title.png" id="4_vf7ck"]
+[ext_resource type="Script" path="res://QuitButton.gd" id="5_hl0h6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jfdi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inmel"]
+bg_color = Color(0, 0, 0, 0.937255)
+
+[node name="MainMenu" type="Panel"]
+anchors_preset = -1
+anchor_right = 1.66667
+anchor_bottom = 1.53086
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2jfdi")
+metadata/_edit_use_anchors_ = true
+
+[node name="Imageedit17156765100" type="Sprite2D" parent="."]
+position = Vector2(959, 499.25)
+scale = Vector2(1.46049, 1.35521)
+texture = ExtResource("1_mm64l")
+
+[node name="PlayButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 352.0
+offset_right = 576.0
+offset_bottom = 608.0
+texture_normal = ExtResource("1_i5vtv")
+stretch_mode = 0
+script = ExtResource("3_xjbph")
+
+[node name="QuitButton" type="TextureButton" parent="."]
+layout_mode = 1
+offset_left = 64.0
+offset_top = 672.0
+offset_right = 576.0
+offset_bottom = 928.0
+texture_normal = ExtResource("2_4kebc")
+stretch_mode = 0
+script = ExtResource("5_hl0h6")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 56.0
+offset_right = 1888.0
+offset_bottom = 280.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_inmel")
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(960, 168)
+scale = Vector2(24, 24)
+texture = ExtResource("4_vf7ck")
+
+[connection signal="pressed" from="PlayButton" to="PlayButton" method="_on_pressed"]
+[connection signal="pressed" from="QuitButton" to="QuitButton" method="_on_pressed"]

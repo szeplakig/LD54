@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://fo3ji2x5epm"]
+[gd_scene load_steps=25 format=3 uid="uid://fo3ji2x5epm"]
 
 [ext_resource type="PackedScene" uid="uid://p3qbpd3b3ftx" path="res://character/player/player.tscn" id="1_bg4ji"]
 [ext_resource type="Script" path="res://EventBus/EventBus.gd" id="1_r0nvk"]
@@ -11,13 +11,17 @@
 [ext_resource type="Script" path="res://UI.gd" id="8_r6sbs"]
 [ext_resource type="PackedScene" uid="uid://cdjevaidefaod" path="res://object/tree/tree.tscn" id="9_5u5sd"]
 [ext_resource type="Texture2D" uid="uid://b87rvbi0n4by7" path="res://ui/assets/heart_full.png" id="9_k53i8"]
-[ext_resource type="PackedScene" path="res://win.tscn" id="10_jq5qf"]
+[ext_resource type="PackedScene" uid="uid://c7wx00546kgv0" path="res://win.tscn" id="10_jq5qf"]
 [ext_resource type="PackedScene" uid="uid://bro7clagbiq2p" path="res://object/ship/ship_frame.tscn" id="11_3au0e"]
+[ext_resource type="Script" path="res://MenuButton.gd" id="11_bskhr"]
 [ext_resource type="Script" path="res://win.gd" id="11_u663k"]
+[ext_resource type="Script" path="res://RestartButton.gd" id="12_oo0ob"]
 [ext_resource type="PackedScene" uid="uid://d2sre57itv6b1" path="res://object/chest/chest.tscn" id="13_cmla8"]
 [ext_resource type="PackedScene" uid="uid://bicy6we1bo0ai" path="res://item/plank/plank_item.tscn" id="14_rvanq"]
 [ext_resource type="PackedScene" uid="uid://c7dx0kfycuher" path="res://object/projectile/projectile.tscn" id="17_guxc4"]
 [ext_resource type="PackedScene" uid="uid://160btyd2e2oh" path="res://sounds/sounds.tscn" id="18_wavea"]
+[ext_resource type="Texture2D" uid="uid://c8w80t4l6sp2g" path="res://ui/assets/restart_button.png" id="19_p5plw"]
+[ext_resource type="Texture2D" uid="uid://cfsngdau1ih7v" path="res://ui/assets/menu_button.png" id="20_4ymc0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2pvb"]
 bg_color = Color(1, 1, 1, 0)
@@ -30,6 +34,9 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_233do"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="root" type="Node2D"]
 y_sort_enabled = true
@@ -96,55 +103,55 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="GUI/CanvasLayer/Control"]
 layout_mode = 0
-offset_left = 13.0
-offset_top = 15.0
-offset_right = 488.0
-offset_bottom = 116.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 483.0
+offset_bottom = 112.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_n2pvb")
 
 [node name="Heart1" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 9.0
-offset_top = 6.0
-offset_right = 99.0
-offset_bottom = 96.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 120.0
+offset_bottom = 120.0
 texture = ExtResource("9_k53i8")
 
 [node name="Heart2" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 101.0
-offset_top = 6.0
-offset_right = 191.0
-offset_bottom = 96.0
+offset_left = 128.0
+offset_top = 8.0
+offset_right = 240.0
+offset_bottom = 120.0
 texture = ExtResource("9_k53i8")
 
 [node name="Heart3" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 193.0
-offset_top = 6.0
-offset_right = 283.0
-offset_bottom = 96.0
+offset_left = 248.0
+offset_top = 8.0
+offset_right = 360.0
+offset_bottom = 120.0
 texture = ExtResource("9_k53i8")
 
 [node name="Heart4" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 285.0
-offset_top = 6.0
-offset_right = 375.0
-offset_bottom = 96.0
+offset_left = 368.0
+offset_top = 8.0
+offset_right = 480.0
+offset_bottom = 120.0
 texture = ExtResource("9_k53i8")
 
 [node name="Heart5" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 377.0
-offset_top = 6.0
-offset_right = 467.0
-offset_bottom = 96.0
+offset_left = 488.0
+offset_top = 8.0
+offset_right = 600.0
+offset_bottom = 120.0
 texture = ExtResource("9_k53i8")
 
 [node name="Panel2" type="Panel" parent="GUI/CanvasLayer/Control"]
@@ -153,9 +160,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -329.0
-offset_right = 271.0
-offset_bottom = 110.0
+offset_left = -1904.0
+offset_top = 144.0
+offset_right = -1304.0
+offset_bottom = 254.0
 grow_horizontal = 0
 scale = Vector2(0.543, 1)
 
@@ -174,12 +182,44 @@ scroll_active = false
 
 [node name="WinScreen" parent="GUI/CanvasLayer" instance=ExtResource("10_jq5qf")]
 unique_name_in_owner = true
-visible = false
 offset_left = 74.0
 offset_top = -257.0
 offset_right = 74.0
 offset_bottom = -257.0
 script = ExtResource("11_u663k")
+
+[node name="Panel3" type="Panel" parent="GUI/CanvasLayer"]
+offset_left = 1640.0
+offset_top = -8.0
+offset_right = 1864.0
+offset_bottom = 88.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_233do")
+
+[node name="MenuButton" type="TextureButton" parent="GUI/CanvasLayer/Panel3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.607
+anchor_top = 0.25
+anchor_right = 1.179
+anchor_bottom = 1.583
+offset_left = 0.0319824
+offset_right = -0.0960083
+offset_bottom = 0.0319977
+texture_normal = ExtResource("20_4ymc0")
+stretch_mode = 0
+script = ExtResource("11_bskhr")
+
+[node name="RestartButton" type="TextureButton" parent="GUI/CanvasLayer/Panel3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.25
+anchor_right = 0.571
+anchor_bottom = 1.583
+offset_right = 0.095993
+offset_bottom = 0.0319977
+texture_normal = ExtResource("19_p5plw")
+stretch_mode = 0
+script = ExtResource("12_oo0ob")
 
 [node name="MotherShip" parent="." instance=ExtResource("7_1u8ju")]
 y_sort_enabled = true
@@ -239,3 +279,6 @@ position = Vector2(-160, -21)
 position = Vector2(-285, 228)
 
 [node name="Sounds" parent="." instance=ExtResource("18_wavea")]
+
+[connection signal="pressed" from="GUI/CanvasLayer/Panel3/MenuButton" to="GUI/CanvasLayer/Panel3/MenuButton" method="_on_pressed"]
+[connection signal="pressed" from="GUI/CanvasLayer/Panel3/RestartButton" to="GUI/CanvasLayer/Panel3/RestartButton" method="_on_pressed"]

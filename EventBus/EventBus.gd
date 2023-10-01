@@ -23,3 +23,4 @@ func player_win(score: int):
 
 func player_score(score: int):
 	PlayerScore.emit(score)
+
