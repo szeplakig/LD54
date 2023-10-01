@@ -1,6 +1,6 @@
 extends Camera2D
 
-var shake_amount = 1
+var shake_amount = 2
 var shake_duration = 0.1
 var current_shake = 0
 

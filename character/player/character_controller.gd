@@ -165,6 +165,7 @@ func drop(itemGlobalPosition = null):
 
 func damage(amount):
 	player_hp -= amount
+	$Camera2D.current_shake = 0.1
 	event_bus.player_damaged(player_max_hp, player_hp, amount)
 
 
