@@ -173,6 +173,8 @@ func recolor_water():
 	# Get all tiles that are water, but not deep water
 	var water_tiles = []
 	for i in range(1,len(WATER_TILE_COORDS)):
+		if get_cell_source_id(0,WATER_TILE_COORDS[i]) == 1:
+			continue
 		water_tiles += get_used_cells_by_id(0,0,WATER_TILE_COORDS[i])
 	
 	# Set their water neighbors to lightest
@@ -183,7 +185,9 @@ func recolor_water():
 	
 	for land_tile in all_ground_tiles:
 		for offset in NEIGHBOR_OFFSETS:
-			if get_cell_atlas_coords(0,land_tile + offset) == WATER_TILE_COORDS[len(WATER_TILE_COORDS) - 1]:
+			if get_cell_source_id(0,land_tile + offset):
+				continue
+			if get_cell_atlas_coords(0,land_tile + offset) == WATER_TILE_COORDS[len(WATER_TILE_COORDS) - 1] :
 				set_cell(0,land_tile+offset,0,WATER_TILE_COORDS[0])
 				colored_tiles.push_back(land_tile+offset)
 	
@@ -192,6 +196,8 @@ func recolor_water():
 		var new_colored_tiles = []
 		for water_tile in colored_tiles:
 			for offset in NEIGHBOR_OFFSETS:
+				if get_cell_source_id(0,water_tile + offset):
+					continue
 				if get_cell_atlas_coords(0,water_tile+offset) == WATER_TILE_COORDS[len(WATER_TILE_COORDS) - 1]:
 					set_cell(0,water_tile+offset,0,WATER_TILE_COORDS[i+1])
 					new_colored_tiles.push_back(water_tile+offset)
