@@ -1,16 +1,30 @@
-[gd_scene load_steps=9 format=3 uid="uid://br711aqt0cu86"]
+[gd_scene load_steps=19 format=3 uid="uid://br711aqt0cu86"]
 
 [ext_resource type="Texture2D" uid="uid://xbr05as7a1ep" path="res://ui/assets/play_button.png" id="1_i5vtv"]
 [ext_resource type="Texture2D" uid="uid://hrjnwr6at4jg" path="res://imageedit_1_7156765100.png" id="1_mm64l"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_qhbxd"]
 [ext_resource type="Texture2D" uid="uid://dn2ummilfytku" path="res://ui/assets/quit_button.png" id="2_4kebc"]
 [ext_resource type="Script" path="res://PlayButton.gd" id="3_xjbph"]
 [ext_resource type="Texture2D" uid="uid://dleaghfh6sk78" path="res://ui/assets/title.png" id="4_vf7ck"]
 [ext_resource type="Script" path="res://QuitButton.gd" id="5_hl0h6"]
+[ext_resource type="Texture2D" uid="uid://c3uv532entbcw" path="res://ui/assets/howto_button.png" id="6_yjr0o"]
+[ext_resource type="Script" path="res://HowToButton.gd" id="7_eux0o"]
+[ext_resource type="AudioStream" uid="uid://bghjirccnxkho" path="res://ost/menu.mp3" id="7_r508r"]
+[ext_resource type="Texture2D" uid="uid://bhdyp5666obpx" path="res://ui/assets/credits.png" id="9_owk24"]
+[ext_resource type="Texture2D" uid="uid://dlj0nnxyagvb6" path="res://ui/assets/credits_content.png" id="10_kq2re"]
+[ext_resource type="Texture2D" uid="uid://devoyy3pdshhb" path="res://ui/assets/you_won.png" id="12_8ma8c"]
+[ext_resource type="Texture2D" uid="uid://cwoo1wbankrbd" path="res://ui/assets/game_over.png" id="13_q4sxf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jfdi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inmel"]
-bg_color = Color(0, 0, 0, 0.937255)
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tx354"]
+bg_color = Color(0, 0, 0, 0.741176)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1d5iy"]
+bg_color = Color(0, 0, 0, 0.952941)
 
 [node name="MainMenu" type="Panel"]
 anchors_preset = -1
@@ -19,6 +33,7 @@ anchor_bottom = 1.53086
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2jfdi")
+script = ExtResource("1_qhbxd")
 metadata/_edit_use_anchors_ = true
 
 [node name="Imageedit17156765100" type="Sprite2D" parent="."]
@@ -29,35 +44,90 @@ texture = ExtResource("1_mm64l")
 [node name="PlayButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 64.0
-offset_top = 352.0
+offset_top = 672.0
 offset_right = 576.0
-offset_bottom = 608.0
+offset_bottom = 928.0
 texture_normal = ExtResource("1_i5vtv")
 stretch_mode = 0
 script = ExtResource("3_xjbph")
 
 [node name="QuitButton" type="TextureButton" parent="."]
 layout_mode = 1
-offset_left = 64.0
+offset_left = 1344.0
 offset_top = 672.0
-offset_right = 576.0
+offset_right = 1856.0
 offset_bottom = 928.0
 texture_normal = ExtResource("2_4kebc")
 stretch_mode = 0
 script = ExtResource("5_hl0h6")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="HowToButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 56.0
-offset_right = 1888.0
-offset_bottom = 280.0
+offset_left = 704.0
+offset_top = 672.0
+offset_right = 1216.0
+offset_bottom = 928.0
+texture_normal = ExtResource("6_yjr0o")
+stretch_mode = 0
+script = ExtResource("7_eux0o")
+
+[node name="TitlePanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 1856.0
+offset_bottom = 288.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_inmel")
 
-[node name="Title" type="Sprite2D" parent="."]
-position = Vector2(960, 168)
-scale = Vector2(24, 24)
+[node name="Title" type="Sprite2D" parent="TitlePanel"]
+position = Vector2(892, 112)
+scale = Vector2(23.0526, 24)
 texture = ExtResource("4_vf7ck")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(8, -8)
+stream = ExtResource("7_r508r")
+volume_db = 20.0
+autoplay = true
+
+[node name="CreditsPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1344.0
+offset_top = 352.0
+offset_right = 1856.0
+offset_bottom = 608.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tx354")
+
+[node name="Credits" type="Sprite2D" parent="CreditsPanel"]
+position = Vector2(256, 62.25)
+scale = Vector2(1, 1.0614)
+texture = ExtResource("9_owk24")
+
+[node name="CreditsContent" type="Sprite2D" parent="CreditsPanel"]
+position = Vector2(256, 190.906)
+scale = Vector2(0.283856, 0.295939)
+texture = ExtResource("10_kq2re")
+
+[node name="EndPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 352.0
+offset_right = 1216.0
+offset_bottom = 608.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1d5iy")
+
+[node name="YouWon" type="Sprite2D" parent="EndPanel"]
+visible = false
+position = Vector2(576, 128)
+scale = Vector2(16, 16)
+texture = ExtResource("12_8ma8c")
+
+[node name="GameOver" type="Sprite2D" parent="EndPanel"]
+visible = false
+position = Vector2(576, 120)
+scale = Vector2(16, 16)
+texture = ExtResource("13_q4sxf")
 
 [connection signal="pressed" from="PlayButton" to="PlayButton" method="_on_pressed"]
 [connection signal="pressed" from="QuitButton" to="QuitButton" method="_on_pressed"]
+[connection signal="pressed" from="HowToButton" to="HowToButton" method="_on_pressed"]

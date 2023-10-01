@@ -13,12 +13,14 @@ func player_damaged(max_health: float, current_health: float, damage_amount: flo
 
 
 func game_over():
-	get_tree().change_scene_to_file("res://game_over.tscn")
+	Global.last_ending = "LOSE"
+	get_tree().change_scene_to_file("res://main_menu.tscn")
 
 
 func player_win(score: int):
-	PlayerWin.emit(score)
-	%WinScreen.visible = true
+	Global.score = score
+	Global.last_ending = "WIN"
+	get_tree().change_scene_to_file("res://main_menu.tscn")
 
 
 func player_score(score: int):
