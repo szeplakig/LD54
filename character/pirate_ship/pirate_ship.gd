@@ -1,6 +1,6 @@
 extends Node2D
 
-# From first script
+@onready var cannon: AudioStreamPlayer2D = $cannon
 @onready var treasure_scene: PackedScene = preload("res://item/plank/plank_item.tscn")
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var player: Node2D = get_node("/root/root/Player")
@@ -141,6 +141,7 @@ func shoot():
 	var shoot_direction = Vector2.ZERO
 	shoot_direction = (target.global_position - global_position).normalized()
 
+	cannon.play()
 	match selected_shoot_strategy:
 		ShootStrategy.single:
 			spawn_projectile(shoot_direction)

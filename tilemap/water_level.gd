@@ -62,7 +62,7 @@ func _process(delta):
 	pass
 
 
-func find_water_tile_distance(player_pos: Vector2i) -> float:
+func find_water_tile_distance(player_pos: Vector2i):
 	var queue = []
 	queue.push_back([player_pos, 0])  # [Position, Distance]
 
@@ -75,7 +75,9 @@ func find_water_tile_distance(player_pos: Vector2i) -> float:
 		var current_distance = current[1]
 
 		if is_water_tile(current_pos):
-			return current_distance
+			return to_global(map_to_local(current_pos)).distance_to(
+				to_global(map_to_local(player_pos))
+			)
 
 		for offset in NEIGHBOR_OFFSETS:
 			var neighbor_pos = current_pos + offset
@@ -84,7 +86,7 @@ func find_water_tile_distance(player_pos: Vector2i) -> float:
 				visited[neighbor_pos] = true
 				queue.push_back([neighbor_pos, current_distance + 1])
 
-	return -1
+	return null
 
 
 func is_water_tile(cell: Vector2i) -> bool:
@@ -96,7 +98,7 @@ func raise_water_lvl():
 	var local_player_pos = to_local(get_node("../Player").global_position)
 	var player_pos = local_to_map(local_player_pos)
 	closest_water_tile_distance = find_water_tile_distance(player_pos)
-	print(closest_water_tile_distance)
+
 	#if player_pos == remove_coord:
 	#	game_over()
 	var flooded = 0
@@ -104,9 +106,6 @@ func raise_water_lvl():
 
 	while flooded < TILES_PER_TICK && current_water_lvl < len(ISLAND_LVL_COORDS):
 		old_flooded = flooded
-		print("AAA", flooded)
-		print("current_water_lvl", current_water_lvl)
-		print("len(ground_tiles[current_water_lvl])", len(ground_tiles[current_water_lvl]))
 		var i = 0
 		while i < len(ground_tiles[current_water_lvl]) && flooded < TILES_PER_TICK:
 			if get_cell_source_id(0, ground_tiles[current_water_lvl][i]) == 1:

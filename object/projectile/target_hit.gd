@@ -4,6 +4,10 @@ extends CPUParticles2D
 var elapsed_time = 0.0
 
 
+func _ready():
+	$explosion.play()
+
+
 func _process(delta):
 	elapsed_time += delta
 	if elapsed_time >= delete_after:

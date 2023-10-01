@@ -3,6 +3,7 @@ extends Node2D
 @onready var treasure_scene: PackedScene = preload("res://item/plank/plank_item.tscn")
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var player: Node2D = get_node("/root/root/Player")
+@onready var wood_chop = $wood_chop
 
 var drop_speed = 50
 @export var drop_count_range_min: int = 1
@@ -64,6 +65,10 @@ func _on_area_2d_input_event(viewport, event: InputEvent, shape_idx):
 
 
 func interact():
+	if not wood_chop.playing:
+		wood_chop.play()
+	else:
+		return false
 	durability -= 1
 	current_shake = 0.1
 	if durability == 0:

@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl7wf28hen4nq"]
+[gd_scene load_steps=5 format=3 uid="uid://dl7wf28hen4nq"]
 
 [ext_resource type="Script" path="res://character/pirate_ship/pirate_ship.gd" id="1_oh40l"]
 [ext_resource type="Texture2D" uid="uid://c0h2n7mfkilli" path="res://character/pirate_ship/assets/pirateship2.png" id="2_gjbq4"]
+[ext_resource type="AudioStream" uid="uid://e4ybgwrvl6l2" path="res://sounds/cannon_shot.mp3" id="3_xle2q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8l8v2"]
+size = Vector2(25.4213, 18.2127)
 
 [node name="PirateShip" type="Node2D"]
 scale = Vector2(4, 4)
@@ -9,3 +13,24 @@ script = ExtResource("1_oh40l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_gjbq4")
+
+[node name="Area2D" type="Area2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-0.25, -5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+y_sort_enabled = true
+position = Vector2(2.25, 13)
+scale = Vector2(1.16044, 0.732681)
+shape = SubResource("RectangleShape2D_8l8v2")
+
+[node name="Harvestable" type="Node2D" parent="."]
+
+[node name="cannon" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0.25, 9.25)
+stream = ExtResource("3_xle2q")
+volume_db = -10.0
+max_distance = 3000.0
+attenuation = 10.0
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
