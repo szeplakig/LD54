@@ -18,10 +18,15 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://global.gd"
+Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
 
 [display]
 
 window/size/mode=2
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-firebase/plugin.cfg", "res://addons/http-sse-client/plugin.cfg")
 
 [input]
 

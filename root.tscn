@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://fo3ji2x5epm"]
+[gd_scene load_steps=25 format=3 uid="uid://fo3ji2x5epm"]
 
 [ext_resource type="PackedScene" uid="uid://p3qbpd3b3ftx" path="res://character/player/player.tscn" id="1_bg4ji"]
 [ext_resource type="Script" path="res://EventBus/EventBus.gd" id="1_r0nvk"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://160btyd2e2oh" path="res://sounds/sounds.tscn" id="18_wavea"]
 [ext_resource type="Texture2D" uid="uid://c8w80t4l6sp2g" path="res://ui/assets/restart_button.png" id="19_p5plw"]
 [ext_resource type="Texture2D" uid="uid://cfsngdau1ih7v" path="res://ui/assets/menu_button.png" id="20_4ymc0"]
+[ext_resource type="AudioStream" uid="uid://bjwuj1j4oivsn" path="res://ost/main.mp3" id="22_2xnib"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2pvb"]
 bg_color = Color(1, 1, 1, 0)
@@ -153,32 +154,6 @@ offset_right = 600.0
 offset_bottom = 120.0
 texture = ExtResource("9_k53i8")
 
-[node name="Panel2" type="Panel" parent="GUI/CanvasLayer/Control"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -1904.0
-offset_top = 144.0
-offset_right = -1304.0
-offset_bottom = 254.0
-grow_horizontal = 0
-scale = Vector2(0.543, 1)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="GUI/CanvasLayer/Control/Panel2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 80
-text = " Gems: 0"
-fit_content = true
-scroll_active = false
-
 [node name="WinScreen" parent="GUI/CanvasLayer" instance=ExtResource("10_jq5qf")]
 unique_name_in_owner = true
 offset_left = 74.0
@@ -188,34 +163,35 @@ offset_bottom = -257.0
 script = ExtResource("11_u663k")
 
 [node name="Panel3" type="Panel" parent="GUI/CanvasLayer"]
-offset_left = 1640.0
-offset_top = -8.0
-offset_right = 1864.0
-offset_bottom = 88.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -277.0
+offset_top = 19.0
+offset_right = -53.0
+offset_bottom = 115.0
+grow_horizontal = 0
+scale = Vector2(1.15994, 1.18658)
 theme_override_styles/panel = SubResource("StyleBoxFlat_233do")
 
-[node name="MenuButton" type="TextureButton" parent="GUI/CanvasLayer/Panel3"]
+[node name="HSplitContainer" type="HSplitContainer" parent="GUI/CanvasLayer/Panel3"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.607
-anchor_top = 0.25
-anchor_right = 1.179
-anchor_bottom = 1.583
-offset_left = 0.0319824
-offset_right = -0.0960083
-offset_bottom = 0.0319977
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuButton" type="TextureButton" parent="GUI/CanvasLayer/Panel3/HSplitContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
 texture_normal = ExtResource("20_4ymc0")
 stretch_mode = 0
 script = ExtResource("11_bskhr")
 
-[node name="RestartButton" type="TextureButton" parent="GUI/CanvasLayer/Panel3"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.25
-anchor_right = 0.571
-anchor_bottom = 1.583
-offset_right = 0.095993
-offset_bottom = 0.0319977
+[node name="RestartButton" type="TextureButton" parent="GUI/CanvasLayer/Panel3/HSplitContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
 texture_normal = ExtResource("19_p5plw")
 stretch_mode = 0
 script = ExtResource("12_oo0ob")
@@ -276,5 +252,10 @@ position = Vector2(-160, -21)
 
 [node name="Sounds" parent="." instance=ExtResource("18_wavea")]
 
-[connection signal="pressed" from="GUI/CanvasLayer/Panel3/MenuButton" to="GUI/CanvasLayer/Panel3/MenuButton" method="_on_pressed"]
-[connection signal="pressed" from="GUI/CanvasLayer/Panel3/RestartButton" to="GUI/CanvasLayer/Panel3/RestartButton" method="_on_pressed"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("22_2xnib")
+volume_db = 5.0
+autoplay = true
+
+[connection signal="pressed" from="GUI/CanvasLayer/Panel3/HSplitContainer/MenuButton" to="GUI/CanvasLayer/Panel3/HSplitContainer/MenuButton" method="_on_pressed"]
+[connection signal="pressed" from="GUI/CanvasLayer/Panel3/HSplitContainer/RestartButton" to="GUI/CanvasLayer/Panel3/HSplitContainer/RestartButton" method="_on_pressed"]
