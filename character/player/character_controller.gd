@@ -111,6 +111,10 @@ func interact(item, harvestable = null):
 
 
 func get_overlapping_item(arr: Array) -> Node2D:
+	for item in arr:
+		if item == null:
+			arr.erase(item)
+			
 	if arr.size() > 0:
 		var closest_item: Node2D = arr[0]
 		var min_distance = self.position.distance_to(closest_item.position)

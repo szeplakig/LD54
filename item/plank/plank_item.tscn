@@ -19,24 +19,24 @@ script = ExtResource("1_fsync")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, -4)
 scale = Vector2(4, 4)
 texture = ExtResource("1_lrspp")
 offset = Vector2(0, -2.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -9)
+position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_matct")
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(0, -9)
+position = Vector2(0, -5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_jtpya")
 
 [node name="Interactable" type="Node2D" parent="."]
-position = Vector2(0, -9)
+position = Vector2(0, -5)
 
 [node name="plank" type="Node2D" parent="."]
+position = Vector2(0, 4)
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
