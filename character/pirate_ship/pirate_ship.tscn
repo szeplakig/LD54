@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl7wf28hen4nq"]
+[gd_scene load_steps=6 format=3 uid="uid://dl7wf28hen4nq"]
 
 [ext_resource type="Script" path="res://character/pirate_ship/pirate_ship.gd" id="1_oh40l"]
 [ext_resource type="Texture2D" uid="uid://c0h2n7mfkilli" path="res://character/pirate_ship/assets/pirateship2.png" id="2_gjbq4"]
 [ext_resource type="AudioStream" uid="uid://e4ybgwrvl6l2" path="res://sounds/cannon_shot.mp3" id="3_xle2q"]
+[ext_resource type="AudioStream" uid="uid://fhoy18uulw0k" path="res://sounds/wood_chop.mp3" id="4_7hvwo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8l8v2"]
 size = Vector2(25.4213, 18.2127)
@@ -33,4 +34,11 @@ volume_db = -10.0
 max_distance = 3000.0
 attenuation = 10.0
 
+[node name="tree" type="Node2D" parent="."]
+
+[node name="wood_chop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_7hvwo")
+volume_db = 3.0
+
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="finished" from="wood_chop" to="." method="_on_wood_chop_finished"]

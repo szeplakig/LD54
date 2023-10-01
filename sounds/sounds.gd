@@ -2,14 +2,6 @@ extends Node2D
 
 @onready var island = get_node("/root/root/Island")
 
-@onready var _explosion: AudioStreamPlayer2D = $explosion
-@onready var _cannon: AudioStreamPlayer2D = $cannon
-@onready var _water_splash: AudioStreamPlayer2D = $water_splash
-@onready var _pickup: AudioStreamPlayer2D = $pickup
-@onready var _score: AudioStreamPlayer2D = $score
-@onready var _build: AudioStreamPlayer2D = $build
-@onready var _drop_plank: AudioStreamPlayer2D = $drop_plank
-@onready var _drop_gem: AudioStreamPlayer2D = $drop_gem
 @onready var _ocean: AudioStreamPlayer2D = $ocean
 @onready var start_ocean_sound_volume = _ocean.volume_db
 
@@ -31,35 +23,3 @@ func modulate_ocean_sound():
 
 func _process(delta):
 	modulate_ocean_sound()
-
-
-func explosion():
-	_explosion.play()
-
-
-func cannon():
-	_cannon.play()
-
-
-func water_splash():
-	_water_splash.play()
-
-
-func pickup():
-	_pickup.play()
-
-
-func score():
-	_score.play()
-
-
-func build():
-	_build.play()
-
-
-func drop_plank():
-	_drop_plank.play()
-
-
-func drop_gem():
-	_drop_gem.play()

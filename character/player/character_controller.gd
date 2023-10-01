@@ -123,9 +123,13 @@ func get_overlapping_item(arr: Array) -> Node2D:
 
 
 func pickup(item: Node2D):
+	if not $pickup.playing:
+		$pickup.play()
+
 	currentItem = item
 	currentItem.reparent(slot, true)
 	currentItem.position = Vector2.ZERO
+	currentItem.rotation = 0
 	currentItem.collision.disabled = true
 
 
@@ -141,11 +145,16 @@ func spend_item():
 
 
 func drop(itemGlobalPosition = null):
+	if not $drop.playing:
+		$drop.play()
+
 	if currentItem != null:
 		currentItem.collision.disabled = false
 		currentItem.reparent(root)
 		if itemGlobalPosition != null:
 			currentItem.global_position = itemGlobalPosition
+		else:
+			currentItem.global_position += Vector2(0, 15)
 		currentItem = null
 
 

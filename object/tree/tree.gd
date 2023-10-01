@@ -25,10 +25,11 @@ func _process(delta):
 
 
 func shake(delta, amount):
-	sprite.offset = (
-		default_offset
-		+ Vector2(range(-1.0, 1.0).pick_random() * amount, range(-1.0, 1.0).pick_random() * amount)
-	)
+	if sprite:
+		sprite.offset = (
+			default_offset
+			+ Vector2(range(-1.0, 1.0).pick_random() * amount, range(-1.0, 1.0).pick_random() * amount)
+		)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -75,5 +76,12 @@ func interact():
 		var drop_count = drop_count_range.pick_random()
 		for i in range(drop_count):
 			spawn_plank(Vector2.UP.rotated(i * PI / drop_count * 2))
-		queue_free()
+			if sprite:
+				sprite.queue_free()
+				sprite = null
 		return true
+
+
+func _on_wood_chop_finished():
+	if durability <= 0:
+		queue_free()

@@ -4,16 +4,17 @@ extends Node2D
 @onready var treasure_scene: PackedScene = preload("res://item/plank/plank_item.tscn")
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var player: Node2D = get_node("/root/root/Player")
+@onready var wood_chop = $wood_chop
 
 var drop_speed = 50
 @export var drop_count_range_min: int = 10
 @export var drop_count_range_max: int = 25
 var drop_count_range = range(drop_count_range_min, drop_count_range_max)
 
-var durability = 5
+var durability = 15
 var default_offset = 0
 
-var shake_amount = 0.2
+var shake_amount = 0.3
 var shake_duration = 0.1
 var current_shake = 0
 
@@ -107,10 +108,11 @@ func setup():
 
 # Functions from the first script
 func shake(delta, amount):
-	sprite.offset = (
-		default_offset
-		+ Vector2(range(-1.0, 1.0).pick_random() * amount, range(-1.0, 1.0).pick_random() * amount)
-	)
+	if sprite:
+		sprite.offset = (
+			default_offset
+			+ Vector2(range(-1.0, 1.0).pick_random() * amount, range(-1.0, 1.0).pick_random() * amount)
+		)
 
 
 func spawn_plank(direction: Vector2):
@@ -126,13 +128,20 @@ func _on_area_2d_input_event(viewport, event: InputEvent, shape_idx):
 
 
 func interact():
+	if not wood_chop.playing:
+		wood_chop.play()
+	else:
+		return false
+	last_shoot_time *= 0.8
 	durability -= 1
-	current_shake = 0.1
+	current_shake = 0.2
 	if durability == 0:
 		var drop_count = drop_count_range.pick_random()
 		for i in range(drop_count):
 			spawn_plank(Vector2.UP.rotated(i * PI / drop_count * 2))
-		queue_free()
+			if sprite:
+				sprite.queue_free()
+				sprite = null
 		return true
 
 
@@ -161,3 +170,8 @@ func spawn_projectile(direction: Vector2):
 	projectile.linear_velocity = direction * projectile_speed
 	projectile.projectile_damage = projectile_damage
 	projectile.rotation = direction.angle()
+
+
+func _on_wood_chop_finished():
+	if durability <= 0:
+		queue_free()
