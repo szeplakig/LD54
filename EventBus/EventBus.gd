@@ -9,6 +9,7 @@ func player_damaged(max_health: float, current_health: float, damage_amount: flo
 	PlayerDamaged.emit(max_health, current_health, damage_amount)
 	if current_health == 0:
 		game_over()
+		pass
 
 
 func game_over():
