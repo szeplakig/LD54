@@ -41,7 +41,7 @@ position = Vector2(-85, 604)
 y_sort_enabled = true
 
 [node name="ShipFrame" parent="." instance=ExtResource("11_3au0e")]
-position = Vector2(-14, 74)
+position = Vector2(-153, -397)
 
 [node name="Tree" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(189, -377)
