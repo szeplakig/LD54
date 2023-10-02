@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://fo3ji2x5epm"]
+[gd_scene load_steps=14 format=3 uid="uid://fo3ji2x5epm"]
 
 [ext_resource type="PackedScene" uid="uid://p3qbpd3b3ftx" path="res://character/player/player.tscn" id="1_bg4ji"]
 [ext_resource type="Script" path="res://EventBus/EventBus.gd" id="1_r0nvk"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dfg0dvj01kpl1" path="res://character/mothership/mother_ship.tscn" id="7_1u8ju"]
 [ext_resource type="PackedScene" uid="uid://cmsn3yc3o0f5q" path="res://EventBus/EventBus.tscn" id="7_et6cx"]
 [ext_resource type="PackedScene" uid="uid://cdjevaidefaod" path="res://object/tree/tree.tscn" id="9_5u5sd"]
+[ext_resource type="PackedScene" uid="uid://dd7ss2oyab11i" path="res://object/plant/plant.tscn" id="10_apld5"]
 [ext_resource type="PackedScene" uid="uid://bro7clagbiq2p" path="res://object/ship/ship_frame.tscn" id="11_3au0e"]
 [ext_resource type="PackedScene" uid="uid://bu8oa7okeiacx" path="res://canvas_layer.tscn" id="12_paxwb"]
 [ext_resource type="PackedScene" uid="uid://d2sre57itv6b1" path="res://object/chest/chest.tscn" id="13_cmla8"]
@@ -121,6 +122,171 @@ position = Vector2(0, 464)
 
 [node name="Chest9" parent="." instance=ExtResource("13_cmla8")]
 position = Vector2(-252, 484)
+
+[node name="plant" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-401, 531)
+
+[node name="plant2" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-425, 411)
+
+[node name="plant3" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-377, 307)
+
+[node name="plant4" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-361, 451)
+
+[node name="plant5" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-273, 571)
+
+[node name="plant6" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-177, 587)
+
+[node name="plant7" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-1, 587)
+
+[node name="plant8" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(143, 515)
+
+[node name="plant9" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(239, 403)
+
+[node name="plant10" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(199, 267)
+
+[node name="plant11" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(47, 347)
+
+[node name="plant12" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-137, 347)
+
+[node name="plant13" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-321, 243)
+
+[node name="plant14" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-377, 163)
+
+[node name="plant15" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-585, 35)
+
+[node name="plant16" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-633, -77)
+
+[node name="plant17" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-393, -173)
+
+[node name="plant18" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-601, -269)
+
+[node name="plant19" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-561, -269)
+
+[node name="plant20" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-449, -341)
+
+[node name="plant21" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-593, -381)
+
+[node name="plant22" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-641, -493)
+
+[node name="plant23" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-345, -493)
+
+[node name="plant24" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-105, -501)
+
+[node name="plant25" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-121, -365)
+
+[node name="plant26" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-305, -293)
+
+[node name="plant27" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-41, -237)
+
+[node name="plant28" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-25, -445)
+
+[node name="plant29" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(143, -325)
+
+[node name="plant30" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(39, -197)
+
+[node name="plant31" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-169, -29)
+
+[node name="plant32" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-97, 99)
+
+[node name="plant33" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(143, 123)
+
+[node name="plant34" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(231, -13)
+
+[node name="plant35" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(143, -117)
+
+[node name="plant36" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(63, 19)
+
+[node name="plant37" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-1, -69)
+
+[node name="plant38" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(351, -109)
+
+[node name="plant39" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(295, -293)
+
+[node name="plant40" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(487, -45)
+
+[node name="plant41" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(535, -205)
+
+[node name="plant42" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(463, -309)
+
+[node name="plant43" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(687, 3)
+
+[node name="plant44" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(407, 27)
+
+[node name="plant45" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(407, 219)
+
+[node name="plant46" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(559, 291)
+
+[node name="plant47" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(663, 171)
+
+[node name="plant48" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(839, 35)
+
+[node name="plant49" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(535, 75)
+
+[node name="plant50" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(431, 123)
+
+[node name="plant51" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-41, 291)
+
+[node name="plant52" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-185, 299)
+
+[node name="plant53" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(103, 443)
+
+[node name="plant54" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-193, 427)
+
+[node name="plant55" parent="." instance=ExtResource("10_apld5")]
+position = Vector2(-169, 67)
 
 [node name="Sounds" parent="." instance=ExtResource("18_wavea")]
 

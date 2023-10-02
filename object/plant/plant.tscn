@@ -1,7 +1,63 @@
-[gd_scene load_steps=3 format=3 uid="uid://dd7ss2oyab11i"]
+[gd_scene load_steps=16 format=3 uid="uid://dd7ss2oyab11i"]
 
 [ext_resource type="Script" path="res://object/plant/plant.gd" id="1_v1h41"]
-[ext_resource type="PackedScene" uid="uid://dy5mqibwv43pi" path="res://UnderWaterParentDeleter.tscn" id="2_igc0b"]
+[ext_resource type="PackedScene" path="res://UnderWaterParentDeleter.tscn" id="2_igc0b"]
+[ext_resource type="Texture2D" uid="uid://c22wg7oq4fa58" path="res://decorations/crab.png" id="3_2hcbp"]
+[ext_resource type="Texture2D" uid="uid://dcw5s1t2yytye" path="res://decorations/flower1.png" id="4_o8ar2"]
+[ext_resource type="Texture2D" uid="uid://dq2utrm4txrb2" path="res://decorations/flower2.png" id="5_mmf1j"]
+[ext_resource type="Texture2D" uid="uid://byswl4u7al7qb" path="res://decorations/flower3.png" id="6_ef1l7"]
+[ext_resource type="Texture2D" uid="uid://ccx2x7vl5rton" path="res://decorations/flower4.png" id="7_68jr6"]
+[ext_resource type="Texture2D" uid="uid://c6ckogc0pxdgq" path="res://decorations/grass1.png" id="9_vbo4e"]
+[ext_resource type="Texture2D" uid="uid://h1vytk2pesva" path="res://decorations/grass2.png" id="10_f4ehr"]
+[ext_resource type="Texture2D" uid="uid://d4fc3kel5o38j" path="res://decorations/rock1.png" id="11_x17bu"]
+[ext_resource type="Texture2D" uid="uid://dtq4g645m8cr7" path="res://decorations/rock2.png" id="12_rrlrh"]
+[ext_resource type="Texture2D" uid="uid://blx5qkt38r6b1" path="res://decorations/rock3.png" id="13_b6f0t"]
+[ext_resource type="Texture2D" uid="uid://d4lhg56ix6or1" path="res://decorations/snail.png" id="14_f5t5w"]
+[ext_resource type="Texture2D" uid="uid://cjsx2ry5hhepa" path="res://decorations/turtle.png" id="15_l3kp3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vlg5t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2hcbp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_o8ar2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mmf1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ef1l7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_68jr6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vbo4e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_f4ehr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_x17bu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_rrlrh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_b6f0t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_f5t5w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_l3kp3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="plant" type="Node2D"]
 y_sort_enabled = true
@@ -9,6 +65,8 @@ script = ExtResource("1_v1h41")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_vlg5t")
 speed_scale = 2.08165e-12
 
 [node name="UnderWaterParentDeleter" parent="." instance=ExtResource("2_igc0b")]

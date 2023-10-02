@@ -4,5 +4,5 @@ extends Node2D
 
 
 func _ready():
-	sprite.frame = randi_range(0, 69)
+	sprite.frame = randi_range(0, 11)
 

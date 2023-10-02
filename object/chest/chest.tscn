@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bcqpo1mlgsg2f" path="res://object/chest/assets/almost_closed.png" id="4_qf803"]
 [ext_resource type="Texture2D" uid="uid://b85fqnsr3fi4p" path="res://object/chest/assets/closed.png" id="5_b2f2g"]
 [ext_resource type="AudioStream" uid="uid://b8n7oik2tcmkk" path="res://sounds/chest_open.mp3" id="6_hnty4"]
-[ext_resource type="PackedScene" uid="uid://dy5mqibwv43pi" path="res://UnderWaterParentDeleter.tscn" id="7_85wee"]
+[ext_resource type="PackedScene" path="res://UnderWaterParentDeleter.tscn" id="7_85wee"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0d7t4"]
 animations = [{

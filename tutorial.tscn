@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b5nedrk57kp7j"]
+[gd_scene load_steps=28 format=3 uid="uid://b5nedrk57kp7j"]
 
 [ext_resource type="Script" path="res://EventBus/EventBus.gd" id="1_2nqjx"]
 [ext_resource type="PackedScene" uid="uid://p3qbpd3b3ftx" path="res://character/player/player.tscn" id="2_27dmy"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://160btyd2e2oh" path="res://sounds/sounds.tscn" id="21_0rrk5"]
 [ext_resource type="AudioStream" uid="uid://bjwuj1j4oivsn" path="res://ost/main.mp3" id="22_h853q"]
 [ext_resource type="PackedScene" uid="uid://bu8oa7okeiacx" path="res://canvas_layer.tscn" id="25_myc22"]
+[ext_resource type="PackedScene" uid="uid://dd7ss2oyab11i" path="res://object/plant/plant.tscn" id="26_6sxen"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_foxdq"]
 bg_color = Color(0, 0, 0, 0.788235)
@@ -214,3 +215,66 @@ position = Vector2(1383, -549)
 position = Vector2(1207, -877)
 
 [node name="CanvasLayer" parent="." instance=ExtResource("25_myc22")]
+
+[node name="plant2" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(1207, -605)
+
+[node name="plant3" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(1399, -645)
+
+[node name="plant4" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(1415, -773)
+
+[node name="plant5" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(1463, -845)
+
+[node name="plant6" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(1071, -813)
+
+[node name="plant9" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(903, -909)
+
+[node name="plant10" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(887, -917)
+
+[node name="plant11" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(783, -901)
+
+[node name="plant12" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(903, -853)
+
+[node name="plant13" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(1047, -741)
+
+[node name="plant14" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(1103, -661)
+
+[node name="plant15" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(1135, -645)
+
+[node name="plant16" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(1287, -581)
+
+[node name="plant17" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(1399, -701)
+
+[node name="plant18" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(1535, -717)
+
+[node name="plant19" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(1503, -821)
+
+[node name="plant20" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(1423, -893)
+
+[node name="plant23" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(1295, -629)
+
+[node name="plant24" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(1311, -637)
+
+[node name="plant25" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(1135, -893)
+
+[node name="plant8" parent="." instance=ExtResource("26_6sxen")]
+position = Vector2(1295, -901)
