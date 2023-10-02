@@ -10,7 +10,7 @@ extends RigidBody2D
 @onready var player: Node2D = get_node("/root/root/Player")
 
 var overlapping_bodies: Array = []
-
+var gem_value = 1
 
 func repel_body(body: RigidBody2D):
 	if body is RigidBody2D:

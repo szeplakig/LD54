@@ -18,6 +18,7 @@ var drop_speed = 50
 
 @export var drop_count_range_min: int = 3
 @export var drop_count_range_max: int = 8
+@export var gem_value = 1
 var drop_count_range = range(drop_count_range_min, drop_count_range_max)
 
 
@@ -40,6 +41,7 @@ func spawn_treasure(direction: Vector2):
 	get_parent().add_child(treasure)
 	treasure.global_position = global_position + direction * 15
 	treasure.linear_velocity = direction * drop_speed
+	treasure.gem_value = gem_value
 
 
 func _on_area_2d_input_event(viewport, event, shape_idx):

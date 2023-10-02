@@ -40,10 +40,11 @@ position = Vector2(-85, 604)
 y_sort_enabled = true
 
 [node name="ShipFrame" parent="." instance=ExtResource("11_3au0e")]
-position = Vector2(-49, -261)
+position = Vector2(230, -187)
 
 [node name="Tree5" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(-279, 344)
+drop_count_range_min = 3
 
 [node name="Tree6" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(575, -109)
@@ -52,11 +53,17 @@ position = Vector2(575, -109)
 position = Vector2(-105, 35)
 drop_count_range_max = 3
 
+[node name="Tree3" parent="." instance=ExtResource("9_5u5sd")]
+position = Vector2(-47, -244)
+drop_count_range_max = 3
+
 [node name="Tree11" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(-99, 486)
+drop_count_range_min = 3
 
 [node name="Tree4" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(191, 467)
+drop_count_range_min = 3
 
 [node name="Tree10" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(-209, -477)
@@ -76,41 +83,55 @@ position = Vector2(-601, -205)
 
 [node name="Tree8" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(399, 91)
+drop_count_range_min = 2
+drop_count_range_max = 4
 
 [node name="Chest6" parent="." instance=ExtResource("13_cmla8")]
 position = Vector2(255, -309)
+drop_count_range_min = 1
+drop_count_range_max = 2
+
+[node name="Chest11" parent="." instance=ExtResource("13_cmla8")]
+position = Vector2(-110, -410)
 drop_count_range_min = 2
-drop_count_range_max = 5
+drop_count_range_max = 3
 
 [node name="Chest2" parent="." instance=ExtResource("13_cmla8")]
 position = Vector2(519, 259)
-drop_count_range_min = 5
+drop_count_range_max = 5
+gem_value = 3
 
 [node name="Chest10" parent="." instance=ExtResource("13_cmla8")]
 position = Vector2(615, 75)
-drop_count_range_min = 5
+drop_count_range_min = 2
+drop_count_range_max = 4
+gem_value = 2
 
 [node name="Chest5" parent="." instance=ExtResource("13_cmla8")]
 position = Vector2(-548, -139)
+drop_count_range_min = 1
+drop_count_range_max = 4
 
 [node name="Chest7" parent="." instance=ExtResource("13_cmla8")]
-position = Vector2(-617, -493)
-drop_count_range_min = 10
-drop_count_range_max = 15
-
-[node name="Chest8" parent="." instance=ExtResource("13_cmla8")]
-position = Vector2(-577, -517)
+position = Vector2(-597, -503)
+drop_count_range_min = 1
+drop_count_range_max = 2
+gem_value = 10
 
 [node name="Chest4" parent="." instance=ExtResource("13_cmla8")]
 position = Vector2(7, 75)
 drop_count_range_min = 1
-drop_count_range_max = 3
+drop_count_range_max = 2
 
 [node name="Chest3" parent="." instance=ExtResource("13_cmla8")]
 position = Vector2(63, 435)
+drop_count_range_max = 5
+gem_value = 4
 
 [node name="Chest9" parent="." instance=ExtResource("13_cmla8")]
 position = Vector2(-252, 484)
+drop_count_range_max = 5
+gem_value = 5
 
 [node name="plant" parent="." instance=ExtResource("10_apld5")]
 position = Vector2(-401, 531)
@@ -191,7 +212,7 @@ position = Vector2(-121, -365)
 position = Vector2(-329, -237)
 
 [node name="plant27" parent="." instance=ExtResource("10_apld5")]
-position = Vector2(-41, -237)
+position = Vector2(-100, -175)
 
 [node name="plant28" parent="." instance=ExtResource("10_apld5")]
 position = Vector2(-25, -445)

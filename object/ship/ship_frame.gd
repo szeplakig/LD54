@@ -37,7 +37,7 @@ func interact():
 		and player.currentItem.has_node("Interactable")
 		and phase > built_phase
 	):
-		player.add_score()
+		player.add_score(player.currentItem.gem_value)
 		player.currentItem.reparent(slot)
 		player.currentItem.global_position = (
 			slot.global_position + Vector2(randf_range(-10, 10), randf_range(-6, 6))

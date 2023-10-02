@@ -11,4 +11,4 @@ func _on_pressed():
 	var submitable_username = text_edit.text
 	await logic.insert_score(submitable_username, submitable_score)
 	visible = false
-	logic.update()
+	await logic.update()

@@ -189,10 +189,10 @@ func can_interact(other):
 	return can_interact_pos(other.global_position)
 
 
-func add_score():
+func add_score(_score=1):
 	if not $drop.playing:
 		$drop.play()
-	score += 1
+	score += _score
 	event_bus.player_score(score)
 
 
