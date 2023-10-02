@@ -1,7 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://bu8oa7okeiacx"]
+[gd_scene load_steps=8 format=3 uid="uid://bu8oa7okeiacx"]
 
-[ext_resource type="PackedScene" uid="uid://c7wx00546kgv0" path="res://win.tscn" id="1_oo2xu"]
-[ext_resource type="Script" path="res://win.gd" id="2_lcx75"]
 [ext_resource type="PackedScene" uid="uid://iscm1jr07thf" path="res://character/mothership/gui.tscn" id="3_cnjlv"]
 [ext_resource type="Script" path="res://UI.gd" id="4_qxgoy"]
 [ext_resource type="Texture2D" uid="uid://b87rvbi0n4by7" path="res://ui/assets/heart_full.png" id="5_fy3lq"]
@@ -11,18 +9,6 @@
 [ext_resource type="Script" path="res://RestartButton.gd" id="9_0w347"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
-
-[node name="WinScreen" parent="." instance=ExtResource("1_oo2xu")]
-unique_name_in_owner = true
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 252.0
-offset_right = 900.0
-offset_bottom = 648.0
-grow_horizontal = 1
-grow_vertical = 1
-script = ExtResource("2_lcx75")
 
 [node name="GUI" parent="." instance=ExtResource("3_cnjlv")]
 clip_contents = true

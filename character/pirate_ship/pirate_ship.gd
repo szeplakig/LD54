@@ -31,7 +31,7 @@ enum ShootStrategy { single, spread, around }
 @export var selected_shoot_strategy: ShootStrategy = ShootStrategy.single
 @export var shooting_interval: float = randf_range(3, 10)
 @export var projectile_speed: float = 250
-@export var projectile_damage: float = 1
+@export var projectile_damage: float = 2
 
 @onready var projectile_scene: PackedScene = preload("res://object/projectile/projectile.tscn")
 @onready var target: CharacterBody2D = get_node("/root/root/Player")
