@@ -1,7 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7dx0kfycuher"]
+[gd_scene load_steps=6 format=3 uid="uid://c7dx0kfycuher"]
 
 [ext_resource type="Script" path="res://object/projectile/projectile.gd" id="1_e1sxy"]
 [ext_resource type="Texture2D" uid="uid://d4gcxc7pegtsf" path="res://object/projectile/assets/cannonball.png" id="2_qovd0"]
+
+[sub_resource type="Curve" id="Curve_r5bnu"]
+min_value = 0.3
+max_value = 2.0
+_data = [Vector2(0.0238035, 0.965863), 0.0, -1.11062, 0, 0, Vector2(0.972505, 0), -0.0659354, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dgq2m"]
 
@@ -12,6 +18,22 @@ gravity_scale = 2.66454e-15
 contact_monitor = true
 linear_damp = 0.05
 script = ExtResource("1_e1sxy")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-7, 0)
+amount = 200
+lifetime = 0.5
+lifetime_randomness = 1.0
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(-1, 2.08165e-12)
+spread = 10.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_r5bnu")
+color = Color(1, 1, 1, 0.603922)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dgq2m")
