@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://bu8oa7okeiacx"]
 
-[ext_resource type="PackedScene" uid="uid://dmfwgpd1kw88u" path="res://win.tscn" id="1_oo2xu"]
+[ext_resource type="PackedScene" uid="uid://c7wx00546kgv0" path="res://win.tscn" id="1_oo2xu"]
 [ext_resource type="Script" path="res://win.gd" id="2_lcx75"]
-[ext_resource type="PackedScene" path="res://character/mothership/gui.tscn" id="3_cnjlv"]
+[ext_resource type="PackedScene" uid="uid://iscm1jr07thf" path="res://character/mothership/gui.tscn" id="3_cnjlv"]
 [ext_resource type="Script" path="res://UI.gd" id="4_qxgoy"]
 [ext_resource type="Texture2D" uid="uid://b87rvbi0n4by7" path="res://ui/assets/heart_full.png" id="5_fy3lq"]
 [ext_resource type="Texture2D" uid="uid://cfsngdau1ih7v" path="res://ui/assets/menu_button.png" id="6_1y2dv"]
@@ -110,6 +110,7 @@ theme_override_constants/margin_bottom = 5
 
 [node name="Heart4" type="TextureRect" parent="GUI/MarginContainer/HBoxContainer/MarginContainer4"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture = ExtResource("5_fy3lq")
@@ -125,6 +126,7 @@ theme_override_constants/margin_bottom = 5
 
 [node name="Heart5" type="TextureRect" parent="GUI/MarginContainer/HBoxContainer/MarginContainer5"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture = ExtResource("5_fy3lq")
