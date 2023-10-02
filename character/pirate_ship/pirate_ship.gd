@@ -36,7 +36,7 @@ enum ShootStrategy { single, spread, around }
 @onready var projectile_scene: PackedScene = preload("res://object/projectile/projectile.tscn")
 @onready var target: CharacterBody2D = get_node("/root/root/Player")
 
-var last_shoot_time: float = randf_range(0, shooting_interval - 2)
+var last_shoot_time: float = randf_range(5, shooting_interval - 2)
 
 
 func _ready():
@@ -44,11 +44,11 @@ func _ready():
 	match selected_shoot_strategy:
 		ShootStrategy.single:
 			sprite.texture = small_ship
-			shooting_interval = randf_range(3, 5)
+			shooting_interval = randf_range(4, 8)
 			durability = 7
 		ShootStrategy.spread:
 			sprite.texture = medium_ship
-			shooting_interval = randf_range(5, 7)
+			shooting_interval = randf_range(5, 9)
 			durability = 10
 		ShootStrategy.around:
 			sprite.texture = large_ship

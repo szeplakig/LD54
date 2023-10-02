@@ -178,6 +178,8 @@ func can_interact(other):
 
 
 func add_score():
+	if not $drop.playing:
+		$drop.play()
 	score += 1
 	event_bus.player_score(score)
 

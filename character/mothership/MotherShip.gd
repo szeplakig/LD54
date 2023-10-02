@@ -9,7 +9,7 @@ extends Node2D
 @export var min_ship_spawn_distance: float = 500
 
 var time_since_last_spawn: float = 0.0
-@export var spawn_interval: float = 10.0
+@export var spawn_interval: float = 15.0
 
 
 func _ready():
