@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c584h2tigcod0"]
+
+[ext_resource type="Script" path="res://leaderboard/leaderboard.gd" id="1_pxctp"]
+
+[node name="leaderboard" type="Node2D"]
+script = ExtResource("1_pxctp")

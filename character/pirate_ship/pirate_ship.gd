@@ -111,7 +111,9 @@ func shake(delta, amount):
 	if sprite:
 		sprite.offset = (
 			default_offset
-			+ Vector2(range(-1.0, 1.0).pick_random() * amount, range(-1.0, 1.0).pick_random() * amount)
+			+ Vector2(
+				range(-1.0, 1.0).pick_random() * amount, range(-1.0, 1.0).pick_random() * amount
+			)
 		)
 
 
@@ -163,7 +165,7 @@ func shoot():
 			spawn_projectile(shoot_direction.rotated(deg_to_rad(15)))
 		ShootStrategy.around:
 			for i in range(8):
-				spawn_projectile(shoot_direction.rotated(i * PI / 4 + last_shoot_time))
+				spawn_projectile(shoot_direction.rotated(i * PI / 4))
 
 
 func spawn_projectile(direction: Vector2):

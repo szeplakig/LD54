@@ -1,5 +1,4 @@
-extends Panel
-
+extends Node2D
 
 @onready var firestore_collection: FirestoreCollection = Firebase.Firestore.collection("scores")
 
@@ -13,7 +12,9 @@ func get_top10():
 
 	var query_task = Firebase.Firestore.query(query)
 	var result = await query_task.task_finished
-	return result
+	if is_instance_of(result, TYPE_ARRAY):
+		return result
+	return null
 
 
 func get_top10_own():
@@ -27,8 +28,9 @@ func get_top10_own():
 
 	var query_task = Firebase.Firestore.query(query)
 	var result = await query_task.task_finished
-	return result
-
+	if is_instance_of(result, TYPE_ARRAY):
+		return result
+	return null
 
 
 func insert_score(name, score):
@@ -42,21 +44,3 @@ func insert_score(name, score):
 			"created_at": str(int(Time.get_unix_time_from_system()))
 		}
 	)
-
-func update():
-	$ScorePanel/Label.text = str(Global.score)
-	var data = await get_top10()
-	print(data)
-	if data == null or data.error:
-		return
-
-	var rows: Array = data.data
-	var text = ""
-	for i in rows.size():
-		var row = rows[i]
-		text += str(i + 1) + " " + row.doc_fields['name'] + ": " + str(row.doc_fields['score']) + "\n"
-	$CreditsPanel/RichTextLabel.text = text
-
-
-func _ready():
-	update()

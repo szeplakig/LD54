@@ -28,7 +28,9 @@ func shake(delta, amount):
 	if sprite:
 		sprite.offset = (
 			default_offset
-			+ Vector2(range(-1.0, 1.0).pick_random() * amount, range(-1.0, 1.0).pick_random() * amount)
+			+ Vector2(
+				range(-1.0, 1.0).pick_random() * amount, range(-1.0, 1.0).pick_random() * amount
+			)
 		)
 
 

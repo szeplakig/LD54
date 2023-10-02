@@ -31,29 +31,32 @@ var data: Dictionary
 var error: Dictionary
 
 ## Whether the data came from cache.
-var from_cache : bool = false
+var from_cache: bool = false
 
-var _response_headers : PackedStringArray = PackedStringArray()
-var _response_code : int = 0
+var _response_headers: PackedStringArray = PackedStringArray()
+var _response_code: int = 0
 
-var _method : int = -1
-var _url : String = ""
-var _fields : String = ""
-var _headers : PackedStringArray = []
+var _method: int = -1
+var _url: String = ""
+var _fields: String = ""
+var _headers: PackedStringArray = []
 
-func _on_request_completed(result : int, response_code : int, headers : PackedStringArray, body : PackedByteArray) -> void:
-    var bod = Utilities.get_json_data(body)
-    if bod == null:
-        bod = {content = body.get_string_from_utf8()} # I don't understand what this line does at all. What the hell?!
 
-    var offline: bool = typeof(bod) == TYPE_NIL
-    from_cache = offline
+func _on_request_completed(
+	result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray
+) -> void:
+	var bod = Utilities.get_json_data(body)
+	if bod == null:
+		bod = {content = body.get_string_from_utf8()}  # I don't understand what this line does at all. What the hell?!
 
-    data = bod
-    if response_code == HTTPClient.RESPONSE_OK and data!=null:
-        function_executed.emit(result, data)
-    else:
-        error = {result=result, response_code=response_code, data=data}
-        task_error.emit(result, response_code, str(data))
+	var offline: bool = typeof(bod) == TYPE_NIL
+	from_cache = offline
 
-    task_finished.emit(data)
+	data = bod
+	if response_code == HTTPClient.RESPONSE_OK and data != null:
+		function_executed.emit(result, data)
+	else:
+		error = {result = result, response_code = response_code, data = data}
+		task_error.emit(result, response_code, str(data))
+
+	task_finished.emit(data)
