@@ -115,7 +115,7 @@ func interact(item, harvestable = null):
 			overlapping_harverstables.erase(harvestable)
 		return
 
-	if item != null:
+	if item != null and item.has_node("Interactable"):
 		if currentItem == null:
 			pickup(item)
 		else:
