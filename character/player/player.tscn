@@ -48,7 +48,8 @@ height = 12.0
 radius = 8.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b1c5d"]
-radius = 10.5402
+radius = 5.81739
+height = 20.2877
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -82,7 +83,6 @@ scale = Vector2(1, 1.4)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 y_sort_enabled = true
 shape = SubResource("CapsuleShape2D_jst0w")
-disabled = true
 
 [node name="Slot" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -90,8 +90,8 @@ position = Vector2(0, 6.8)
 
 [node name="Area2D" type="Area2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, -0.199997)
-scale = Vector2(0.759, 0.759)
+position = Vector2(0, 2)
+scale = Vector2(1.60119, 1.21314)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 y_sort_enabled = true
@@ -105,5 +105,6 @@ stream = ExtResource("7_dqv4y")
 [node name="drop" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_t7spa")
 
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

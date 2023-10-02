@@ -46,7 +46,6 @@ func insert_score(name, score):
 func update():
 	$ScorePanel/Label.text = str(Global.score)
 	var data = await get_top10()
-	print(data)
 	if data == null or data.error:
 		return
 
