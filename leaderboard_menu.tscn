@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c2ayy1bqbesde"]
+[gd_scene load_steps=18 format=3 uid="uid://dl84ey473wbtb"]
 
 [ext_resource type="Texture2D" uid="uid://hrjnwr6at4jg" path="res://imageedit_1_7156765100.png" id="1_bn3t7"]
 [ext_resource type="Script" path="res://leaderboard_menu.gd" id="1_ht618"]
@@ -253,14 +253,14 @@ theme_override_constants/separation = 10
 alignment = 1
 
 [node name="RestartButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(300, 15)
+custom_minimum_size = Vector2(400, 200)
 layout_mode = 2
 texture_normal = ExtResource("1_pdn6o")
 stretch_mode = 0
 script = ExtResource("2_jhpth")
 
 [node name="MenuButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(300, 150)
+custom_minimum_size = Vector2(400, 200)
 layout_mode = 2
 texture_normal = ExtResource("3_2tabl")
 stretch_mode = 0

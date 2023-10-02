@@ -15,9 +15,10 @@ func get_top10():
 	return result
 
 
-func insert_score(name, score):
-	if name.length < 1:
+func insert_score(name: String, score: int):
+	if name.length() < 1:
 		return
+
 	if score < 1:
 		return
 
