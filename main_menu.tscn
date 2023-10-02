@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://devoyy3pdshhb" path="res://ui/assets/you_won.png" id="12_8ma8c"]
 [ext_resource type="Texture2D" uid="uid://cwoo1wbankrbd" path="res://ui/assets/game_over.png" id="13_q4sxf"]
 
-[node name="CanvasLayer" type="Control"]
+[node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,23 +50,68 @@ texture = ExtResource("1_mm64l")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="MarginContainer" type="AspectRatioContainer" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_r508r")
+volume_db = 10.0
+autoplay = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-ratio = 0.7024
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
 
-[node name="EndPanel" type="Panel" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 30
+
+[node name="TitlePanel" type="Panel" parent="MarginContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/TitlePanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 20.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/TitlePanel/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2/VBoxContainer/MarginContainer/TitlePanel/PanelContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("4_vf7ck")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EndPanel" type="Panel" parent="MarginContainer2/VBoxContainer/MarginContainer2"]
 clip_contents = true
 custom_minimum_size = Vector2(900, 430)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="YouWon" type="TextureRect" parent="MarginContainer/EndPanel"]
+[node name="YouWon" type="TextureRect" parent="MarginContainer2/VBoxContainer/MarginContainer2/EndPanel"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -85,7 +130,7 @@ texture = ExtResource("12_8ma8c")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="GameOver" type="TextureRect" parent="MarginContainer/EndPanel"]
+[node name="GameOver" type="TextureRect" parent="MarginContainer2/VBoxContainer/MarginContainer2/EndPanel"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -104,7 +149,7 @@ texture = ExtResource("13_q4sxf")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Credits" type="TextureRect" parent="MarginContainer/EndPanel"]
+[node name="Credits" type="TextureRect" parent="MarginContainer2/VBoxContainer/MarginContainer2/EndPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -119,7 +164,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("9_owk24")
 
-[node name="CreditsContent" type="TextureRect" parent="MarginContainer/EndPanel"]
+[node name="CreditsContent" type="TextureRect" parent="MarginContainer2/VBoxContainer/MarginContainer2/EndPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -135,97 +180,50 @@ grow_vertical = 2
 texture = ExtResource("10_kq2re")
 expand_mode = 5
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="AspectRatioContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 8
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_bottom = 30
 
-[node name="PlayButton" type="TextureButton" parent="AspectRatioContainer/HBoxContainer/MarginContainer"]
+[node name="PlayButton" type="TextureButton" parent="MarginContainer2/VBoxContainer/HBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 5
 texture_normal = ExtResource("1_i5vtv")
 stretch_mode = 5
 script = ExtResource("3_xjbph")
 
-[node name="MarginContainer2" type="MarginContainer" parent="AspectRatioContainer/HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 30
 
-[node name="HowToButton" type="TextureButton" parent="AspectRatioContainer/HBoxContainer/MarginContainer2"]
+[node name="HowToButton" type="TextureButton" parent="MarginContainer2/VBoxContainer/HBoxContainer/MarginContainer2"]
 custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 5
 texture_normal = ExtResource("6_yjr0o")
 stretch_mode = 5
 script = ExtResource("7_eux0o")
 
-[node name="MarginContainer3" type="MarginContainer" parent="AspectRatioContainer/HBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
 
-[node name="QuitButton" type="TextureButton" parent="AspectRatioContainer/HBoxContainer/MarginContainer3"]
+[node name="QuitButton" type="TextureButton" parent="MarginContainer2/VBoxContainer/HBoxContainer/MarginContainer3"]
 custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 5
 texture_normal = ExtResource("2_4kebc")
 stretch_mode = 5
 script = ExtResource("5_hl0h6")
 
-[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 30
-
-[node name="TitlePanel" type="Panel" parent="AspectRatioContainer/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer/MarginContainer/TitlePanel"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = -151.0
-offset_right = 201.0
-offset_bottom = 100.0
-grow_horizontal = 2
-texture = ExtResource("4_vf7ck")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(624, 344)
-stream = ExtResource("7_r508r")
-volume_db = 10.0
-autoplay = true
-
-[connection signal="pressed" from="AspectRatioContainer/HBoxContainer/MarginContainer/PlayButton" to="AspectRatioContainer/HBoxContainer/MarginContainer/PlayButton" method="_on_pressed"]
-[connection signal="pressed" from="AspectRatioContainer/HBoxContainer/MarginContainer2/HowToButton" to="AspectRatioContainer/HBoxContainer/MarginContainer2/HowToButton" method="_on_pressed"]
-[connection signal="pressed" from="AspectRatioContainer/HBoxContainer/MarginContainer3/QuitButton" to="AspectRatioContainer/HBoxContainer/MarginContainer3/QuitButton" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/MarginContainer/PlayButton" to="MarginContainer2/VBoxContainer/HBoxContainer/MarginContainer/PlayButton" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/MarginContainer2/HowToButton" to="MarginContainer2/VBoxContainer/HBoxContainer/MarginContainer2/HowToButton" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/MarginContainer3/QuitButton" to="MarginContainer2/VBoxContainer/HBoxContainer/MarginContainer3/QuitButton" method="_on_pressed"]

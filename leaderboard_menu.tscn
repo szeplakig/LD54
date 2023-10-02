@@ -267,7 +267,6 @@ stretch_mode = 0
 script = ExtResource("4_oko0u")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(8, -260)
 stream = ExtResource("11_lykm2")
 volume_db = 20.0
 autoplay = true
