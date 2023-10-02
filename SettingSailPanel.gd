@@ -9,6 +9,8 @@ func _process(delta):
 		and not get_node("../Chest").in_motion
 	):
 		visible = true
+	elif get_node("../ShipFrame").phase == 8:
+		get_node("../ShipConstructionPanel/").modulate.a = 0.5
 
 
 func _ready():
