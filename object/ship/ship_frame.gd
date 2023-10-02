@@ -26,7 +26,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 	):
 		if player.currentItem.has_node("plank") and phase <= built_phase:
 			interact()
-		elif player.currentItem.has_node("treasure") and phase > built_phase:
+		elif player.currentItem.has_node("treasure") and player.currentItem.has_node("Interactable") and phase > built_phase:
 			interact()
 
 

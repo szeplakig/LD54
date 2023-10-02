@@ -45,7 +45,7 @@ func build():
 				tilemap.set_plank(tile_pos)
 				spend_item()
 				return
-		var velocity_pos = global_position + velocity.normalized() * 40
+		var velocity_pos = global_position + velocity.normalized() * 35
 		if can_interact_pos(velocity_pos):
 			var tile_pos = utils.get_tile_at_position(velocity_pos)
 			if tile_pos != null:
