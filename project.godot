@@ -22,6 +22,9 @@ Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
 
 [display]
 
+window/size/mode=2
+window/stretch/mode="viewport"
+window/stretch/scale=0.5
 mouse_cursor/custom_image="res://ui/assets/cursor.png"
 
 [editor_plugins]
