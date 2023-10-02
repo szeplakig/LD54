@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c6prbfggsw64w"]
+[gd_scene load_steps=17 format=3 uid="uid://brb53fxqsk5m"]
 
 [ext_resource type="Script" path="res://leader_board.gd" id="1_iut11"]
 [ext_resource type="Texture2D" uid="uid://bt6guyfgk5mlt" path="res://ui/assets/restart_big_button.png" id="2_2sl6r"]

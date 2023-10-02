@@ -54,7 +54,6 @@ func _ready():
 			sprite.texture = large_ship
 			shooting_interval = randf_range(6, 10)
 			durability = 15
-			
 
 
 func _process(delta):

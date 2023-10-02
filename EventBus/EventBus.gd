@@ -23,7 +23,7 @@ func player_win(score: int):
 	if Global.is_tutorial:
 		get_tree().change_scene_to_file("res://main_menu.tscn")
 	else:
-		get_tree().change_scene_to_file("res://leader_board.tscn")
+		get_tree().change_scene_to_file("res://leaderboard_menu.tscn")
 
 
 func player_score(score: int):
