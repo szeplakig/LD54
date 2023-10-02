@@ -12,8 +12,8 @@ var currentItem: Node2D = null
 var overlapping_items: Array = []
 var overlapping_harverstables: Array = []
 
-@export var player_max_hp: float = 10
-var player_hp: float = player_max_hp
+@export var player_max_hp: float = 6
+var player_hp: float = 6
 
 var score: int = 0
 
