@@ -27,8 +27,8 @@ const WATER_TILE_COORDS = [
 	Vector2i(2, 1),
 ]
 
-@export var WATER_RISE_TICK = 1
-@export var TILES_PER_TICK = 30
+@export var WATER_RISE_TICK: float = 1.0
+@export var TILES_PER_TICK: int = 30
 @export var WATER_NEIGHBOR_FLOOD_THRESHOLD = 2
 
 var time_passed = 0
@@ -229,15 +229,16 @@ func recolor_water(changed_tiles):
 	# For each water neighbor
 	# if it doesn't have a land neighbor
 	# set it to lighter
+	var already_checked = {}
 	for changed_tile in changed_tiles:
 		if get_cell_atlas_coords(0, changed_tile) != WATER_TILE_COORDS[0]:
 			continue
 
 		for offset in NEIGHBOR_OFFSETS:
-			check_recolor_tile(changed_tile + offset, 1)
+			check_recolor_tile(changed_tile + offset, 1, already_checked)
 
-
-func check_recolor_tile(tile, remaining_depth):
+func check_recolor_tile(tile, remaining_depth, already_checked):
+	already_checked[tile] = true
 	var tile_color = get_cell_atlas_coords(0, tile)
 	# Only lightest and lighter water can change
 	if tile_color != WATER_TILE_COORDS[0] && tile_color != WATER_TILE_COORDS[1]:
@@ -260,7 +261,9 @@ func check_recolor_tile(tile, remaining_depth):
 
 	if _changed && remaining_depth > 0:
 		for offset in NEIGHBOR_OFFSETS:
-			check_recolor_tile(tile + offset, remaining_depth - 1)
+			if tile + offset not in already_checked:
+				check_recolor_tile(tile + offset, remaining_depth - 1, already_checked)
+
 
 
 func is_deep_water(cell: Vector2i) -> bool:
