@@ -172,6 +172,10 @@ func drop(itemGlobalPosition = null):
 			currentItem.global_position = itemGlobalPosition
 		else:
 			currentItem.global_position += Vector2(0, 15)
+		if not currentItem.has_node("Interactable"):
+			var interactable = Node2D.new()
+			interactable.set_name("Interactable")
+			currentItem.add_child(interactable)
 		currentItem = null
 
 

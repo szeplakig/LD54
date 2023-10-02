@@ -34,6 +34,7 @@ func insert_score(name: String, score: int):
 
 
 func update():
+	$MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/Panel2/BoxContainer/MarginContainer2/LeaderboardText.text = "Loading..."
 	score.text = str(Global.score)
 	var data = await get_top10()
 	if data == null or data.error:

@@ -40,7 +40,7 @@ position = Vector2(-85, 604)
 y_sort_enabled = true
 
 [node name="ShipFrame" parent="." instance=ExtResource("11_3au0e")]
-position = Vector2(230, -187)
+position = Vector2(-44, -227)
 
 [node name="Tree5" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(-279, 344)
@@ -54,7 +54,11 @@ position = Vector2(-105, 35)
 drop_count_range_max = 3
 
 [node name="Tree3" parent="." instance=ExtResource("9_5u5sd")]
-position = Vector2(-47, -244)
+position = Vector2(234, -206)
+drop_count_range_max = 3
+
+[node name="Tree12" parent="." instance=ExtResource("9_5u5sd")]
+position = Vector2(174, 56)
 drop_count_range_max = 3
 
 [node name="Tree11" parent="." instance=ExtResource("9_5u5sd")]
@@ -67,6 +71,11 @@ drop_count_range_min = 3
 
 [node name="Tree10" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(-209, -477)
+drop_count_range_max = 2
+
+[node name="Tree13" parent="." instance=ExtResource("9_5u5sd")]
+position = Vector2(97, -407)
+drop_count_range_max = 2
 
 [node name="Tree9" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(631, 171)
