@@ -2,6 +2,8 @@ extends Node
 
 
 func _ready():
+	if OS.has_feature("web"):
+		$MarginContainer2/VBoxContainer/HBoxContainer/MarginContainer3.disable = true
 	Global.is_tutorial = false
 
 	$MarginContainer2/VBoxContainer/MarginContainer2/EndPanel/Credits.visible = false

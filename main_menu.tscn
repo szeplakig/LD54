@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dceohrf44sler"]
+[gd_scene load_steps=16 format=3 uid="uid://dceohrf44sler"]
 
 [ext_resource type="Texture2D" uid="uid://xbr05as7a1ep" path="res://ui/assets/play_button.png" id="1_i5vtv"]
 [ext_resource type="Texture2D" uid="uid://hrjnwr6at4jg" path="res://imageedit_1_7156765100.png" id="1_mm64l"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dlj0nnxyagvb6" path="res://ui/assets/credits_content.png" id="10_kq2re"]
 [ext_resource type="Texture2D" uid="uid://devoyy3pdshhb" path="res://ui/assets/you_won.png" id="12_8ma8c"]
 [ext_resource type="Texture2D" uid="uid://cwoo1wbankrbd" path="res://ui/assets/game_over.png" id="13_q4sxf"]
+[ext_resource type="Script" path="res://MouseMover.gd" id="15_keb0v"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -222,6 +223,9 @@ size_flags_vertical = 5
 texture_normal = ExtResource("2_4kebc")
 stretch_mode = 5
 script = ExtResource("5_hl0h6")
+
+[node name="MouseMover" type="Node2D" parent="."]
+script = ExtResource("15_keb0v")
 
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/MarginContainer/PlayButton" to="MarginContainer2/VBoxContainer/HBoxContainer/MarginContainer/PlayButton" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/MarginContainer2/HowToButton" to="MarginContainer2/VBoxContainer/HBoxContainer/MarginContainer2/HowToButton" method="_on_pressed"]

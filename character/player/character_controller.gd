@@ -44,7 +44,18 @@ func build():
 					$drop.play()
 				tilemap.set_plank(tile_pos)
 				spend_item()
-
+				return
+		var velocity_pos = global_position + velocity.normalized() * 40
+		if can_interact_pos(velocity_pos):
+			var tile_pos = utils.get_tile_at_position(velocity_pos)
+			if tile_pos != null:
+				if not $drop.playing:
+					$drop.play()
+				tilemap.set_plank(tile_pos)
+				spend_item()
+				return
+		
+		
 
 func _ready():
 	$AnimatedSprite2D.play("stand")
@@ -91,6 +102,7 @@ func interact(item, harvestable = null):
 	if (
 		currentItem != null
 		and currentItem.has_node("treasure")
+		and currentItem.has_node("Interactable")
 		and can_interact(ship)
 		and ship.phase > ship.built_phase
 	):

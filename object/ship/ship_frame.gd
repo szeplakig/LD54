@@ -34,6 +34,7 @@ func interact():
 	if (
 		player.currentItem != null
 		and player.currentItem.has_node("treasure")
+		and player.currentItem.has_node("Interactable")
 		and phase > built_phase
 	):
 		player.add_score()
