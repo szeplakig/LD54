@@ -193,7 +193,7 @@ func _on_area_2d_area_entered(area):
 			and not (area.get_parent() in overlapping_items)
 		):
 			overlapping_items.append(area.get_parent())
-	
+
 	if (
 		area.get_parent().has_node("Harvestable")
 		and not (area.get_parent() in overlapping_harverstables)

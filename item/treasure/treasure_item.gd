@@ -1,5 +1,9 @@
 extends RigidBody2D
 
+@onready var diamond = preload("res://item/treasure/assets/diamond.png")
+@onready var emerald = preload("res://item/treasure/assets/emerald.png")
+@onready var gold = preload("res://item/treasure/assets/gold.png")
+
 @onready var collision = $CollisionShape2D
 @onready var area = $Area2D
 @export var repulsion_strength: float = 50.0
@@ -31,20 +35,7 @@ func _on_body_exited(body):
 
 
 func _ready():
-	$Sprite2D.texture = (
-		[
-			ImageTexture.create_from_image(
-				Image.load_from_file("res://item/treasure/assets/diamond.png")
-			),
-			ImageTexture.create_from_image(
-				Image.load_from_file("res://item/treasure/assets/emerald.png")
-			),
-			ImageTexture.create_from_image(
-				Image.load_from_file("res://item/treasure/assets/gold.png")
-			)
-		]
-		. pick_random()
-	)
+	$Sprite2D.texture = ([diamond, emerald, gold].pick_random())
 
 
 func _on_area_2d_input_event(viewport, event, shape_idx):

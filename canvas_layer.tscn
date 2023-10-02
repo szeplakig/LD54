@@ -1,0 +1,168 @@
+[gd_scene load_steps=10 format=3 uid="uid://bu8oa7okeiacx"]
+
+[ext_resource type="PackedScene" uid="uid://dmfwgpd1kw88u" path="res://win.tscn" id="1_oo2xu"]
+[ext_resource type="Script" path="res://win.gd" id="2_lcx75"]
+[ext_resource type="PackedScene" path="res://character/mothership/gui.tscn" id="3_cnjlv"]
+[ext_resource type="Script" path="res://UI.gd" id="4_qxgoy"]
+[ext_resource type="Texture2D" uid="uid://b87rvbi0n4by7" path="res://ui/assets/heart_full.png" id="5_fy3lq"]
+[ext_resource type="Texture2D" uid="uid://cfsngdau1ih7v" path="res://ui/assets/menu_button.png" id="6_1y2dv"]
+[ext_resource type="Script" path="res://MenuButton.gd" id="7_yx3th"]
+[ext_resource type="Texture2D" uid="uid://c8w80t4l6sp2g" path="res://ui/assets/restart_button.png" id="8_elqsw"]
+[ext_resource type="Script" path="res://RestartButton.gd" id="9_0w347"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="WinScreen" parent="." instance=ExtResource("1_oo2xu")]
+unique_name_in_owner = true
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 252.0
+offset_right = 900.0
+offset_bottom = 648.0
+grow_horizontal = 1
+grow_vertical = 1
+script = ExtResource("2_lcx75")
+
+[node name="GUI" parent="." instance=ExtResource("3_cnjlv")]
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("4_qxgoy")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -15.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer1" type="MarginContainer" parent="GUI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Heart1" type="TextureRect" parent="GUI/MarginContainer/HBoxContainer/MarginContainer1"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("5_fy3lq")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="GUI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Heart2" type="TextureRect" parent="GUI/MarginContainer/HBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("5_fy3lq")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MarginContainer3" type="MarginContainer" parent="GUI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Heart3" type="TextureRect" parent="GUI/MarginContainer/HBoxContainer/MarginContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("5_fy3lq")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MarginContainer4" type="MarginContainer" parent="GUI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Heart4" type="TextureRect" parent="GUI/MarginContainer/HBoxContainer/MarginContainer4"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("5_fy3lq")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MarginContainer5" type="MarginContainer" parent="GUI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Heart5" type="TextureRect" parent="GUI/MarginContainer/HBoxContainer/MarginContainer5"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("5_fy3lq")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="HSplitContainer" type="HBoxContainer" parent="GUI/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/HSplitContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MenuButton" type="TextureButton" parent="GUI/MarginContainer/HSplitContainer/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture_normal = ExtResource("6_1y2dv")
+stretch_mode = 5
+script = ExtResource("7_yx3th")
+
+[node name="MarginContainer2" type="MarginContainer" parent="GUI/MarginContainer/HSplitContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="RestartButton" type="TextureButton" parent="GUI/MarginContainer/HSplitContainer/MarginContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture_normal = ExtResource("8_elqsw")
+stretch_mode = 5
+script = ExtResource("9_0w347")
+
+[connection signal="pressed" from="GUI/MarginContainer/HSplitContainer/MarginContainer/MenuButton" to="GUI/MarginContainer/HSplitContainer/MarginContainer/MenuButton" method="_on_pressed"]
+[connection signal="pressed" from="GUI/MarginContainer/HSplitContainer/MarginContainer2/RestartButton" to="GUI/MarginContainer/HSplitContainer/MarginContainer2/RestartButton" method="_on_pressed"]

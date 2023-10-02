@@ -100,9 +100,11 @@ scale = Vector2(2.2648, 2.4678)
 shape = SubResource("CapsuleShape2D_b1c5d")
 
 [node name="pickup" type="AudioStreamPlayer2D" parent="."]
+y_sort_enabled = true
 stream = ExtResource("7_dqv4y")
 
 [node name="drop" type="AudioStreamPlayer2D" parent="."]
+y_sort_enabled = true
 stream = ExtResource("8_t7spa")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

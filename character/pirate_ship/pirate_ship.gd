@@ -11,7 +11,7 @@ var drop_speed = 50
 @export var drop_count_range_max: int = 25
 var drop_count_range = range(drop_count_range_min, drop_count_range_max)
 
-var durability = 15
+var durability = 10
 var default_offset = 0
 
 var shake_amount = 0.3
@@ -29,7 +29,7 @@ enum ShootStrategy { single, spread, around }
 
 @export var selected_targetting_strategy: TargettingStrategy = TargettingStrategy.direct_shot
 @export var selected_shoot_strategy: ShootStrategy = ShootStrategy.single
-@export var shooting_interval: float = randf_range(3, 6)
+@export var shooting_interval: float = randf_range(3, 10)
 @export var projectile_speed: float = 200
 @export var projectile_damage: float = 1
 
@@ -40,43 +40,28 @@ var last_shoot_time: float = randf_range(0, shooting_interval - 2)
 
 
 func _ready():
-	# From first script
-	sprite.set_texture(
-		(
-			[
-				ImageTexture.create_from_image(
-					Image.load_from_file("res://object/tree/assets/tree1.png")
-				),
-				ImageTexture.create_from_image(
-					Image.load_from_file("res://object/tree/assets/tree2.png")
-				),
-				ImageTexture.create_from_image(
-					Image.load_from_file("res://object/tree/assets/tree3.png")
-				)
-			]
-			. pick_random()
-		)
-	)
-	default_offset = sprite.offset
-
-	# From second script
 	setup()
 	match selected_shoot_strategy:
 		ShootStrategy.single:
 			sprite.texture = small_ship
+			shooting_interval = randf_range(3, 5)
+			durability = 7
 		ShootStrategy.spread:
 			sprite.texture = medium_ship
+			shooting_interval = randf_range(5, 7)
+			durability = 10
 		ShootStrategy.around:
 			sprite.texture = large_ship
+			shooting_interval = randf_range(6, 10)
+			durability = 15
+			
 
 
 func _process(delta):
-	# From first script
 	if current_shake > 0:
 		shake(delta, shake_amount)
 		current_shake -= 1 * delta
 
-	# From second script
 	last_shoot_time += delta
 	if last_shoot_time >= shooting_interval:
 		shoot()

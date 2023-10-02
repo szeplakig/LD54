@@ -244,21 +244,21 @@ func check_recolor_tile(tile, remaining_depth):
 		return
 
 	var color = WATER_TILE_COORDS[2]
-	var changed = false
+	var _changed = false
 	for offset in NEIGHBOR_OFFSETS:
 		var neighbor_color = get_cell_atlas_coords(0, tile + offset)
 		if ISLAND_LVL_COORDS.has(neighbor_color):
 			color = WATER_TILE_COORDS[0]
-			changed = true
+			_changed = true
 			break
 		if neighbor_color == WATER_TILE_COORDS[0]:
-			changed = true
+			_changed = true
 			color = WATER_TILE_COORDS[1]
 
 	if get_cell_source_id(0, tile) != 1:
 		set_cell(0, tile, 0, color)
 
-	if changed && remaining_depth > 0:
+	if _changed && remaining_depth > 0:
 		for offset in NEIGHBOR_OFFSETS:
 			check_recolor_tile(tile + offset, remaining_depth - 1)
 

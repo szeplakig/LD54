@@ -1,5 +1,8 @@
 extends Node2D
 
+@onready var tree1 = preload("res://object/tree/assets/tree1.png")
+@onready var tree2 = preload("res://object/tree/assets/tree2.png")
+@onready var tree3 = preload("res://object/tree/assets/tree3.png")
 @onready var treasure_scene: PackedScene = preload("res://item/plank/plank_item.tscn")
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var player: Node2D = get_node("/root/root/Player")
@@ -36,22 +39,7 @@ func shake(delta, amount):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sprite.set_texture(
-		(
-			[
-				ImageTexture.create_from_image(
-					Image.load_from_file("res://object/tree/assets/tree1.png")
-				),
-				ImageTexture.create_from_image(
-					Image.load_from_file("res://object/tree/assets/tree2.png")
-				),
-				ImageTexture.create_from_image(
-					Image.load_from_file("res://object/tree/assets/tree3.png")
-				)
-			]
-			. pick_random()
-		)
-	)
+	sprite.set_texture([tree1, tree2, tree3].pick_random())
 	default_offset = sprite.offset
 
 

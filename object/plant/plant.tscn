@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd7ss2oyab11i"]
+
+[ext_resource type="Script" path="res://object/plant/plant.gd" id="1_v1h41"]
+[ext_resource type="PackedScene" uid="uid://dy5mqibwv43pi" path="res://UnderWaterParentDeleter.tscn" id="2_igc0b"]
+
+[node name="plant" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_v1h41")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+speed_scale = 2.08165e-12
+
+[node name="UnderWaterParentDeleter" parent="." instance=ExtResource("2_igc0b")]

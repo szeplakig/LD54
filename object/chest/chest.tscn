@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bcqpo1mlgsg2f" path="res://object/chest/assets/almost_closed.png" id="4_qf803"]
 [ext_resource type="Texture2D" uid="uid://b85fqnsr3fi4p" path="res://object/chest/assets/closed.png" id="5_b2f2g"]
 [ext_resource type="AudioStream" uid="uid://b8n7oik2tcmkk" path="res://sounds/chest_open.mp3" id="6_hnty4"]
-[ext_resource type="PackedScene" path="res://UnderWaterParentDeleter.tscn" id="7_85wee"]
+[ext_resource type="PackedScene" uid="uid://dy5mqibwv43pi" path="res://UnderWaterParentDeleter.tscn" id="7_85wee"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0d7t4"]
 animations = [{
@@ -98,14 +98,18 @@ position = Vector2(0, -7.5)
 shape = SubResource("CircleShape2D_hqw5e")
 
 [node name="Harvestable" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="chest" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="chest_open" type="AudioStreamPlayer2D" parent="."]
+y_sort_enabled = true
 stream = ExtResource("6_hnty4")
 volume_db = -5.0
 
 [node name="UnderWaterParentDeleter" parent="." instance=ExtResource("7_85wee")]
+y_sort_enabled = true
 position = Vector2(0, -5.5)
 
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

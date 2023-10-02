@@ -1,5 +1,16 @@
 extends Node2D
 
+@onready var ship_phases = [
+	preload("res://object/ship/assets/frame1.png"),
+	preload("res://object/ship/assets/frame2.png"),
+	preload("res://object/ship/assets/frame3.png"),
+	preload("res://object/ship/assets/frame4.png"),
+	preload("res://object/ship/assets/frame5.png"),
+	preload("res://object/ship/assets/frame6.png"),
+	preload("res://object/ship/assets/frame7.png"),
+]
+@onready var ship_built = preload("res://object/ship/assets/built.png")
+
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var player: Node2D = get_node("/root/root/Player")
 @onready var slot: Node2D = $Slot
@@ -37,11 +48,7 @@ func interact():
 	else:
 		player.spend_item()
 		phase += 1
-		if phase < 8:
-			sprite.texture = ImageTexture.create_from_image(
-				Image.load_from_file("res://object/ship/assets/frame" + str(phase) + ".png")
-			)
+		if phase < 8 and phase >= 1:
+			sprite.texture = ship_phases[phase - 1]
 		elif phase == 8:
-			sprite.texture = ImageTexture.create_from_image(
-				Image.load_from_file("res://object/ship/assets/built.png")
-			)
+			sprite.texture = ship_built
