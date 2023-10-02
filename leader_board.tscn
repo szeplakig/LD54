@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c6prbfggsw64w"]
+[gd_scene load_steps=17 format=3 uid="uid://c6prbfggsw64w"]
 
 [ext_resource type="Script" path="res://leader_board.gd" id="1_iut11"]
 [ext_resource type="Texture2D" uid="uid://bt6guyfgk5mlt" path="res://ui/assets/restart_big_button.png" id="2_2sl6r"]
@@ -15,68 +15,79 @@
 [ext_resource type="FontFile" uid="uid://yegcgkwhdifx" path="res://ui/DisposableDroidBB.ttf" id="13_fr62o"]
 [ext_resource type="Script" path="res://SubmitButton.gd" id="14_s26o5"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jfdi"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tx354"]
 bg_color = Color(0, 0, 0, 0.741176)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1d5iy"]
 bg_color = Color(0, 0, 0, 0.952941)
 
-[node name="LeaderBoard" type="Panel"]
-anchors_preset = -1
-anchor_right = 1.66667
-anchor_bottom = 1.53086
+[node name="Control2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_2jfdi")
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 3
+
+[node name="LeaderBoard" type="Panel" parent="AspectRatioContainer2"]
+clip_contents = true
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MenuBackground" type="TextureRect" parent="AspectRatioContainer2/LeaderBoard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_llr3o")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 1
+
+[node name="LeaderBoard" type="Panel" parent="AspectRatioContainer"]
+layout_mode = 2
 script = ExtResource("1_iut11")
 metadata/_edit_use_anchors_ = true
 
-[node name="MenuBackground" type="Sprite2D" parent="."]
-position = Vector2(959, 499.25)
-scale = Vector2(1.46049, 1.35521)
-texture = ExtResource("2_llr3o")
-
-[node name="RestartButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 672.0
-offset_right = 576.0
-offset_bottom = 928.0
-texture_normal = ExtResource("2_2sl6r")
-stretch_mode = 0
-script = ExtResource("4_3k1kf")
-
-[node name="MenuButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 704.0
-offset_top = 672.0
-offset_right = 1216.0
-offset_bottom = 928.0
-texture_normal = ExtResource("4_kawal")
-stretch_mode = 0
-script = ExtResource("5_g7jc8")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AspectRatioContainer/LeaderBoard"]
 position = Vector2(8, -8)
 stream = ExtResource("10_pnwxl")
 volume_db = 20.0
 autoplay = true
 
-[node name="CreditsPanel" type="VBoxContainer" parent="."]
+[node name="CreditsPanel" type="VBoxContainer" parent="AspectRatioContainer/LeaderBoard"]
 layout_mode = 0
 offset_left = 1344.0
 offset_top = 64.0
 offset_right = 1856.0
 offset_bottom = 928.0
 
-[node name="Leaderboard" type="TextureRect" parent="CreditsPanel"]
+[node name="Leaderboard" type="TextureRect" parent="AspectRatioContainer/LeaderBoard/CreditsPanel"]
 custom_minimum_size = Vector2(2.08165e-12, 70)
 layout_mode = 2
 texture = ExtResource("10_1nc6n")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CreditsPanel"]
+[node name="RichTextLabel" type="RichTextLabel" parent="AspectRatioContainer/LeaderBoard/CreditsPanel"]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("13_fr62o")
 theme_override_fonts/bold_font = ExtResource("13_fr62o")
@@ -95,7 +106,18 @@ text = " 1. aadsad: 50
 "
 fit_content = true
 
-[node name="ScorePanel" type="Panel" parent="."]
+[node name="@VScrollBar@40372" type="VScrollBar" parent="AspectRatioContainer/LeaderBoard/CreditsPanel/RichTextLabel"]
+visible = false
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+max_value = 700.0
+step = 1.0
+page = 700.0
+
+[node name="ScorePanel" type="Panel" parent="AspectRatioContainer/LeaderBoard"]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 376.0
@@ -103,12 +125,12 @@ offset_right = 512.0
 offset_bottom = 488.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_tx354")
 
-[node name="Score" type="Sprite2D" parent="ScorePanel"]
+[node name="Score" type="Sprite2D" parent="AspectRatioContainer/LeaderBoard/ScorePanel"]
 position = Vector2(136, 48)
 scale = Vector2(1, 1.0614)
 texture = ExtResource("12_uq2bw")
 
-[node name="Label" type="Label" parent="ScorePanel"]
+[node name="Label" type="Label" parent="AspectRatioContainer/LeaderBoard/ScorePanel"]
 layout_mode = 0
 offset_left = 272.0
 offset_top = 8.0
@@ -118,7 +140,7 @@ theme_override_fonts/font = ExtResource("13_fr62o")
 theme_override_font_sizes/font_size = 96
 text = "999"
 
-[node name="UsernamePanel" type="Panel" parent="."]
+[node name="UsernamePanel" type="Panel" parent="AspectRatioContainer/LeaderBoard"]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 488.0
@@ -126,12 +148,12 @@ offset_right = 512.0
 offset_bottom = 592.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_tx354")
 
-[node name="Username" type="Sprite2D" parent="UsernamePanel"]
+[node name="Username" type="Sprite2D" parent="AspectRatioContainer/LeaderBoard/UsernamePanel"]
 position = Vector2(216, 48)
 scale = Vector2(1, 1.0614)
 texture = ExtResource("10_rhi6y")
 
-[node name="EndPanel" type="Panel" parent="."]
+[node name="EndPanel" type="Panel" parent="AspectRatioContainer/LeaderBoard"]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 64.0
@@ -140,12 +162,12 @@ offset_bottom = 277.0
 scale = Vector2(1.5, 1.5)
 theme_override_styles/panel = SubResource("StyleBoxFlat_1d5iy")
 
-[node name="YouWon" type="Sprite2D" parent="EndPanel"]
+[node name="YouWon" type="Sprite2D" parent="AspectRatioContainer/LeaderBoard/EndPanel"]
 position = Vector2(384, 106.667)
 scale = Vector2(16, 16)
 texture = ExtResource("13_3ux4p")
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="TextEdit" type="TextEdit" parent="AspectRatioContainer/LeaderBoard"]
 layout_mode = 0
 offset_left = 544.0
 offset_top = 472.0
@@ -156,7 +178,34 @@ theme_override_fonts/font = ExtResource("13_fr62o")
 theme_override_font_sizes/font_size = 96
 placeholder_text = "enter name.."
 
-[node name="SubmitButton" type="TextureButton" parent="."]
+[node name="@HScrollBar@40373" type="HScrollBar" parent="AspectRatioContainer/LeaderBoard/TextEdit"]
+visible = false
+layout_mode = 0
+offset_top = 112.0
+offset_right = 664.0
+offset_bottom = 120.0
+max_value = 0.0
+
+[node name="@VScrollBar@40374" type="VScrollBar" parent="AspectRatioContainer/LeaderBoard/TextEdit"]
+visible = false
+layout_mode = 0
+offset_left = 664.0
+offset_top = 4.0
+offset_right = 672.0
+offset_bottom = 112.0
+max_value = 0.0
+
+[node name="@Timer@40375" type="Timer" parent="AspectRatioContainer/LeaderBoard/TextEdit"]
+wait_time = 0.65
+
+[node name="@Timer@40376" type="Timer" parent="AspectRatioContainer/LeaderBoard/TextEdit"]
+wait_time = 0.05
+
+[node name="@Timer@40377" type="Timer" parent="AspectRatioContainer/LeaderBoard/TextEdit"]
+wait_time = 3.0
+one_shot = true
+
+[node name="SubmitButton" type="TextureButton" parent="AspectRatioContainer/LeaderBoard"]
 layout_mode = 0
 offset_left = 1112.0
 offset_top = 480.0
@@ -166,6 +215,24 @@ texture_normal = ExtResource("12_na0dr")
 stretch_mode = 0
 script = ExtResource("14_s26o5")
 
-[connection signal="pressed" from="RestartButton" to="RestartButton" method="_on_pressed"]
-[connection signal="pressed" from="MenuButton" to="MenuButton" method="_on_pressed"]
-[connection signal="pressed" from="SubmitButton" to="SubmitButton" method="_on_pressed"]
+[node name="HBoxContainer" type="HBoxContainer" parent="AspectRatioContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="RestartButton" type="TextureButton" parent="AspectRatioContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+texture_normal = ExtResource("2_2sl6r")
+stretch_mode = 0
+script = ExtResource("4_3k1kf")
+
+[node name="MenuButton" type="TextureButton" parent="AspectRatioContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+texture_normal = ExtResource("4_kawal")
+stretch_mode = 0
+script = ExtResource("5_g7jc8")
+
+[connection signal="pressed" from="AspectRatioContainer/LeaderBoard/SubmitButton" to="AspectRatioContainer/LeaderBoard/SubmitButton" method="_on_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/HBoxContainer/RestartButton" to="AspectRatioContainer/HBoxContainer/RestartButton" method="_on_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/HBoxContainer/MenuButton" to="AspectRatioContainer/HBoxContainer/MenuButton" method="_on_pressed"]

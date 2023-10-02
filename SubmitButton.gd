@@ -35,7 +35,7 @@ func get_top10_own():
 
 func insert_score(name, score):
 	var _user_id = OS.get_unique_id()
-	firestore_collection.add(
+	var task = firestore_collection.add(
 		"",
 		{
 			"name": name,
@@ -44,6 +44,7 @@ func insert_score(name, score):
 			"created_at": str(int(Time.get_unix_time_from_system()))
 		}
 	)
+	await task.task_finished
 
 
 
@@ -51,6 +52,6 @@ func _on_pressed():
 	get_node("../TextEdit").editable = false
 	var submitable_score = Global.score
 	var submitable_username = get_node("../TextEdit").text
-	insert_score(submitable_username, submitable_score)
+	await insert_score(submitable_username, submitable_score)
 	visible = false
 	get_parent().update()
