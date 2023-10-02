@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bbwne5eb4hhkx"]
+[gd_scene load_steps=27 format=3 uid="uid://b5nedrk57kp7j"]
 
 [ext_resource type="Script" path="res://EventBus/EventBus.gd" id="1_2nqjx"]
 [ext_resource type="PackedScene" uid="uid://p3qbpd3b3ftx" path="res://character/player/player.tscn" id="2_27dmy"]
@@ -13,44 +13,21 @@
 [ext_resource type="Script" path="res://GemTransportationPanel.gd" id="5_hcocq"]
 [ext_resource type="PackedScene" uid="uid://cmsn3yc3o0f5q" path="res://EventBus/EventBus.tscn" id="6_m54wb"]
 [ext_resource type="Texture2D" uid="uid://cfjy7oh8dmqe3" path="res://ui/assets/item_collection.png" id="6_tvmt4"]
-[ext_resource type="PackedScene" uid="uid://iscm1jr07thf" path="res://character/mothership/gui.tscn" id="7_b3brw"]
 [ext_resource type="Script" path="res://IItemCollectionPanel.gd" id="7_b3nat"]
 [ext_resource type="Texture2D" uid="uid://btbtnvyva6ka0" path="res://ui/assets/ship_construction.png" id="7_ofrc5"]
 [ext_resource type="Texture2D" uid="uid://bvc8d5do3l0hu" path="res://ui/assets/tree_chopping.png" id="8_q8g4o"]
-[ext_resource type="Script" path="res://UI.gd" id="8_qvqj7"]
-[ext_resource type="Texture2D" uid="uid://b87rvbi0n4by7" path="res://ui/assets/heart_full.png" id="9_bmyjm"]
 [ext_resource type="Script" path="res://ShipConstructionPanel.gd" id="10_1siw6"]
-[ext_resource type="PackedScene" uid="uid://c7wx00546kgv0" path="res://win.tscn" id="10_7wfgj"]
-[ext_resource type="Script" path="res://win.gd" id="11_qour0"]
-[ext_resource type="Texture2D" uid="uid://cfsngdau1ih7v" path="res://ui/assets/menu_button.png" id="12_7vy0a"]
 [ext_resource type="Script" path="res://PlacingPlanksPanel.gd" id="13_3qn5c"]
-[ext_resource type="Script" path="res://MenuButton.gd" id="13_llai7"]
 [ext_resource type="Texture2D" uid="uid://0ao4k5k8sptc" path="res://ui/assets/placing_planks.png" id="14_1xkju"]
-[ext_resource type="Texture2D" uid="uid://c8w80t4l6sp2g" path="res://ui/assets/restart_button.png" id="14_n2kh2"]
-[ext_resource type="Script" path="res://RestartButton.gd" id="15_a2qvj"]
 [ext_resource type="PackedScene" uid="uid://bro7clagbiq2p" path="res://object/ship/ship_frame.tscn" id="17_o73ti"]
 [ext_resource type="PackedScene" uid="uid://cdjevaidefaod" path="res://object/tree/tree.tscn" id="18_l1g84"]
 [ext_resource type="PackedScene" uid="uid://d2sre57itv6b1" path="res://object/chest/chest.tscn" id="19_offlh"]
 [ext_resource type="PackedScene" uid="uid://160btyd2e2oh" path="res://sounds/sounds.tscn" id="21_0rrk5"]
 [ext_resource type="AudioStream" uid="uid://bjwuj1j4oivsn" path="res://ost/main.mp3" id="22_h853q"]
+[ext_resource type="PackedScene" uid="uid://bu8oa7okeiacx" path="res://canvas_layer.tscn" id="25_myc22"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_foxdq"]
 bg_color = Color(0, 0, 0, 0.788235)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2pvb"]
-bg_color = Color(1, 1, 1, 0)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 0)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_233do"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="root" type="Node2D"]
 y_sort_enabled = true
@@ -199,122 +176,6 @@ script = ExtResource("5_41hxv")
 y_sort_enabled = true
 position = Vector2(-85, 604)
 
-[node name="GUI" parent="." instance=ExtResource("7_b3brw")]
-y_sort_enabled = true
-offset_left = -175.0
-offset_top = -102.0
-offset_right = 191.0
-offset_bottom = 102.0
-mouse_filter = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="GUI"]
-script = ExtResource("8_qvqj7")
-
-[node name="Control" type="Control" parent="GUI/CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Panel" type="Panel" parent="GUI/CanvasLayer/Control"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 483.0
-offset_bottom = 112.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_n2pvb")
-
-[node name="Heart1" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 120.0
-offset_bottom = 120.0
-texture = ExtResource("9_bmyjm")
-
-[node name="Heart2" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 128.0
-offset_top = 8.0
-offset_right = 240.0
-offset_bottom = 120.0
-texture = ExtResource("9_bmyjm")
-
-[node name="Heart3" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 248.0
-offset_top = 8.0
-offset_right = 360.0
-offset_bottom = 120.0
-texture = ExtResource("9_bmyjm")
-
-[node name="Heart4" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 368.0
-offset_top = 8.0
-offset_right = 480.0
-offset_bottom = 120.0
-texture = ExtResource("9_bmyjm")
-
-[node name="Heart5" type="TextureRect" parent="GUI/CanvasLayer/Control/Panel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 488.0
-offset_top = 8.0
-offset_right = 600.0
-offset_bottom = 120.0
-texture = ExtResource("9_bmyjm")
-
-[node name="WinScreen" parent="GUI/CanvasLayer" instance=ExtResource("10_7wfgj")]
-unique_name_in_owner = true
-offset_left = 74.0
-offset_top = -257.0
-offset_right = 74.0
-offset_bottom = -257.0
-script = ExtResource("11_qour0")
-
-[node name="Panel3" type="Panel" parent="GUI/CanvasLayer"]
-offset_left = 1640.0
-offset_top = -8.0
-offset_right = 1864.0
-offset_bottom = 88.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_233do")
-
-[node name="MenuButton" type="TextureButton" parent="GUI/CanvasLayer/Panel3"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.607
-anchor_top = 0.25
-anchor_right = 1.179
-anchor_bottom = 1.583
-offset_left = 0.0319824
-offset_right = -0.0960083
-offset_bottom = 0.0319977
-texture_normal = ExtResource("12_7vy0a")
-stretch_mode = 0
-script = ExtResource("13_llai7")
-
-[node name="RestartButton" type="TextureButton" parent="GUI/CanvasLayer/Panel3"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.25
-anchor_right = 0.571
-anchor_bottom = 1.583
-offset_right = 0.095993
-offset_bottom = 0.0319977
-texture_normal = ExtResource("14_n2kh2")
-stretch_mode = 0
-script = ExtResource("15_a2qvj")
-
 [node name="ShipFrame" parent="." instance=ExtResource("17_o73ti")]
 position = Vector2(1247, -693)
 
@@ -352,5 +213,4 @@ position = Vector2(1383, -549)
 [node name="Tree6" parent="Woods" instance=ExtResource("18_l1g84")]
 position = Vector2(1207, -877)
 
-[connection signal="pressed" from="GUI/CanvasLayer/Panel3/MenuButton" to="GUI/CanvasLayer/Panel3/MenuButton" method="_on_pressed"]
-[connection signal="pressed" from="GUI/CanvasLayer/Panel3/RestartButton" to="GUI/CanvasLayer/Panel3/RestartButton" method="_on_pressed"]
+[node name="CanvasLayer" parent="." instance=ExtResource("25_myc22")]

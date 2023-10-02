@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://fo3ji2x5epm"]
+[gd_scene load_steps=13 format=3 uid="uid://fo3ji2x5epm"]
 
 [ext_resource type="PackedScene" uid="uid://p3qbpd3b3ftx" path="res://character/player/player.tscn" id="1_bg4ji"]
 [ext_resource type="Script" path="res://EventBus/EventBus.gd" id="1_r0nvk"]
@@ -6,42 +6,26 @@
 [ext_resource type="Script" path="res://utils.gd" id="5_mg6h3"]
 [ext_resource type="PackedScene" uid="uid://dfg0dvj01kpl1" path="res://character/mothership/mother_ship.tscn" id="7_1u8ju"]
 [ext_resource type="PackedScene" uid="uid://cmsn3yc3o0f5q" path="res://EventBus/EventBus.tscn" id="7_et6cx"]
-[ext_resource type="PackedScene" uid="uid://iscm1jr07thf" path="res://character/mothership/gui.tscn" id="7_ihymt"]
 [ext_resource type="PackedScene" uid="uid://cdjevaidefaod" path="res://object/tree/tree.tscn" id="9_5u5sd"]
-[ext_resource type="Texture2D" uid="uid://b87rvbi0n4by7" path="res://ui/assets/heart_full.png" id="9_k53i8"]
-[ext_resource type="PackedScene" uid="uid://dmfwgpd1kw88u" path="res://win.tscn" id="10_jq5qf"]
 [ext_resource type="PackedScene" uid="uid://bro7clagbiq2p" path="res://object/ship/ship_frame.tscn" id="11_3au0e"]
-[ext_resource type="Script" path="res://MenuButton.gd" id="11_bskhr"]
-[ext_resource type="Script" path="res://win.gd" id="11_u663k"]
-[ext_resource type="Script" path="res://RestartButton.gd" id="12_oo0ob"]
+[ext_resource type="PackedScene" uid="uid://bu8oa7okeiacx" path="res://canvas_layer.tscn" id="12_paxwb"]
 [ext_resource type="PackedScene" uid="uid://d2sre57itv6b1" path="res://object/chest/chest.tscn" id="13_cmla8"]
-[ext_resource type="Script" path="res://UI.gd" id="16_sbs01"]
 [ext_resource type="PackedScene" uid="uid://160btyd2e2oh" path="res://sounds/sounds.tscn" id="18_wavea"]
-[ext_resource type="Texture2D" uid="uid://c8w80t4l6sp2g" path="res://ui/assets/restart_button.png" id="19_p5plw"]
-[ext_resource type="Texture2D" uid="uid://cfsngdau1ih7v" path="res://ui/assets/menu_button.png" id="20_4ymc0"]
 [ext_resource type="AudioStream" uid="uid://bjwuj1j4oivsn" path="res://ost/main.mp3" id="22_2xnib"]
-[ext_resource type="PackedScene" uid="uid://c584h2tigcod0" path="res://leaderboard/leaderboard.tscn" id="22_w6qfr"]
 
 [node name="root" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(249, -155)
 script = ExtResource("1_r0nvk")
 
-[node name="Player" parent="." instance=ExtResource("1_bg4ji")]
-position = Vector2(7, 0)
-
 [node name="Island" parent="." instance=ExtResource("1_xth2g")]
-z_index = -1
-z_as_relative = false
+z_index = -10
 position = Vector2(1, 1)
 layer_0/name = "tiles"
-layer_1/name = "planks"
-layer_1/enabled = true
-layer_1/modulate = Color(1, 1, 1, 1)
-layer_1/y_sort_enabled = false
-layer_1/y_sort_origin = 0
-layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array()
+
+[node name="Player" parent="." instance=ExtResource("1_bg4ji")]
+z_index = 10
+position = Vector2(7, 0)
 
 [node name="Utils" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -55,10 +39,10 @@ position = Vector2(-85, 604)
 y_sort_enabled = true
 
 [node name="ShipFrame" parent="." instance=ExtResource("11_3au0e")]
-position = Vector2(-45, 126)
+position = Vector2(-14, 74)
 
 [node name="Tree" parent="." instance=ExtResource("9_5u5sd")]
-position = Vector2(-141, 91)
+position = Vector2(189, -377)
 
 [node name="Tree5" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(-279, 344)
@@ -67,16 +51,32 @@ position = Vector2(-279, 344)
 position = Vector2(385, -252)
 
 [node name="Tree2" parent="." instance=ExtResource("9_5u5sd")]
-position = Vector2(-20, -78)
+position = Vector2(-66, -48)
+drop_count_range_max = 3
+
+[node name="Tree12" parent="." instance=ExtResource("9_5u5sd")]
+position = Vector2(16, 187)
+drop_count_range_max = 3
+
+[node name="Tree13" parent="." instance=ExtResource("9_5u5sd")]
+position = Vector2(157, 0)
+drop_count_range_max = 3
 
 [node name="Tree3" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(125, 300)
 
+[node name="Tree11" parent="." instance=ExtResource("9_5u5sd")]
+position = Vector2(-99, 486)
+
 [node name="Tree4" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(4, -339)
 
+[node name="Tree10" parent="." instance=ExtResource("9_5u5sd")]
+position = Vector2(-211, -549)
+
 [node name="Tree9" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(538, -96)
+drop_count_range_min = 3
 
 [node name="Tree7" parent="." instance=ExtResource("9_5u5sd")]
 position = Vector2(-456, -238)
@@ -89,179 +89,44 @@ position = Vector2(-214, -442)
 
 [node name="Chest6" parent="." instance=ExtResource("13_cmla8")]
 position = Vector2(163, -259)
+drop_count_range_min = 2
+drop_count_range_max = 5
 
 [node name="Chest2" parent="." instance=ExtResource("13_cmla8")]
-position = Vector2(550, 128)
+position = Vector2(515, 171)
+drop_count_range_min = 5
+
+[node name="Chest10" parent="." instance=ExtResource("13_cmla8")]
+position = Vector2(627, 71)
+drop_count_range_min = 5
 
 [node name="Chest5" parent="." instance=ExtResource("13_cmla8")]
 position = Vector2(-548, -139)
 
+[node name="Chest7" parent="." instance=ExtResource("13_cmla8")]
+position = Vector2(-600, -502)
+drop_count_range_min = 10
+drop_count_range_max = 15
+
+[node name="Chest8" parent="." instance=ExtResource("13_cmla8")]
+position = Vector2(-350, -363)
+
 [node name="Chest4" parent="." instance=ExtResource("13_cmla8")]
-position = Vector2(119, -102)
+position = Vector2(81, -77)
+drop_count_range_min = 1
+drop_count_range_max = 3
 
 [node name="Chest3" parent="." instance=ExtResource("13_cmla8")]
-position = Vector2(0, 485)
+position = Vector2(0, 464)
+
+[node name="Chest9" parent="." instance=ExtResource("13_cmla8")]
+position = Vector2(-252, 484)
 
 [node name="Sounds" parent="." instance=ExtResource("18_wavea")]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("22_2xnib")
-volume_db = -5.0
+volume_db = 5.0
 autoplay = true
 
-[node name="leaderboard" parent="." instance=ExtResource("22_w6qfr")]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="WinScreen" parent="CanvasLayer" instance=ExtResource("10_jq5qf")]
-unique_name_in_owner = true
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 252.0
-offset_right = 900.0
-offset_bottom = 648.0
-grow_horizontal = 1
-grow_vertical = 1
-script = ExtResource("11_u663k")
-
-[node name="GUI" parent="CanvasLayer" instance=ExtResource("7_ihymt")]
-clip_contents = true
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("16_sbs01")
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/GUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GUI/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-metadata/_edit_use_anchors_ = true
-
-[node name="MarginContainer1" type="MarginContainer" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="Heart1" type="TextureRect" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer/MarginContainer1"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-texture = ExtResource("9_k53i8")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="Heart2" type="TextureRect" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer/MarginContainer2"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-texture = ExtResource("9_k53i8")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="Heart3" type="TextureRect" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer/MarginContainer3"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-texture = ExtResource("9_k53i8")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="Heart4" type="TextureRect" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer/MarginContainer4"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-texture = ExtResource("9_k53i8")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="MarginContainer5" type="MarginContainer" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="Heart5" type="TextureRect" parent="CanvasLayer/GUI/MarginContainer/HBoxContainer/MarginContainer5"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-texture = ExtResource("9_k53i8")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="HSplitContainer" type="HBoxContainer" parent="CanvasLayer/GUI/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/GUI/MarginContainer/HSplitContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="MenuButton" type="TextureButton" parent="CanvasLayer/GUI/MarginContainer/HSplitContainer/MarginContainer"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-texture_normal = ExtResource("20_4ymc0")
-stretch_mode = 5
-script = ExtResource("11_bskhr")
-
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/GUI/MarginContainer/HSplitContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="RestartButton" type="TextureButton" parent="CanvasLayer/GUI/MarginContainer/HSplitContainer/MarginContainer2"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-texture_normal = ExtResource("19_p5plw")
-stretch_mode = 5
-script = ExtResource("12_oo0ob")
-
-[connection signal="pressed" from="CanvasLayer/GUI/MarginContainer/HSplitContainer/MarginContainer/MenuButton" to="CanvasLayer/GUI/MarginContainer/HSplitContainer/MarginContainer/MenuButton" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/GUI/MarginContainer/HSplitContainer/MarginContainer2/RestartButton" to="CanvasLayer/GUI/MarginContainer/HSplitContainer/MarginContainer2/RestartButton" method="_on_pressed"]
+[node name="CanvasLayer" parent="." instance=ExtResource("12_paxwb")]
