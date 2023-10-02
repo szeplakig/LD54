@@ -149,6 +149,7 @@ func pickup(item: Node2D):
 	currentItem.position = Vector2.ZERO
 	currentItem.rotation = 0
 	currentItem.collision.disabled = true
+	currentItem.z_index += 1
 
 
 func swap(item: Node2D):
@@ -176,6 +177,7 @@ func drop(itemGlobalPosition = null):
 			var interactable = Node2D.new()
 			interactable.set_name("Interactable")
 			currentItem.add_child(interactable)
+		currentItem.z_index -= 1
 		currentItem = null
 
 

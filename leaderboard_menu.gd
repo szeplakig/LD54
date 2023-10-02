@@ -51,4 +51,5 @@ func update():
 
 
 func _ready():
+	Firebase.Auth.login_anonymous()
 	update()
